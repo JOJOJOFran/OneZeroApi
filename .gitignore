@@ -1,0 +1,12 @@
+
+EasySample/\.vs/
+
+EasySample/OneZero\.Api/bin/
+
+EasySample/OneZero\.Api/obj/
+
+EasySample/OneZero\.DatabaseContext/obj/
+
+EasySample/OneZero\.Model/obj/
+
+EasySample/OneZero\.Service/obj/
