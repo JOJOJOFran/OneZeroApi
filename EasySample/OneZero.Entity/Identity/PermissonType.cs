@@ -1,10 +1,16 @@
-﻿using System;
+﻿using OneZero.Lib.Entity;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OneZero.Entity.Identity
+namespace OneZero.Lib.Entity.Identity
 {
-    class PermissonType
+    public class PermissonType<TKey> : BaseEntity<TKey> where TKey : IEquatable<TKey>
     {
+        public string PermissionName { get; set; }
+
+        public string Remark { get; set; }
+
+        public int RowNo { get; set; }
     }
 }

@@ -10,3 +10,17 @@ EasySample/OneZero\.DatabaseContext/obj/
 EasySample/OneZero\.Model/obj/
 
 EasySample/OneZero\.Service/obj/
+
+EasySample/OneZero\.DatabaseContext/bin/
+
+EasySample/OneZero\.Entity/obj/
+
+EasySample/OneZero\.Entity/bin/
+
+EasySample/OneZero\.Model/bin/
+
+EasySample/OneZero\.ServerCenter/bin/
+
+EasySample/OneZero\.ServerCenter/obj/
+
+EasySample/OneZero\.Service/bin/

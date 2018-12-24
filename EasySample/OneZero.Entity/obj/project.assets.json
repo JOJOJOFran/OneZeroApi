@@ -692,11 +692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\AllOrNothing\\OneZeroApi\\monolithic\\OneZero.Entity\\OneZero.Entity.csproj",
-      "projectName": "OneZero.Entity",
-      "projectPath": "D:\\AllOrNothing\\OneZeroApi\\monolithic\\OneZero.Entity\\OneZero.Entity.csproj",
+      "projectUniqueName": "D:\\AllOrNothing\\OneZeroApi\\EasySample\\OneZero.Entity\\OneZero.Lib.Entity.csproj",
+      "projectName": "OneZero.Lib.Entity",
+      "projectPath": "D:\\AllOrNothing\\OneZeroApi\\EasySample\\OneZero.Entity\\OneZero.Lib.Entity.csproj",
       "packagesPath": "G:\\Users\\Fran\\.nuget\\packages\\",
-      "outputPath": "D:\\AllOrNothing\\OneZeroApi\\monolithic\\OneZero.Entity\\obj\\",
+      "outputPath": "D:\\AllOrNothing\\OneZeroApi\\EasySample\\OneZero.Entity\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "G:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Api", "OneZero.Api\OneZero.Api.csproj", "{49A97696-6978-4B5F-8D76-20BCD951F5AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.App.Api", "OneZero.Api\OneZero.App.Api.csproj", "{49A97696-6978-4B5F-8D76-20BCD951F5AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneZero.Entity", "OneZero.Entity\OneZero.Entity.csproj", "{1A0206E8-0A7C-466D-A614-C014A0B421B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Lib.Entity", "OneZero.Entity\OneZero.Lib.Entity.csproj", "{1A0206E8-0A7C-466D-A614-C014A0B421B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneZero.Repository", "OneZero.DatabaseContext\OneZero.Repository.csproj", "{305AACF5-9D18-4881-81F8-DA40ED29B812}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Lib.Repository", "OneZero.DatabaseContext\OneZero.Lib.Repository.csproj", "{305AACF5-9D18-4881-81F8-DA40ED29B812}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneZero.Model", "OneZero.Model\OneZero.Model.csproj", "{F069245B-955F-4569-B3AC-073E5A9DD83A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Lib.Model", "OneZero.Model\OneZero.Lib.Model.csproj", "{F069245B-955F-4569-B3AC-073E5A9DD83A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneZero.Service", "OneZero.Service\OneZero.Service.csproj", "{C45E0312-B49D-4465-A982-C48B5E0160ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Lib.Service", "OneZero.Service\OneZero.Lib.Service.csproj", "{C45E0312-B49D-4465-A982-C48B5E0160ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneZero.App.ServerCenter", "OneZero.ServerCenter\OneZero.App.ServerCenter.csproj", "{53DEA16F-CF10-431A-A3A3-C38C72A7B691}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{C45E0312-B49D-4465-A982-C48B5E0160ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C45E0312-B49D-4465-A982-C48B5E0160ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C45E0312-B49D-4465-A982-C48B5E0160ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53DEA16F-CF10-431A-A3A3-C38C72A7B691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53DEA16F-CF10-431A-A3A3-C38C72A7B691}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53DEA16F-CF10-431A-A3A3-C38C72A7B691}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53DEA16F-CF10-431A-A3A3-C38C72A7B691}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
