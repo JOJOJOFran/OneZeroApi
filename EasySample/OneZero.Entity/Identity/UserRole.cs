@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OneZero.Entity.Identity
 {
-    public class PermissionType:IdentityPermissionType<Guid>
+    public class UserRole:IdentityUserRole<Guid>
     {
         
     }

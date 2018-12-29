@@ -36,7 +36,7 @@ namespace OneZero.Api
                     .AddEntityFrameworkStores<AppDbContext>()
                     .AddDefaultTokenProviders();   //为重置密码，邮箱，电话提供默认的token provider
 
-
+        
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             
         }

@@ -21,6 +21,7 @@ namespace OneZero.Api.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+           // modelBuilder.ApplyConfiguration()
             base.OnModelCreating(modelBuilder);
         }
     }

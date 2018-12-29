@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OneZero.Lib.Entity.Identity
+namespace OneZero.Entity.Identity
 {
     /// <summary>
     /// 用户认证实体类

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OneZero.Lib.Entity
+namespace OneZero.Entity
 {
     /// <summary>
     /// 实体基类

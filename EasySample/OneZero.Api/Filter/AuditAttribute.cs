@@ -50,7 +50,7 @@ namespace OneZero.Api.Filter
                 audit.UserName = "";
             }
 
-            audit.MoudleName = _moduleName;
+            audit.ModuleName = _moduleName;
             audit.PageName = _pageName?? context.HttpContext.Request.Headers["PageName"];
             audit.ActionName = _actionName;
             audit.OpretionTime = DateTime.Now;

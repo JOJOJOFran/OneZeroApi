@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OneZero.Lib.Entity.Identity
+namespace OneZero.Entity.Identity
 {
     public class IdentityRole<TKey> : BaseEntity<TKey> where TKey : IEquatable<TKey>
     {
@@ -10,6 +10,6 @@ namespace OneZero.Lib.Entity.Identity
 
         public string Remark { get; set; }
 
-        public ICollection<MoudleType<TKey>> Moudles { get; set; }
+        public ICollection<IdentityModuleType<TKey>> Modules { get; set; }
     }
 }

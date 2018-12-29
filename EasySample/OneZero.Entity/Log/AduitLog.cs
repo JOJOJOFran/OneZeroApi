@@ -9,7 +9,7 @@ namespace OneZero.Entity.Log
         /// <summary>
         /// 模块名称
         /// </summary>
-        public string MoudleName { get; set; }
+        public string ModuleName { get; set; }
 
         /// <summary>
         /// 页面名称
