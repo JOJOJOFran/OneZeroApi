@@ -11,7 +11,9 @@ namespace OnzeZero.Entity.Configuration
     {
         public  void Configure(EntityTypeBuilder<ModuleType> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("TModuleType");
+            builder.HasKey(v => v.Id);
+            builder.HasIndex(v => v.Name);
         }
 
         

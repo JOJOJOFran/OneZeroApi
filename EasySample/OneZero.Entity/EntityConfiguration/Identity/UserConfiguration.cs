@@ -11,7 +11,14 @@ namespace OnzeZero.Entity.Configuration
     {
         public  void Configure(EntityTypeBuilder<User> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("TUser");
+            builder.HasKey(v => v.Id);
+            builder.HasIndex(v => v.UserName).IsUnique();
+
+            builder.Property(v => v.IsDelete).HasDefaultValue(false);
+            builder.Property(v => v.LockoutEnabled).HasDefaultValue(false);
+            builder.Property(v => v.PhoneConfirmed).HasDefaultValue(false);
+            builder.Property(v => v.EmailConfirmed).HasDefaultValue(false);
         }
     }
 }

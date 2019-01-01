@@ -1,0 +1,11 @@
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero.Console\bin\Debug\netcoreapp2.2\OneZero.Console.deps.json
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero.Console\bin\Debug\netcoreapp2.2\OneZero.Console.runtimeconfig.json
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero.Console\bin\Debug\netcoreapp2.2\OneZero.Console.runtimeconfig.dev.json
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero.Console\bin\Debug\netcoreapp2.2\OneZero.Console.dll
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero.Console\bin\Debug\netcoreapp2.2\OneZero.Console.pdb
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero.Console\obj\Debug\netcoreapp2.2\OneZero.Console.csproj.CoreCompileInputs.cache
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero.Console\obj\Debug\netcoreapp2.2\OneZero.Console.AssemblyInfoInputs.cache
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero.Console\obj\Debug\netcoreapp2.2\OneZero.Console.AssemblyInfo.cs
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero.Console\obj\Debug\netcoreapp2.2\OneZero.Console.dll
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero.Console\obj\Debug\netcoreapp2.2\OneZero.Console.pdb
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero.Console\obj\Debug\netcoreapp2.2\OneZero.Console.csprojAssemblyReference.cache

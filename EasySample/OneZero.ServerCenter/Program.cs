@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace OneZero.ServerCenter
+namespace OneZero.IdentityServerCenter
 {
     public class Program
     {

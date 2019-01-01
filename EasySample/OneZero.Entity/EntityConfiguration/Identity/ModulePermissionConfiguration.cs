@@ -11,7 +11,10 @@ namespace OnzeZero.Entity.Configuration
     {
         public  void Configure(EntityTypeBuilder<ModulePermission> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("TModulePermission");
+            builder.HasKey(v => v.Id);
+            builder.HasIndex(v => new { v.PermissionId, v.ModuleId });
+            builder.HasIndex(v => v.SeqNo);
         }
     }
 }

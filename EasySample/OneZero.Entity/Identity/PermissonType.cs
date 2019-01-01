@@ -6,6 +6,6 @@ namespace OneZero.Entity.Identity
 {
     public class PermissionType:IdentityPermissionType<Guid>
     {
-        
+
     }
 }

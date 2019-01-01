@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace OneZero.ServerCenter.Controllers
+namespace OneZero.IdentityServerCenter.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

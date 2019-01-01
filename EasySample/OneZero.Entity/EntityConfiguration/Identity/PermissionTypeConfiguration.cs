@@ -11,7 +11,9 @@ namespace OnzeZero.Entity.Configuration
     {
         public  void Configure(EntityTypeBuilder<PermissionType> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("TPermissionType");
+            builder.HasKey(v => v.Id);
+            builder.HasIndex(v => v.Name);
         }
     }
 }

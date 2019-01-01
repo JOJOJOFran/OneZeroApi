@@ -6,6 +6,7 @@ namespace OneZero.Entity.Identity
 {
     public class Role:IdentityRole<Guid>
     {
-        
+      
+        public ICollection<ModuleType> Modules { get; set; }
     }
 }

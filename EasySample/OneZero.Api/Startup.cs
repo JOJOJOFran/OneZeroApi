@@ -11,8 +11,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using OneZero.Api.Database;
 using OneZero.Api.Entity;
+using OneZero.Entity.Configuration;
+using OneZero.Entity.DatabaseContext;
+using OneZero.Entity.DatabaseContext.SqlContext;
+using OneZero.Entity.Identity;
 
 namespace OneZero.Api
 {
@@ -28,17 +31,12 @@ namespace OneZero.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<AppDbContext>(option => {
-                     option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
-
-            services.AddIdentity<AppUser, AppRole>()
-                    .AddEntityFrameworkStores<AppDbContext>()
-                    .AddDefaultTokenProviders();   //为重置密码，邮箱，电话提供默认的token provider
-
-        
+            services.AddSqlServerContext<MSSqlContext>(Configuration.GetConnectionString("DefaultConnection"), 1000);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            
+
+           
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

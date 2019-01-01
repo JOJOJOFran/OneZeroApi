@@ -11,7 +11,11 @@ namespace OnzeZero.Entity.Configuration
     {
         public  void Configure(EntityTypeBuilder<UserRole> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("TUserRole");
+            builder.HasKey(v => v.Id);
+            builder.HasIndex(v => new { v.RoleId, v.UserId });
+
+
         }
     }
 }
