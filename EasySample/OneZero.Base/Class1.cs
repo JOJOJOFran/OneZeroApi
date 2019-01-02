@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OneZero.Model
+namespace OneZero.Base
 {
     public class Class1
     {

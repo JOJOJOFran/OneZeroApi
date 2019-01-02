@@ -686,31 +686,29 @@
     ]
   },
   "packageFolders": {
-    "G:\\Users\\Fran\\.nuget\\packages\\": {},
-    "G:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\bb\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\AllOrNothing\\OneZeroApi\\EasySample\\OneZero.Common\\OneZero.Common.csproj",
+      "projectUniqueName": "H:\\学习\\AllOrNothing\\OneZeroApi\\EasySample\\OneZero.Common\\OneZero.Common.csproj",
       "projectName": "OneZero.Common",
-      "projectPath": "D:\\AllOrNothing\\OneZeroApi\\EasySample\\OneZero.Common\\OneZero.Common.csproj",
-      "packagesPath": "G:\\Users\\Fran\\.nuget\\packages\\",
-      "outputPath": "D:\\AllOrNothing\\OneZeroApi\\EasySample\\OneZero.Common\\obj\\",
+      "projectPath": "H:\\学习\\AllOrNothing\\OneZeroApi\\EasySample\\OneZero.Common\\OneZero.Common.csproj",
+      "packagesPath": "C:\\Users\\bb\\.nuget\\packages\\",
+      "outputPath": "H:\\学习\\AllOrNothing\\OneZeroApi\\EasySample\\OneZero.Common\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "G:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "G:\\Users\\Fran\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\bb\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
       ],
       "sources": {
-        "G:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://nuget.cnblogs.com/v3/index.json": {}
+        "https://www.nuget.org/api/v2/": {}
       },
       "frameworks": {
         "netcoreapp2.2": {
