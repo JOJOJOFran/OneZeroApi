@@ -94,7 +94,7 @@ namespace OneZero.Service.Respository
         /// <returns></returns>
         protected virtual async Task BasicAddAsync(TEntity entity)
         {
-            if (!await EntityValidate(entity, out string entityInfo))
+            if (! EntityValidate(entity, out string entityInfo))
             {
                 _dto.Code = ResponseCode.ExpectedException;
                 _dto.Message = "数据实体不合法，请检查" + entityInfo + "后重新提交！";
@@ -121,7 +121,7 @@ namespace OneZero.Service.Respository
         /// <returns></returns>
         protected async Task<bool> BasciAddRangeAsync(IEnumerable<TEntity> entities)
         {
-            if (!await EntityValidate(entities, out string entityInfo))
+            if (!EntityValidate(entities, out string entityInfo))
             {
                 _dto.Message = _moduleName + "新增失败，数据实体不合法，请检查" + entityInfo + "后重新提交！";
                 _dto.Code = ResponseCode.ExpectedException;
@@ -270,7 +270,7 @@ namespace OneZero.Service.Respository
         public async Task<TDto> BasciUpdateAsync(TEntity entity, string actionFlag = null)
         {
             string actionType = actionFlag == null ? "更新" : (actionFlag == "Recycle" ? "清除" : "还原");
-            if (!await EntityValidate(entity, out string entityInfo))
+            if (!EntityValidate(entity, out string entityInfo))
             {
                 _dto.Code = ResponseCode.ExpectedException;
             }
@@ -300,7 +300,7 @@ namespace OneZero.Service.Respository
         public async Task<TDto> BasicUpdateRangeAsync(IEnumerable<TEntity> entities, string flag = null)
         {
             string actionType = flag == null ? "更新" : (flag == "Recycle" ? "清除" : "还原");
-            if (!await EntityValidate(entities, out string entityInfo))
+            if (!EntityValidate(entities, out string entityInfo))
             {
                 _dto.Code = ResponseCode.ExpectedException;
             }
@@ -386,7 +386,7 @@ namespace OneZero.Service.Respository
 
         #endregion
 
-        #region  保存
+        #region 保存
         public virtual async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();
@@ -398,10 +398,10 @@ namespace OneZero.Service.Respository
         /// 实体类验证
         /// </summary>
         /// <returns></returns>
-        public abstract Task<bool> EntityValidate(TEntity entity, out string entityInfo);
-        public abstract Task<bool> EntityValidate(IEnumerable<TEntity> entities, out string entityInfo);
-        public abstract Task<IEnumerable<DtoData>> GetDtoList(IEnumerable<TEntity> entities);
-        public abstract Task<IEnumerable<DtoData>> GetDtoItem(TEntity entity);
+        public abstract bool EntityValidate(TEntity entity, out string entityInfo);
+        public abstract bool EntityValidate(IEnumerable<TEntity> entities, out string entityInfo);
+        public abstract Task<IEnumerable<TDtoData>> GetListAsync(IEnumerable<TEntity> entities);
+        public abstract Task<IEnumerable<TDtoData>> GetItemAsync(TEntity entity);
         #endregion
 
     }

@@ -1,13 +1,11 @@
-﻿using OneZero.Entity.Identity;
-using OneZero.Model;
+using OneZero.Entity.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace OneZero.Service.Respository
 {
-    public interface IUserRespository
+    public interface IUserRoleRespository 
     {
-        
     }
 }

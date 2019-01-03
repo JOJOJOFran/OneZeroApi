@@ -9,7 +9,7 @@ namespace OneZero.Entity.Identity
     {
 
         /// <summary>
-        /// 角色集合（导航属性）
+        /// 瑙掕壊闆嗗悎
         /// </summary>
         public ICollection<Role> Roles { get; set; }
     }

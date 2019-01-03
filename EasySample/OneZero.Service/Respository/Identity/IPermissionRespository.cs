@@ -6,7 +6,7 @@ using System.Text;
 
 namespace OneZero.Service.Respository
 {
-    public interface IPermissionRespository : IRespository<PermissionType, Guid,Dto,DtoData>
+    public interface IPermissionRespository
     {
     }
 }
