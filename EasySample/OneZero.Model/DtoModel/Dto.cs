@@ -14,12 +14,6 @@ namespace OneZero.Model
         /// </summary>
         public Dto()
         {
-            //默认200
-            StatusCode = HttpStatusCode.OK;
-            //默认0,Success
-            Code = ResponseCode.Success;
-            //初始化空数据集合
-            Datas = new List<DtoData>();
         }
 
         /// <summary>
@@ -31,7 +25,7 @@ namespace OneZero.Model
         {
             StatusCode = statusCode;
             Message = message;
-             //初始化空数据集合
+            //初始化空数据集合
             Datas = new List<DtoData>();
         }
 
@@ -43,7 +37,7 @@ namespace OneZero.Model
         /// <summary>
         /// 请求响应结果码
         /// </summary>
-        public ResponseCode Code { get; set; }
+        public ResponseCode Code { get; set; } = ResponseCode.Success;
 
         /// <summary>
         /// 请求消息
@@ -53,7 +47,7 @@ namespace OneZero.Model
         /// <summary>
         /// 数据集合
         /// </summary>
-        public IEnumerable<DtoData> Datas { get; set; }
+        public IEnumerable<DtoData> Datas { get; set; } = new List<DtoData>();
     }
 
     /// <summary>

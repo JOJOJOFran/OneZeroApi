@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OneZero.Service.Respository
 {
-    public interface IRoleRespository : IRespository<Role, Guid>
+    public interface IRoleRespository 
     {
     }
 }

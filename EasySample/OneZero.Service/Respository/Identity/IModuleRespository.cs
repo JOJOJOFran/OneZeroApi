@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OneZero.Service.Respository
 {
-    public interface IModuleRespository : IRespository<ModuleType, Guid>
+    public interface IModuleRespository 
     {
     }
 }
