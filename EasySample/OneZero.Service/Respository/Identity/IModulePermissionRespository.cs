@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OneZero.Service.Respository
+namespace OneZero.Service.Repository
 {
-    public interface IModulePermissionRespository 
+    public interface IModulePermissionRepository 
     {
     }
 }

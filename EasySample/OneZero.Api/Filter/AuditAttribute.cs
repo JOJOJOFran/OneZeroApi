@@ -49,7 +49,7 @@ namespace OneZero.Api.Filter
                 audit.UserID = "";//context.HttpContext.User.UserIdentity();
                 audit.UserName = "";
             }
-
+            var a = context.HttpContext.User;
             audit.ModuleName = _moduleName;
             audit.PageName = _pageName?? context.HttpContext.Request.Headers["PageName"];
             audit.ActionName = _actionName;

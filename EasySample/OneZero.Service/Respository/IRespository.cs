@@ -8,15 +8,14 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OneZero.Service.Respository
+namespace OneZero.Service.Repository
 {
     /// <summary>
     /// 仓储层接口
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TKey"></typeparam>
-    public interface IRespository<TEntity, TKey,TDto,TDtoData> where TEntity : BaseEntity<TKey> where TKey : IEquatable<TKey>   where TDto:IDto<TDtoData>
-                                                                         where TDtoData:IDtoData
+    public interface IRepository<TEntity, TKey> where TEntity : BaseEntity<TKey> where TKey : IEquatable<TKey>
     {
         DbContext Context { get; }
         IQueryable<TEntity> Entities { get; }
@@ -36,14 +35,14 @@ namespace OneZero.Service.Respository
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns>影响行数</returns>
-        Task<TDto> AddAsync(TEntity entity);
+        Task<IDto<IDtoData>> AddAsync(TEntity entity);
 
         /// <summary>
         /// 批量插入实体
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns>业务操作结果</returns>
-        Task<TDto> AddRangeAsync(IEnumerable<TEntity> entity);
+        Task<IDto<IDtoData>> AddRangeAsync(IEnumerable<TEntity> entity);
         #endregion
 
         #region Update
@@ -59,7 +58,7 @@ namespace OneZero.Service.Respository
         /// </summary>
         /// <param name="entity">实体类</param>
         /// <returns>业务操作结果</returns>
-        Task<TDto> UpdateAsync(TEntity entity);
+        Task<IDto<IDtoData>> UpdateAsync(TEntity entity);
 
         /// <summary>
         /// 更新指定主键的
@@ -67,7 +66,7 @@ namespace OneZero.Service.Respository
         /// <param name="key"></param>
         /// <param name="updatExpression"></param>
         /// <returns>业务操作结果</returns>
-        Task<TDto> UpdateAsync<TInputDto>(TInputDto inputDto, Func<TInputDto, TEntity, TEntity> convertExpression, TKey key);
+        Task<IDto<IDtoData>> UpdateAsync<TInputDto>(TInputDto inputDto, Func<TInputDto, TEntity, TEntity> convertExpression, TKey key);
         #endregion
 
         #region Delete
@@ -83,7 +82,7 @@ namespace OneZero.Service.Respository
         /// </summary>
         /// <param name="keys"></param>
         /// <returns></returns>
-        Task<TDto> DeleteAsync(TKey key);
+        Task<IDto<IDtoData>> DeleteAsync(TKey key);
 
 
         /// <summary>
@@ -91,21 +90,21 @@ namespace OneZero.Service.Respository
         /// </summary>
         /// <param name="keys"></param>
         /// <returns></returns>
-        Task<TDto> DeleteRangeAsync(IEnumerable<TKey> keys);
+        Task<IDto<IDtoData>> DeleteRangeAsync(IEnumerable<TKey> keys);
 
         /// <summary>
         /// 根据条件
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        Task<TDto> DeleteAsync(Expression<Func<TEntity, bool>> predicate);
+        Task<IDto<IDtoData>> DeleteAsync(Expression<Func<TEntity, bool>> predicate);
 
         /// <summary>
         /// 标记删除
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
-        Task<TDto> RecycleAsync(TKey key);
+        Task<IDto<IDtoData>> RecycleAsync(TKey key);
         #endregion
         #region
         IEnumerable<TEntity> GetListAsync(Func<TEntity, bool> whereFunc);

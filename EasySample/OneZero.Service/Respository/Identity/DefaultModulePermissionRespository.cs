@@ -5,21 +5,18 @@ using Microsoft.EntityFrameworkCore;
 using OneZero.Entity.Identity;
 using OneZero.Model;
 
-namespace OneZero.Service.Respository.Identity
+namespace OneZero.Service.Repository.Identity
 {
-    public class DefaultModulePermissionRespository : BaseRespository<ModulePermission, Guid, IDto<IDtoData>, IDtoData>
+    public class DefaultModulePermissionRepository : BaseRepository<ModulePermission, Guid>
     {
-        public DefaultModulePermissionRespository(DbContext dbContext, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, dtoData, dto)
+        public DefaultModulePermissionRepository(DbContext dbContext, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, dtoData, dto)
         {
         }
 
-        public DefaultModulePermissionRespository(DbContext dbContext, string moduleName, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, moduleName, dtoData, dto)
+        public DefaultModulePermissionRepository(DbContext dbContext, string moduleName, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, moduleName, dtoData, dto)
         {
         }
 
-        public DefaultModulePermissionRespository(DbContext dbContext, string moduleName, IDtoData dtoData, IDto<IDtoData> dto, string pageName, string actionName) : base(dbContext, moduleName, dtoData, dto, pageName, actionName)
-        {
-        }
 
         public override  bool EntityValidate(ModulePermission entity, out string entityInfo)
         {

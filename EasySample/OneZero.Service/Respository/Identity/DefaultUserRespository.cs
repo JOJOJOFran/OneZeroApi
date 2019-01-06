@@ -8,21 +8,18 @@ using Microsoft.EntityFrameworkCore;
 using OneZero.Entity.Identity;
 using OneZero.Model;
 
-namespace OneZero.Service.Respository.Identity
+namespace OneZero.Service.Repository.Identity
 {
-    public class DefaultUserRespository : BaseRespository<User, Guid, IDto<IDtoData>, IDtoData>
+    public class DefaultUserRepository : BaseRepository<User, Guid>
     {
-        public DefaultUserRespository(DbContext dbContext, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, dtoData, dto)
+        public DefaultUserRepository(DbContext dbContext, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, dtoData, dto)
         {
         }
 
-        public DefaultUserRespository(DbContext dbContext, string moduleName, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, moduleName, dtoData, dto)
+        public DefaultUserRepository(DbContext dbContext, string moduleName, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, moduleName, dtoData, dto)
         {
         }
 
-        public DefaultUserRespository(DbContext dbContext, string moduleName, IDtoData dtoData, IDto<IDtoData> dto, string pageName, string actionName) : base(dbContext, moduleName, dtoData, dto, pageName, actionName)
-        {
-        }
 
          public override bool EntityValidate(User entity, out string entityInfo)
         {

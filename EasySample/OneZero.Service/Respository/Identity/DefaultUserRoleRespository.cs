@@ -5,21 +5,18 @@ using Microsoft.EntityFrameworkCore;
 using OneZero.Entity.Identity;
 using OneZero.Model;
 
-namespace OneZero.Service.Respository.Identity
+namespace OneZero.Service.Repository.Identity
 {
-    public class DefaultUserRoleRespository : BaseRespository<UserRole, Guid, IDto<IDtoData>, IDtoData>
+    public class DefaultUserRoleRepository : BaseRepository<UserRole, Guid>
     {
-        public DefaultUserRoleRespository(DbContext dbContext, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, dtoData, dto)
+        public DefaultUserRoleRepository(DbContext dbContext, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, dtoData, dto)
         {
         }
 
-        public DefaultUserRoleRespository(DbContext dbContext, string moduleName, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, moduleName, dtoData, dto)
+        public DefaultUserRoleRepository(DbContext dbContext, string moduleName, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, moduleName, dtoData, dto)
         {
         }
 
-        public DefaultUserRoleRespository(DbContext dbContext, string moduleName, IDtoData dtoData, IDto<IDtoData> dto, string pageName, string actionName) : base(dbContext, moduleName, dtoData, dto, pageName, actionName)
-        {
-        }
 
         public override bool EntityValidate(UserRole entity, out string entityInfo)
         {

@@ -7,7 +7,8 @@ namespace OneZero.IdentityServerCenter.CustomerService
     {
         public Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
         {
-            throw new System.NotImplementedException();
+            context.Result = new GrantValidationResult("1", "2");
+            return Task.CompletedTask;
         }
     }
 }

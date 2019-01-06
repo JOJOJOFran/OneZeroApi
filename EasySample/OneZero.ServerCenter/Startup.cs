@@ -28,6 +28,7 @@ namespace OneZero.IdentityServerCenter
         {
 
             services.AddIdentityServer()
+                    .AddResourceOwnerValidator<RescourceOwnerPasswordValidator>()
                     .AddDeveloperSigningCredential()
                     .AddResourceOwnerValidator<RescourceOwnerPasswordValidator>()
                     .AddProfileService<ProfileService>();

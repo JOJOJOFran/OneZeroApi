@@ -17,7 +17,7 @@ namespace OneZero.Entity.Identity
         public TKey PermissionId { get; set; }
 
         [Required]
-        [Description("序号（唯一）")]
+        [Description("序号（唯一")]
         public int SeqNo { get; set; }
     }
 }

@@ -9,13 +9,12 @@ using OneZero.Entity;
 using OneZero.Model;
 using OneZero.Model.CustomException;
 
-namespace OneZero.Service.Respository
+namespace OneZero.Service.Repository
 {
-    public abstract class BaseRespository<TEntity, TKey, TDto, TDtoData> : IRespository<TEntity, TKey, TDto, TDtoData>
+    public abstract class BaseRepository<TEntity, TKey> : IRepository<TEntity, TKey>
                                                                             where TEntity : BaseEntity<TKey>
                                                                             where TKey : IEquatable<TKey>
-                                                                            where TDto : IDto<TDtoData>
-                                                                            where TDtoData : IDtoData
+                                                                            
     {
         #region 字段和属性
         private readonly DbContext _context;
@@ -26,9 +25,9 @@ namespace OneZero.Service.Respository
 
         private readonly string _actionName;
 
-        public TDtoData _dtoData;
+        public  IDto<IDtoData> _dtoData;
 
-        public TDto _dto;
+        public  IDto<IDtoData> _dto;
 
         public DbContext Context { get { return _context; } }
 
@@ -38,24 +37,24 @@ namespace OneZero.Service.Respository
         #endregion
 
         #region  构造函数
-        public BaseRespository(DbContext dbContext, IDtoData dtoData, TDto dto)
+        public BaseRepository(DbContext dbContext, IDtoData dtoData,  IDto<IDtoData> dto)
         {
             _context = dbContext;
             _entities = _context.Set<TEntity>();
-            _dtoData = (TDtoData)dtoData;
+            _dtoData = ( IDto<IDtoData>)dtoData;
             _dto = dto;
         }
 
-        public BaseRespository(DbContext dbContext, string moduleName, IDtoData dtoData, TDto dto)
+        public BaseRepository(DbContext dbContext, string moduleName, IDtoData dtoData,  IDto<IDtoData> dto)
         {
             _context = dbContext;
             _entities = _context.Set<TEntity>();
             _moduleName = moduleName;
-            _dtoData = (TDtoData)dtoData;
+            _dtoData = ( IDto<IDtoData>)dtoData;
             _dto = dto;
         }
 
-        public BaseRespository(DbContext dbContext, string moduleName, TDtoData dtoData, TDto dto, string pageName, string actionName)
+        public BaseRepository(DbContext dbContext, string moduleName,  IDto<IDtoData> dtoData,  IDto<IDtoData> dto, string pageName, string actionName)
         {
             _context = dbContext;
             _entities = _context.Set<TEntity>();
@@ -75,13 +74,13 @@ namespace OneZero.Service.Respository
             return entities.Count();
         }
 
-        public virtual async Task<TDto> AddAsync(TEntity entity)
+        public virtual async Task< IDto<IDtoData>> AddAsync(TEntity entity)
         {
             await BasicAddAsync(entity);
             return _dto;
         }
 
-        public virtual async Task<TDto> AddRangeAsync(IEnumerable<TEntity> entities)
+        public virtual async Task< IDto<IDtoData>> AddRangeAsync(IEnumerable<TEntity> entities)
         {
             await BasciAddRangeAsync(entities);
             return _dto;
@@ -146,20 +145,20 @@ namespace OneZero.Service.Respository
         #endregion
 
         #region 删除方法
-        public virtual async Task<TDto> DeleteAsync(TKey key)
+        public virtual async Task< IDto<IDtoData>> DeleteAsync(TKey key)
         {
             var entity = await Entities.FirstOrDefaultAsync(v => v.Id.Equals(key));
             return await BasicDeleteAsync(entity);
         }
 
-        public virtual async Task<TDto> DeleteAsync(Expression<Func<TEntity, bool>> predicate)
+        public virtual async Task< IDto<IDtoData>> DeleteAsync(Expression<Func<TEntity, bool>> predicate)
         {
             var entities = await  Entities.Where(predicate).ToListAsync();
             return await BasicDeleteRangeAsync(entities);
 
         }
 
-        public virtual async Task<TDto> DeleteRangeAsync(IEnumerable<TKey> keys)
+        public virtual async Task< IDto<IDtoData>> DeleteRangeAsync(IEnumerable<TKey> keys)
         {
             var entities =await  Entities.Where(v => keys.Contains(v.Id))?.ToListAsync();
             return await BasicDeleteRangeAsync(entities);
@@ -178,7 +177,7 @@ namespace OneZero.Service.Respository
         /// </summary>
         /// <param name="entity">实体类</param>
         /// <returns></returns>
-        public async Task<TDto> BasicDeleteAsync(TEntity entity)
+        public async Task< IDto<IDtoData>> BasicDeleteAsync(TEntity entity)
         {
             if (entity != null)
             {
@@ -206,7 +205,7 @@ namespace OneZero.Service.Respository
         /// </summary>
         /// <param name="entities">实体集合</param>
         /// <returns></returns>
-        public async Task<TDto> BasicDeleteRangeAsync(ICollection<TEntity> entities)
+        public async Task< IDto<IDtoData>> BasicDeleteRangeAsync(ICollection<TEntity> entities)
         {
             if (entities?.Count > 0)
             {
@@ -246,12 +245,12 @@ namespace OneZero.Service.Respository
             return entities.Count();
         }
 
-        public virtual async Task<TDto> UpdateAsync(TEntity entity)
+        public virtual async Task< IDto<IDtoData>> UpdateAsync(TEntity entity)
         {
             return await BasciUpdateAsync(entity);
         }
 
-        public virtual async Task<TDto> UpdateAsync<TInputDto>(TInputDto inputDto, Func<TInputDto, TEntity, TEntity> convertFunc, TKey key)
+        public virtual async Task< IDto<IDtoData>> UpdateAsync<TInputDto>(TInputDto inputDto, Func<TInputDto, TEntity, TEntity> convertFunc, TKey key)
         {
             var entity = await Entities.FirstOrDefaultAsync(v => v.Id.Equals(key));
             if (convertFunc != null)
@@ -267,7 +266,7 @@ namespace OneZero.Service.Respository
         /// <param name="entity">实体</param>
         /// <param name="flag">操作标识，默认为更新</param>
         /// <returns></returns>
-        public async Task<TDto> BasciUpdateAsync(TEntity entity, string actionFlag = null)
+        public async Task< IDto<IDtoData>> BasciUpdateAsync(TEntity entity, string actionFlag = null)
         {
             string actionType = actionFlag == null ? "更新" : (actionFlag == "Recycle" ? "清除" : "还原");
             if (!EntityValidate(entity, out string entityInfo))
@@ -297,7 +296,7 @@ namespace OneZero.Service.Respository
         /// <param name="entities">实体集合</param>
         /// <param name="flag">操作标识，默认为更新</param>
         /// <returns></returns>
-        public async Task<TDto> BasicUpdateRangeAsync(IEnumerable<TEntity> entities, string flag = null)
+        public async Task< IDto<IDtoData>> BasicUpdateRangeAsync(IEnumerable<TEntity> entities, string flag = null)
         {
             string actionType = flag == null ? "更新" : (flag == "Recycle" ? "清除" : "还原");
             if (!EntityValidate(entities, out string entityInfo))
@@ -324,27 +323,27 @@ namespace OneZero.Service.Respository
         #endregion
 
         #region 标记删除和还原
-         public virtual async Task<TDto> RecycleAsync(TKey key=default(TKey))
+         public virtual async Task< IDto<IDtoData>> RecycleAsync(TKey key=default(TKey))
         {
             var entity =await Entities.FirstOrDefaultAsync(v => v.Id.Equals(key) && v.IsDelete == false);
             return await BasicRecycleAsync(entity);
         }
 
-        public virtual async Task<TDto> RecycleRangeAsync(IEnumerable<TKey> keys)
+        public virtual async Task< IDto<IDtoData>> RecycleRangeAsync(IEnumerable<TKey> keys)
         {
             var entity = (await _entities.ToListAsync()).Where(v=>keys.Contains(v.Id)).Where(v => v.IsDelete == false);
             return await BasicRecycleRangeAsync(entity);
         }
 
 
-         public async Task<TDto>  BasicRecycleAsync(TEntity entity)
+         public async Task< IDto<IDtoData>>  BasicRecycleAsync(TEntity entity)
         {
             entity.IsDelete = true;
             await BasciUpdateAsync(entity, "Recycle");
             return _dto; 
         }
 
-        public async Task<TDto> BasicRecycleRangeAsync(IEnumerable<TEntity> entities)
+        public async Task< IDto<IDtoData>> BasicRecycleRangeAsync(IEnumerable<TEntity> entities)
         {
             foreach (var item in entities)
             {
@@ -355,26 +354,26 @@ namespace OneZero.Service.Respository
         }
 
 
-         public virtual async Task<TDto> RestoreAsync(TKey key = default(TKey))
+         public virtual async Task< IDto<IDtoData>> RestoreAsync(TKey key = default(TKey))
         {
             var entity = await Entities.FirstOrDefaultAsync(v => v.Id.Equals(key)&&v.IsDelete==true);
             return await BasicRestoreAsync(entity);
         }
 
-        public virtual async Task<TDto> RestoreRangeAsync(IEnumerable<TKey> keys)
+        public virtual async Task< IDto<IDtoData>> RestoreRangeAsync(IEnumerable<TKey> keys)
         {
             var entity = (await _entities.ToListAsync()).Where(v => keys.Contains(v.Id)).Where(v=>v.IsDelete==true);
             return await BasicRestoreRangeAsync(entity);
         }
 
-             public async Task<TDto> BasicRestoreAsync(TEntity entity)
+             public async Task< IDto<IDtoData>> BasicRestoreAsync(TEntity entity)
         {
             entity.IsDelete = false;
             await BasciUpdateAsync(entity, "Restore");
             return _dto;
         }
 
-        public async Task<TDto> BasicRestoreRangeAsync(IEnumerable<TEntity> entities)
+        public async Task< IDto<IDtoData>> BasicRestoreRangeAsync(IEnumerable<TEntity> entities)
         {
             foreach (var item in entities)
             {
@@ -400,8 +399,8 @@ namespace OneZero.Service.Respository
         /// <returns></returns>
         public abstract bool EntityValidate(TEntity entity, out string entityInfo);
         public abstract bool EntityValidate(IEnumerable<TEntity> entities, out string entityInfo);
-        public abstract Task<IEnumerable<TDtoData>> GetListAsync(IEnumerable<TEntity> entities);
-        public abstract Task<IEnumerable<TDtoData>> GetItemAsync(TEntity entity);
+        public abstract Task<IEnumerable< IDtoData>> GetListAsync(IEnumerable<TEntity> entities);
+        public abstract Task<IEnumerable< IDtoData>> GetItemAsync(TEntity entity);
         #endregion
 
     }
