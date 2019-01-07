@@ -8,12 +8,12 @@ namespace OneZero.Service.ServiceInterface.Identity
 {
     public interface IService
     {
-        Task<IDto<IDtoData>> GetItemByIdAsync();
+        Task<Dto<DtoData>> GetItemByIdAsync();
 
-        Task<IDto<IDtoData>> GetListAsync();
+        Task<Dto<DtoData>> GetListAsync();
 
-        Task<IDto<IDtoData>> AddItemAsync();
+        Task<Dto<DtoData>> AddItemAsync();
 
-        Task<IDto<IDtoData>> AddListAsync();
+        Task<Dto<DtoData>> AddListAsync();
     }
 }

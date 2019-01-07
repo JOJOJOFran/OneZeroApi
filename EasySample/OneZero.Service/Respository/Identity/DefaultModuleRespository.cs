@@ -9,11 +9,11 @@ namespace OneZero.Service.Repository.Identity
 {
     public class DefaultModuleRepository : BaseRepository<ModuleType, Guid>
     {
-        public DefaultModuleRepository(DbContext dbContext, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, dtoData, dto)
+        public DefaultModuleRepository(DbContext dbContext, DtoData dtoData,  Dto<DtoData> dto) : base(dbContext, dtoData, dto)
         {
         }
 
-        public DefaultModuleRepository(DbContext dbContext, string moduleName, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, moduleName, dtoData, dto)
+        public DefaultModuleRepository(DbContext dbContext, string moduleName, DtoData dtoData,  Dto<DtoData> dto) : base(dbContext, moduleName, dtoData, dto)
         {
         }
 
@@ -29,12 +29,12 @@ namespace OneZero.Service.Repository.Identity
             throw new NotImplementedException();
         }
 
-        public override async Task<IEnumerable<IDtoData>> GetItemAsync(ModuleType entity)
+        public override async Task<IEnumerable<DtoData>> GetItemAsync(ModuleType entity)
         {
             throw new NotImplementedException();
         }
 
-        public override async Task<IEnumerable<IDtoData>> GetListAsync(IEnumerable<ModuleType> entities)
+        public override async Task<IEnumerable<DtoData>> GetListAsync(IEnumerable<ModuleType> entities)
         {
             throw new NotImplementedException();
         }

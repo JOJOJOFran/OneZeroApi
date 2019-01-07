@@ -12,11 +12,11 @@ namespace OneZero.Service.Repository.Identity
 {
     public class DefaultUserRepository : BaseRepository<User, Guid>
     {
-        public DefaultUserRepository(DbContext dbContext, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, dtoData, dto)
+        public DefaultUserRepository(DbContext dbContext, DtoData dtoData,  Dto<DtoData> dto) : base(dbContext, dtoData, dto)
         {
         }
 
-        public DefaultUserRepository(DbContext dbContext, string moduleName, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, moduleName, dtoData, dto)
+        public DefaultUserRepository(DbContext dbContext, string moduleName, DtoData dtoData,  Dto<DtoData> dto) : base(dbContext, moduleName, dtoData, dto)
         {
         }
 
@@ -31,12 +31,12 @@ namespace OneZero.Service.Repository.Identity
             throw new NotImplementedException();
         }
 
-        public override async Task<IEnumerable<IDtoData>> GetItemAsync(User entity)
+        public override async Task<IEnumerable<DtoData>> GetItemAsync(User entity)
         {
             throw new NotImplementedException();
         }
 
-        public override async Task<IEnumerable<IDtoData>> GetListAsync(IEnumerable<User> entities)
+        public override async Task<IEnumerable<DtoData>> GetListAsync(IEnumerable<User> entities)
         {
             throw new NotImplementedException();
         }
