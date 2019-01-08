@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OneZero.Common
+namespace OneZero.JwtAuth
 {
     public class Class1
     {
