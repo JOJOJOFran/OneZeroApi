@@ -35,14 +35,14 @@ namespace OneZero.Service.Repository
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns>影响行数</returns>
-        Task<IDto<IDtoData>> AddAsync(TEntity entity);
+        Task<Dto<DtoData>> AddAsync(TEntity entity);
 
         /// <summary>
         /// 批量插入实体
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns>业务操作结果</returns>
-        Task<IDto<IDtoData>> AddRangeAsync(IEnumerable<TEntity> entity);
+        Task<Dto<DtoData>> AddRangeAsync(IEnumerable<TEntity> entity);
         #endregion
 
         #region Update
@@ -58,7 +58,7 @@ namespace OneZero.Service.Repository
         /// </summary>
         /// <param name="entity">实体类</param>
         /// <returns>业务操作结果</returns>
-        Task<IDto<IDtoData>> UpdateAsync(TEntity entity);
+        Task<Dto<DtoData>> UpdateAsync(TEntity entity);
 
         /// <summary>
         /// 更新指定主键的
@@ -66,7 +66,7 @@ namespace OneZero.Service.Repository
         /// <param name="key"></param>
         /// <param name="updatExpression"></param>
         /// <returns>业务操作结果</returns>
-        Task<IDto<IDtoData>> UpdateAsync<TInputDto>(TInputDto inputDto, Func<TInputDto, TEntity, TEntity> convertExpression, TKey key);
+        Task<Dto<DtoData>> UpdateAsync<TInputDto>(TInputDto inputDto, Func<TInputDto, TEntity, TEntity> convertExpression, TKey key);
         #endregion
 
         #region Delete
@@ -82,7 +82,7 @@ namespace OneZero.Service.Repository
         /// </summary>
         /// <param name="keys"></param>
         /// <returns></returns>
-        Task<IDto<IDtoData>> DeleteAsync(TKey key);
+        Task<Dto<DtoData>> DeleteAsync(TKey key);
 
 
         /// <summary>
@@ -90,21 +90,21 @@ namespace OneZero.Service.Repository
         /// </summary>
         /// <param name="keys"></param>
         /// <returns></returns>
-        Task<IDto<IDtoData>> DeleteRangeAsync(IEnumerable<TKey> keys);
+        Task<Dto<DtoData>> DeleteRangeAsync(IEnumerable<TKey> keys);
 
         /// <summary>
         /// 根据条件
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        Task<IDto<IDtoData>> DeleteAsync(Expression<Func<TEntity, bool>> predicate);
+        Task<Dto<DtoData>> DeleteAsync(Expression<Func<TEntity, bool>> predicate);
 
         /// <summary>
         /// 标记删除
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
-        Task<IDto<IDtoData>> RecycleAsync(TKey key);
+        Task<Dto<DtoData>> RecycleAsync(TKey key);
         #endregion
         #region
         IEnumerable<TEntity> GetListAsync(Func<TEntity, bool> whereFunc);

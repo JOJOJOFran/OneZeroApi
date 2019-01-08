@@ -12,11 +12,11 @@ namespace OneZero.Service.Repository.Identity
 {
     public class DefaultRoleRepository : BaseRepository<Role, Guid>
     {
-        public DefaultRoleRepository(DbContext dbContext, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, dtoData, dto)
+        public DefaultRoleRepository(DbContext dbContext, DtoData dtoData,  Dto<DtoData> dto) : base(dbContext, dtoData, dto)
         {
         }
 
-        public DefaultRoleRepository(DbContext dbContext, string moduleName, IDtoData dtoData, IDto<IDtoData> dto) : base(dbContext, moduleName, dtoData, dto)
+        public DefaultRoleRepository(DbContext dbContext, string moduleName, DtoData dtoData,  Dto<DtoData> dto) : base(dbContext, moduleName, dtoData, dto)
         {
         }
 
@@ -32,12 +32,12 @@ namespace OneZero.Service.Repository.Identity
             throw new NotImplementedException();
         }
 
-        public override async Task<IEnumerable<IDtoData>> GetItemAsync(Role entity)
+        public override async Task<IEnumerable<DtoData>> GetItemAsync(Role entity)
         {
             throw new NotImplementedException();
         }
 
-        public override async Task<IEnumerable<IDtoData>> GetListAsync(IEnumerable<Role> entities)
+        public override async Task<IEnumerable<DtoData>> GetListAsync(IEnumerable<Role> entities)
         {
             throw new NotImplementedException();
         }
