@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Console", "OneZero.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Common", "OneZero.Common\OneZero.Common.csproj", "{4B82BD8F-0818-4B88-8479-B499F823D1E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneZero.Test.Api", "OneZero.Test.Api\OneZero.Test.Api.csproj", "{529FBFDD-7012-4F8D-A846-94D06AFBF29C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Test.Api", "OneZero.Test.Api\OneZero.Test.Api.csproj", "{529FBFDD-7012-4F8D-A846-94D06AFBF29C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneZero.JwtAuth", "OneZero.JwtAuth\OneZero.JwtAuth.csproj", "{E990DEBF-AE50-4381-8C8D-066C1472D070}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{529FBFDD-7012-4F8D-A846-94D06AFBF29C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{529FBFDD-7012-4F8D-A846-94D06AFBF29C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{529FBFDD-7012-4F8D-A846-94D06AFBF29C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E990DEBF-AE50-4381-8C8D-066C1472D070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E990DEBF-AE50-4381-8C8D-066C1472D070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E990DEBF-AE50-4381-8C8D-066C1472D070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E990DEBF-AE50-4381-8C8D-066C1472D070}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

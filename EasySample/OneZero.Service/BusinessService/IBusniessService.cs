@@ -1,4 +1,5 @@
 ﻿using OneZero.Model;
+using OneZero.Model.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
