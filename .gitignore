@@ -34,3 +34,5 @@ EasySample/OneZero\.Console/obj/
 EasySample/OneZero\.JwtAuth/obj/
 
 EasySample/OneZero\.Domain/obj/
+
+EasySample/OneZero\.Test\.Api/obj/
