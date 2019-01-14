@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using OneZero.Api.Entity;
 using OneZero.Entity.Configuration;
 using OneZero.Entity.DatabaseContext;
 using OneZero.Entity.DatabaseContext.SqlContext;
@@ -46,7 +45,7 @@ namespace OneZero.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+         
             app.UseMvc();
         }
     }

@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Test.Api", "OneZero
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.JwtAuth", "OneZero.JwtAuth\OneZero.JwtAuth.csproj", "{E990DEBF-AE50-4381-8C8D-066C1472D070}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneZero.Domain", "OneZero.Domain\OneZero.Domain.csproj", "{F20D5CF6-9595-47D9-BC15-443555FB6939}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Domain", "OneZero.Domain\OneZero.Domain.csproj", "{F20D5CF6-9595-47D9-BC15-443555FB6939}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
