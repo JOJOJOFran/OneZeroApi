@@ -4,19 +4,50 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using OneZero.Entity.Identity;
+using OneZero.Entity.Log;
+using OneZero.Domain.Audits;
+using OneZero.Entity.DatabaseContext.SqlContext;
+using OneZero.Entity;
 
 namespace OneZero.Test.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+   // [Authorize]
     public class ValuesController : ControllerBase
     {
+        private ILogger<ValuesController> _logger;
+        private LoggerFactory _loggerFactory;
+        private DbContext _dbContext;
+        public class Audit
+        {
+            public string id;
+
+        }
+
+
+        public ValuesController(ILogger<ValuesController> logger, MSSqlContext dbContext)
+        {
+            _logger = logger;
+            _dbContext = dbContext;
+        }
+
         public string test = "";
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+           //var efLogger =_loggerFactory.CreateLogger("Microsoft.EntityFrameworkCore.Database.Command");
+           // efLogger.LogInformation("TEST1");
+        //    _logger.LogInformation("Order {orderid} created for {user}", 42, "Kenny");
+            _dbContext.Set<User>().FirstOrDefault();
+            //DefaultDbActionAudit audit = new DefaultDbActionAudit(_dbContext);
+            //var t = (DbRequestAudit)audit.RecordQuery();
+        //    _logger.LogInformation("数据库：{DbName},Connextion:{connect},时间：{DateTime},事务：{trans},语句：{sql}", _dbContext.Database.ProviderName, _dbContext.Database.GetDbConnection().ConnectionString, _dbContext.Database.GetDbConnection().DataSource, _dbContext.Database.GetDbConnection().Database, t.CommandSql);
+
             return new string[] { "value1", "value2" };
         }
 

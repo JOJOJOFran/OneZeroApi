@@ -36,3 +36,9 @@ EasySample/OneZero\.JwtAuth/obj/
 EasySample/OneZero\.Domain/obj/
 
 EasySample/OneZero\.Test\.Api/obj/
+
+EasySample/OneZero\.Core/
+
+EasySample/OneZero\.Test\.Api/bin/
+
+EasySample/OneZero\.JwtAuth/

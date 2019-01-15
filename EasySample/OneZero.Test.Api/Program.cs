@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NLog;
 using NLog.Web;
+using OneZero.Entity;
 
 namespace OneZero.Test.Api
 {
@@ -26,16 +27,24 @@ namespace OneZero.Test.Api
             catch (Exception ex)
             {
                 logger.Error(ex, "Stop Log Information Because Of Exception");
+                throw;
             }
             finally
             {
                 LogManager.Shutdown();
             }
-            CreateWebHostBuilder(args).Build().Run();
+            //CreateWebHostBuilder(args).Build().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+             .ConfigureLogging(logging =>
+             {
+                 logging.ClearProviders();
+                 //logging.AddProvider(new EFLoggerProvider());
+                 logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
+             })
+            .UseNLog()  // NLog: setup NLog for Dependency injection
+            .UseStartup<Startup>();
     }
 }

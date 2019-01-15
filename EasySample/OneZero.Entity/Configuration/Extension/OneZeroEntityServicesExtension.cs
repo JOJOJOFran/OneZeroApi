@@ -21,12 +21,32 @@ namespace OneZero.Entity.Configuration
             return builder;
         }
 
-        public static IOneZeroEntityBuilder AddSqlServerContext<T>(this IServiceCollection services,  string dbConnection, int poolSize = 128) where T : DbContext, IMSSqlContext
+        public static IOneZeroEntityBuilder AddSqlServerContext<T>(this IServiceCollection services, string dbConnection, int poolSize = 128) where T : DbContext, IMSSqlContext
         {
+
             services.AddDbContextPool<T>(Options =>
             {
                 Options.UseSqlServer(dbConnection,b=>b.MigrationsAssembly("OneZero.Api"));
+                var loggerFactory = new LoggerFactory();
+                loggerFactory.AddProvider(new EFLoggerProvider());
+                Options.UseLoggerFactory(loggerFactory);
                
+            });
+            OneZeroEntityBuilder builder = new OneZeroEntityBuilder(services);
+            return builder;
+        }
+
+
+        public static IOneZeroEntityBuilder AddSqlServerContext<T>(this IServiceCollection services,ILoggerFactory loggerFactory, string dbConnection, int poolSize = 128) where T : DbContext, IMSSqlContext
+        {
+
+            services.AddDbContextPool<T>(Options =>
+            {
+                Options.UseSqlServer(dbConnection, b => b.MigrationsAssembly("OneZero.Api"));
+                //var logger =loggerFactory.CreateLogger("App");
+               // loggerFactory.AddProvider(new EFLoggerProvider(logger));
+                Options.UseLoggerFactory(loggerFactory);
+
             });
             OneZeroEntityBuilder builder = new OneZeroEntityBuilder(services);
             return builder;

@@ -6,11 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="LogDashboard" Version="1.0.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="NLog" Version="4.5.11" />
     <PackageReference Include="NLog.Mongo" Version="4.6.0.68" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OneZero.Domain\OneZero.Domain.csproj" />
+    <ProjectReference Include="..\OneZero.Entity\OneZero.Entity.csproj" />
   </ItemGroup>
 
   <ItemGroup>

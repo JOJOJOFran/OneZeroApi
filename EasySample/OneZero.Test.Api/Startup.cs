@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LogDashboard;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,22 +11,31 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-
+using OneZero.Entity.Configuration;
+using OneZero.Entity.DatabaseContext.SqlContext;
 
 namespace OneZero.Test.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, ILoggerFactory factory)
         {
             Configuration = configuration;
+            loggerFactory = factory;
         }
 
         public IConfiguration Configuration { get; }
-
+        public ILoggerFactory loggerFactory { get; }
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //services.AddLogDashboard();
+            //ILoggerFactory loggerFactory = services.AddLogging().BuildServiceProvider().GetService<ILoggerFactory>();
+            //var logger = services.AddLogging().BuildServiceProvider().GetService<ILoggerFactory>().AddConsole().CreateLogger("App");
+           // logger.LogInformation("测试1111");
+            
+            services.AddSqlServerContext<MSSqlContext>(loggerFactory,Configuration.GetConnectionString("DefaultConnection"), 1000);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -41,6 +51,7 @@ namespace OneZero.Test.Api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+           // app.UseLogDashboard();
 
             app.UseHttpsRedirection();
             app.UseMvc();
