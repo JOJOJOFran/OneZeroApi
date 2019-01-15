@@ -28,7 +28,6 @@ namespace OneZero.Test.Api.Controllers
 
         }
 
-
         public ValuesController(ILogger<ValuesController> logger, MSSqlContext dbContext)
         {
             _logger = logger;
@@ -42,11 +41,14 @@ namespace OneZero.Test.Api.Controllers
         {
            //var efLogger =_loggerFactory.CreateLogger("Microsoft.EntityFrameworkCore.Database.Command");
            // efLogger.LogInformation("TEST1");
-        //    _logger.LogInformation("Order {orderid} created for {user}", 42, "Kenny");
+            _logger.LogInformation("Order {orderid} created for {user}", 42, "Kenny");
+            _logger.LogError("错误测试");
+            _logger.LogCritical("崩溃测试");
             _dbContext.Set<User>().FirstOrDefault();
+            _dbContext.Set<User>().AddAsync(new Entity.Identity.User());
             //DefaultDbActionAudit audit = new DefaultDbActionAudit(_dbContext);
             //var t = (DbRequestAudit)audit.RecordQuery();
-        //    _logger.LogInformation("数据库：{DbName},Connextion:{connect},时间：{DateTime},事务：{trans},语句：{sql}", _dbContext.Database.ProviderName, _dbContext.Database.GetDbConnection().ConnectionString, _dbContext.Database.GetDbConnection().DataSource, _dbContext.Database.GetDbConnection().Database, t.CommandSql);
+            //    _logger.LogInformation("数据库：{DbName},Connextion:{connect},时间：{DateTime},事务：{trans},语句：{sql}", _dbContext.Database.ProviderName, _dbContext.Database.GetDbConnection().ConnectionString, _dbContext.Database.GetDbConnection().DataSource, _dbContext.Database.GetDbConnection().Database, t.CommandSql);
 
             return new string[] { "value1", "value2" };
         }

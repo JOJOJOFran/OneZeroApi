@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LogDashboard" Version="1.0.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="NLog" Version="4.5.11" />
@@ -15,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\源码\LogDashboard-master\src\LogDashboard\LogDashboard.csproj" />
     <ProjectReference Include="..\OneZero.Domain\OneZero.Domain.csproj" />
     <ProjectReference Include="..\OneZero.Entity\OneZero.Entity.csproj" />
   </ItemGroup>

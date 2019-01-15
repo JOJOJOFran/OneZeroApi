@@ -30,7 +30,9 @@ namespace OneZero.Test.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //services.AddLogDashboard();
+            services.AddLogDashboard(
+                option => { option.RootPath = "C:/temp/OneZero.Test.Api"; }
+                );
             //ILoggerFactory loggerFactory = services.AddLogging().BuildServiceProvider().GetService<ILoggerFactory>();
             //var logger = services.AddLogging().BuildServiceProvider().GetService<ILoggerFactory>().AddConsole().CreateLogger("App");
            // logger.LogInformation("测试1111");
@@ -51,7 +53,7 @@ namespace OneZero.Test.Api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-           // app.UseLogDashboard();
+            app.UseLogDashboard();
 
             app.UseHttpsRedirection();
             app.UseMvc();
