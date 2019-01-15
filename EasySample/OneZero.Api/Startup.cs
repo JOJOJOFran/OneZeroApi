@@ -31,6 +31,7 @@ namespace OneZero.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSqlServerContext<MSSqlContext>(Configuration.GetConnectionString("DefaultConnection"), 1000);
+            //services.Configure<ApiBehaviorOptions>(Options=>)
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
            
