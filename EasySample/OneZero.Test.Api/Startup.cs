@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LogDashboard;
+using LogDashboard.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,7 +32,14 @@ namespace OneZero.Test.Api
         {
 
             services.AddLogDashboard(
-                option => { option.RootPath = "C:/temp/OneZero.Test.Api"; }
+                option => {
+   
+                    NLog.LogManager.Configuration.Variables["application"] = "CustomLogModel";
+                    NLog.LogManager.Configuration.Variables["requestMethod"] = "Get";
+                   // option
+                  //  option.SetRootPath("");
+                    option.CustomLogModel<LogModelTest>();
+                    option.RootPath = "C:/temp/OneZero.Test.Api"; }
                 );
             //ILoggerFactory loggerFactory = services.AddLogging().BuildServiceProvider().GetService<ILoggerFactory>();
             //var logger = services.AddLogging().BuildServiceProvider().GetService<ILoggerFactory>().AddConsole().CreateLogger("App");
