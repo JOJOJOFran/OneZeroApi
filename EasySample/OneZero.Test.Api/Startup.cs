@@ -34,12 +34,10 @@ namespace OneZero.Test.Api
             services.AddLogDashboard(
                 option => {
    
-                    NLog.LogManager.Configuration.Variables["application"] = "CustomLogModel";
-                    NLog.LogManager.Configuration.Variables["requestMethod"] = "Get";
                    // option
                   //  option.SetRootPath("");
                     option.CustomLogModel<LogModelTest>();
-                    option.RootPath = "C:/temp/OneZero.Test.Api"; }
+                    option.RootPath = "C:\temp\\OneZero.Test.Api"; } //C:\英雄时刻
                 );
             //ILoggerFactory loggerFactory = services.AddLogging().BuildServiceProvider().GetService<ILoggerFactory>();
             //var logger = services.AddLogging().BuildServiceProvider().GetService<ILoggerFactory>().AddConsole().CreateLogger("App");

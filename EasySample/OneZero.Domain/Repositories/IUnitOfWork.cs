@@ -8,6 +8,7 @@ namespace OneZero.Domain.Repositories
     public interface IUnitOfWork
     {
         bool HasCommited{get;}
+
         IDbContext GetDbContext<TEntity, TKey> () where TEntity : IEntity<TKey>;
         //IDbContext GetDbContext (Type entityType);
 

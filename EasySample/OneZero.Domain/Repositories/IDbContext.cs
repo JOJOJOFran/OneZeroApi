@@ -7,7 +7,7 @@ namespace OneZero.Domain.Repositories
 {
     public interface IDbContext
     {
-        IDbActionAudit actionAudit { get; set; }
+        //IDbActionAudit actionAudit { get; set; }
 
         int SaveChanges();
 

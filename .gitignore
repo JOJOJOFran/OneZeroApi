@@ -42,3 +42,7 @@ EasySample/OneZero\.Core/
 EasySample/OneZero\.Test\.Api/bin/
 
 EasySample/OneZero\.JwtAuth/
+
+EasySample/LogDashboard/obj/
+
+EasySample/OneZero\.Domain/bin/
