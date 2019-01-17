@@ -11,6 +11,6 @@ namespace OneZero.Domain.Repositories
 
         int SaveChanges();
 
-        Task<int> SaveChanges(CancellationToken token=default(CancellationToken));
+        Task<int> SaveChangesAsync(CancellationToken token=default(CancellationToken));
     }
 }

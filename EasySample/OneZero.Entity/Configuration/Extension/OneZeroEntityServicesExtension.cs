@@ -4,10 +4,8 @@ using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using OneZero.Entity.DatabaseContext.SqlContext;
+using OneZero.Entity.DatabaseContext.EFContext;
 
 namespace OneZero.Entity.Configuration
 {

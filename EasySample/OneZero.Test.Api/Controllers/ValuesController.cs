@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using OneZero.Entity.Identity;
 using OneZero.Entity.Log;
 using OneZero.Domain.Audits;
-using OneZero.Entity.DatabaseContext.SqlContext;
 using OneZero.Entity;
+using OneZero.Entity.DatabaseContext.EFContext;
 
 namespace OneZero.Test.Api.Controllers
 {

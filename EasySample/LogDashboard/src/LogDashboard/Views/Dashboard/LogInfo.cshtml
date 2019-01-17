@@ -1,0 +1,92 @@
+﻿@using System.Reflection
+@using LogDashboard.Models
+@inherits RazorLight.TemplatePage<LogDashboard.Models.ILogModel>
+@{
+    Layout = null;
+}
+<div class="container-fluid">
+    <div class="mb-4 open">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">概览</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#environment" role="tab" aria-controls="environment" aria-selected="false">其他</a>
+            </li>
+            @{
+                if (typeof(IRequestTrackLogModel).IsAssignableFrom((Type)ViewBag.LogModelType))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#requestTrace" role="tab" aria-controls="requestTrace" onclick="requestTrace('@Model.Id')" aria-selected="false">请求追踪</a>
+                    </li>
+                }
+
+            }
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="overview" role="tabpanel">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>Id</td>
+                                <td class="text-nowrap">@Model.Id</td>
+                            </tr>
+                            <tr>
+                                <td>时间</td>
+                                <td class="text-nowrap">@Model.LongDate</td>
+                            </tr>
+                            <tr>
+                                <td>级别</td>
+                                <td class="text-nowrap"><button class="btn btn-outline-@Model.Level.ToUpper()">@Model.Level.ToUpper()</button></td>
+                            </tr>
+                            <tr>
+                                <td>Logger</td>
+                                <td class="text-nowrap">@Model.Logger</td>
+                            </tr>
+                            <tr>
+                                <td>消息</td>
+                                <td class="text-nowrap">@Model.Message</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            堆栈信息
+                        </div>
+                        <div class="card-body">
+                            <pre>@Model.Exception</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="environment" role="tabpanel">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            @{
+                                foreach (var propertyInfo in (List<PropertyInfo>)ViewBag.CustomPropertyInfos)
+                                {
+                                    <tr>
+                                        <td style="width: 13%">@propertyInfo.Name</td>
+                                        <td class="text-nowrap">@propertyInfo.GetValue(Model)</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="requestTrace" role="tabpanel">
+                <div class="table-responsive">
+                    <div id="traceLogList">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OneZero.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 

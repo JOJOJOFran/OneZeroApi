@@ -13,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OneZero.Entity.Configuration;
-using OneZero.Entity.DatabaseContext.SqlContext;
+using OneZero.Entity.DatabaseContext.EFContext;
 
 namespace OneZero.Test.Api
 {

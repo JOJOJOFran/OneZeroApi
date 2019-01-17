@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OneZero.Entity.Configuration;
 using OneZero.Entity.DatabaseContext;
-using OneZero.Entity.DatabaseContext.SqlContext;
+using OneZero.Entity.DatabaseContext.EFContext;
 using OneZero.Entity.Identity;
 
 namespace OneZero.Api

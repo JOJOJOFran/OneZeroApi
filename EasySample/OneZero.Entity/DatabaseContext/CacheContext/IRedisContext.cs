@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OneZero.Entity.DatabaseContext.CacheContext
 {
-    public interface IRedisContext : IDbContext
+    public interface IRedisContext 
     {
     }
 }
