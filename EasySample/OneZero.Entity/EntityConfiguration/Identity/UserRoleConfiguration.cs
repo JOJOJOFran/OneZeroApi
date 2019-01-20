@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using OneZero.Entity.Identity;
+using OneZero.Model.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnzeZero.Entity.Configuration
+namespace OnzeZero.EntityFramwork.Configuration
 {
     public class UserRoleConfiguration:IEntityTypeConfiguration<UserRole>
     {

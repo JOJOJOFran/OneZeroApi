@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OneZero.Entity.DatabaseContext.CacheContext
+namespace OneZero.EntityFramwork.DatabaseContext.CacheContext
 {
     public interface IRedisContext 
     {

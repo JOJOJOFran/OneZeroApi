@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OneZero.Entity.DatabaseContext.SqlContext;
+using OneZero.EntityFramwork.DatabaseContext.EFContext;
 
 namespace OneZero.Api.Migrations
 {

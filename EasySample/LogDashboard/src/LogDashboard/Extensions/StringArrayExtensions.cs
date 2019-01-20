@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace LogDashboard.Extensions
@@ -16,6 +17,34 @@ namespace LogDashboard.Extensions
             {
                 return null;
             }
+        }
+
+        public static string GetMD5(this string str)
+        {
+            using (var md5 = MD5.Create())
+            {
+                try
+                {
+                    var strResult = md5.ComputeHash(Encoding.ASCII.GetBytes(str));
+                    return BitConverter.ToString(strResult).Replace("-", "");
+                }
+                catch (Exception e)
+                {
+                    return "";
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static bool FilePatternToday(this string path,params string[] patterns)
+        {
+            //if()
+            return false;
         }
     }
 }

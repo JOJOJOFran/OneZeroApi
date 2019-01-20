@@ -34,9 +34,9 @@ namespace OneZero.Domain.Repositories
         /// <param name="checkAction">合法性验证</param>
         /// <param name="convertFunc">Dto到实体转换</param>
         /// <returns>操作输出结果</returns>
-        Task<IOutputModel> AddAsync<TIntputDto>(TIntputDto dto,
-                                                Func<TIntputDto, Task> checkAction = null,
-                                                Func<TIntputDto, TEntity, Task<TEntity>> convertFunc = null) where TIntputDto : IInputModel;
+        Task<OutputModel> AddAsync<TIntputDto>(TIntputDto dto,
+                                                Func<TIntputDto, bool> checkAction = null,
+                                                Func<TIntputDto, Task<TEntity>> convertFunc = null) where TIntputDto : InputModel;
 
         /// <summary>
         /// 以DTO为载体批量插入实体
@@ -46,9 +46,9 @@ namespace OneZero.Domain.Repositories
         /// <param name="checkAction">合法性验证</param>
         /// <param name="convertFunc">Dto到实体转换</param>
         /// <returns>操作输出结果</returns>
-        Task<IOutputModel> AddAsync<TIntputDto>(ICollection<TIntputDto> dtos, 
-                                                Func<TIntputDto, Task> checkAction = null, 
-                                                Func<TIntputDto, TEntity, Task<TEntity>> convertFunc = null) where TIntputDto : IInputModel;
+        Task<OutputModel> AddAsync<TIntputDto>(ICollection<TIntputDto> dtos, 
+                                                Func<TIntputDto, bool> checkAction = null, 
+                                                Func<TIntputDto, Task<TEntity>> convertFunc = null) where TIntputDto : InputModel;
 
         /// <summary>
         /// 异步删除实体
@@ -62,7 +62,7 @@ namespace OneZero.Domain.Repositories
         /// </summary>
         /// <param name="key"></param>
         /// <returns>操作影响的行数</returns>
-        Task<int> DeleteAsync(TKey key);
+        Task<OutputModel> DeleteAsync(TKey key);
 
         /// <summary>
         /// 按条件从Id集合中选择删除
@@ -70,8 +70,8 @@ namespace OneZero.Domain.Repositories
         /// <param name="checkAction">合法性验证</param>
         /// <param name="whereFunc">条件语句</param>
         /// <returns></returns>
-        Task<IOutputModel> DeleteAsync(ICollection<TKey> ids , 
-                                       Func<TEntity, Task> checkAction = null, 
+        Task<OutputModel> DeleteAsync(ICollection<TKey> ids , 
+                                       Func<TEntity, bool> checkAction = null, 
                                        Func<TEntity, TEntity> whereFunc=null);
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace OneZero.Domain.Repositories
         /// </summary>
         /// <param name="wherePredicate"></param>
         /// <returns></returns>
-        Task<IOutputModel> DeleteAsync(Expression<Func<TEntity, bool>> wherePredicate);
+        Task<OutputModel> DeleteAsync(Expression<Func<TEntity, bool>> wherePredicate);
 
         /// <summary>
         /// 更新实体
@@ -96,9 +96,9 @@ namespace OneZero.Domain.Repositories
         /// <param name="checkAction"></param>
         /// <param name="convertFunc"></param>
         /// <returns></returns>
-        Task<IOutputModel> UpdateAsync<TEditDto>(TEditDto dto, 
+        Task<OutputModel> UpdateAsync<TEditDto>(TEditDto dto, 
                                                 Func<TEditDto, TEntity, Task> checkAction = null, 
-                                                Func<TEditDto, TEntity, Task<TEntity>> convertFunc = null) where TEditDto : IInputModel;
+                                                Func<TEditDto, TEntity, Task<TEntity>> convertFunc = null) where TEditDto : InputModel;
 
         /// <summary>
         /// 异步以DTO为载体批量更新实体
@@ -108,9 +108,9 @@ namespace OneZero.Domain.Repositories
         /// <param name="checkAction"></param>
         /// <param name="convertFunc"></param>
         /// <returns></returns>
-        Task<IOutputModel> UpdateAsync<TEditDto>(ICollection<TEditDto> dtos,
+        Task<OutputModel> UpdateAsync<TEditDto>(ICollection<TEditDto> dtos,
                                                  Func<TEditDto,TEntity,Task> checkAction=null,
-                                                 Func<TEditDto, TEntity, Task<TEntity>> convertFunc=null) where TEditDto : IInputModel;
+                                                 Func<TEditDto, TEntity, Task<TEntity>> convertFunc=null) where TEditDto : InputModel;
 
 
         /// <summary>
@@ -137,6 +137,8 @@ namespace OneZero.Domain.Repositories
         /// <returns></returns>
         Task<TEntity> GetAsync(TKey key);
         #endregion
+
+      
 
     }
 }

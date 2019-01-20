@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using OneZero.Domain.Models;
 using OneZero.Entity;
 using OneZero.Model;
 using OneZero.Model.CustomException;

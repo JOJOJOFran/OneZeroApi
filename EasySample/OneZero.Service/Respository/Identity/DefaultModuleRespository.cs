@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using OneZero.Entity.Identity;
+using OneZero.Model.Identity;
 using OneZero.Model;
 
 namespace OneZero.Service.Repository.Identity

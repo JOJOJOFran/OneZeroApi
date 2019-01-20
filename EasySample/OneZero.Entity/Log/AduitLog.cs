@@ -1,8 +1,9 @@
-﻿using System;
+﻿using OneZero.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OneZero.Entity.Log
+namespace OneZero.EntityFramwork.Log
 {
     public class AduitLog:BaseEntity<Guid>
     {

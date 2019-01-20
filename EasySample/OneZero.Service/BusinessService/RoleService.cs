@@ -1,4 +1,5 @@
-﻿using OneZero.Model;
+﻿using OneZero.Domain.Models;
+using OneZero.Model;
 using OneZero.Service.BusinessService;
 using OneZero.Service.Repository;
 using System;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OneZero.Service.BusniessService
 {
-    public class RoleService : IBusniessService
+    public class RoleService //: IBusniessService
     {
         private IRoleRepository _repository;
 

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using OneZero.Domain.Repositories;
-using OneZero.Entity.EntityConfiguration.Extension;
+using OneZero.EntityFramwork.EntityConfiguration.Extension;
 
-namespace OneZero.Entity.DatabaseContext.EFContext
+namespace OneZero.EntityFramwork.DatabaseContext.EFContext
 {
     /// <summary>
     /// SqlServer数据库上下文

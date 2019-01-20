@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using OneZero.Entity.Identity;
-using OneZero.Entity.Log;
+using OneZero.EntityFramwork.Log;
 using OneZero.Domain.Audits;
 using OneZero.Entity;
-using OneZero.Entity.DatabaseContext.EFContext;
+using OneZero.EntityFramwork.DatabaseContext.EFContext;
+using OneZero.Model.Identity;
 
 namespace OneZero.Test.Api.Controllers
 {
@@ -45,7 +45,8 @@ namespace OneZero.Test.Api.Controllers
             _logger.LogError("错误测试");
             _logger.LogCritical("崩溃测试");
             _dbContext.Set<User>().FirstOrDefault();
-            _dbContext.Set<User>().AddAsync(new Entity.Identity.User());
+            _dbContext.Set<User>().AddAsync(new User());
+            throw new ArgumentOutOfRangeException();
             //DefaultDbActionAudit audit = new DefaultDbActionAudit(_dbContext);
             //var t = (DbRequestAudit)audit.RecordQuery();
             //    _logger.LogInformation("数据库：{DbName},Connextion:{connect},时间：{DateTime},事务：{trans},语句：{sql}", _dbContext.Database.ProviderName, _dbContext.Database.GetDbConnection().ConnectionString, _dbContext.Database.GetDbConnection().DataSource, _dbContext.Database.GetDbConnection().Database, t.CommandSql);

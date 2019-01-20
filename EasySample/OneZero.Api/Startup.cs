@@ -11,10 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using OneZero.Entity.Configuration;
-using OneZero.Entity.DatabaseContext;
-using OneZero.Entity.DatabaseContext.EFContext;
-using OneZero.Entity.Identity;
+using OneZero.EntityFramwork.Configuration;
+using OneZero.EntityFramwork.DatabaseContext.EFContext;
+
 
 namespace OneZero.Api
 {

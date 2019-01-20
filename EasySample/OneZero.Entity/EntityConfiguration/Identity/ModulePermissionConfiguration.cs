@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnzeZero.Entity.Configuration
+namespace OnzeZero.EntityFramwork.Configuration
 {
     public class ModulePermissionConfiguration:IEntityTypeConfiguration<ModulePermission>
     {

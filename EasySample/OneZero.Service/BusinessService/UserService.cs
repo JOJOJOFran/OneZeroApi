@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using OneZero.Entity.Identity;
 using OneZero.Model;
+using OneZero.Model.Identity;
 using OneZero.Model.Input;
 using OneZero.Model.Input.Identity;
 using OneZero.Service.BusinessService;

@@ -12,8 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using OneZero.Entity.Configuration;
-using OneZero.Entity.DatabaseContext.EFContext;
+using OneZero.EntityFramwork.Configuration;
+using OneZero.EntityFramwork.DatabaseContext.EFContext;
 
 namespace OneZero.Test.Api
 {
@@ -37,7 +37,7 @@ namespace OneZero.Test.Api
                    // option
                   //  option.SetRootPath("");
                     option.CustomLogModel<LogModelTest>();
-                    option.RootPath = "C:\temp\\OneZero.Test.Api"; } //C:\英雄时刻
+                    option.RootPath = "C:/temp/OneZero.Test.Api/"; } //C:\英雄时刻
                 );
             //ILoggerFactory loggerFactory = services.AddLogging().BuildServiceProvider().GetService<ILoggerFactory>();
             //var logger = services.AddLogging().BuildServiceProvider().GetService<ILoggerFactory>().AddConsole().CreateLogger("App");

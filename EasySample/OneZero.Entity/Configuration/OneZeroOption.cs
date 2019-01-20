@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OneZero.Entity.Configuration
+namespace OneZero.EntityFramwork.Configuration
 {
     public class OneZeroOption
     {

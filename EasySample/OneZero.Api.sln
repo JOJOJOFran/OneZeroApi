@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Api", "OneZero.Api\OneZero.Api.csproj", "{49A97696-6978-4B5F-8D76-20BCD951F5AB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Entity", "OneZero.Entity\OneZero.Entity.csproj", "{1A0206E8-0A7C-466D-A614-C014A0B421B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.EntityFramwork", "OneZero.Entity\OneZero.EntityFramwork.csproj", "{1A0206E8-0A7C-466D-A614-C014A0B421B4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Model", "OneZero.Model\OneZero.Model.csproj", "{F069245B-955F-4569-B3AC-073E5A9DD83A}"
 EndProject
@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Domain", "OneZero.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogDashboard", "LogDashboard\src\LogDashboard\LogDashboard.csproj", "{9A0CAE0D-3469-4D55-85D7-4562A7FD912C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneZero.Repository", "OneZero.Repository\OneZero.Repository.csproj", "{55A8003D-1E66-4034-899F-3AA69ECD89DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Repository", "OneZero.Repository\OneZero.Repository.csproj", "{55A8003D-1E66-4034-899F-3AA69ECD89DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

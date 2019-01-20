@@ -16,7 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\LogDashboard\src\LogDashboard\LogDashboard.csproj" />
     <ProjectReference Include="..\OneZero.Domain\OneZero.Domain.csproj" />
-    <ProjectReference Include="..\OneZero.Entity\OneZero.Entity.csproj" />
+    <ProjectReference Include="..\OneZero.Entity\OneZero.EntityFramwork.csproj" />
   </ItemGroup>
 
   <ItemGroup>

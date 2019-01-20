@@ -5,8 +5,8 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using OneZero.Entity.Identity;
 using OneZero.Model;
+using OneZero.Model.Identity;
 
 namespace OneZero.Service.Repository.Identity
 {

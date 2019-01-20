@@ -13,7 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OneZero.Common\OneZero.Common.csproj" />
     <ProjectReference Include="..\OneZero.Domain\OneZero.Domain.csproj" />
+    <ProjectReference Include="..\OneZero.Model\OneZero.Model.csproj" />
   </ItemGroup>
 
 </Project>

@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OneZero.Entity\OneZero.Entity.csproj" />
+    <ProjectReference Include="..\OneZero.Entity\OneZero.EntityFramwork.csproj" />
     <ProjectReference Include="..\OneZero.Model\OneZero.Model.csproj" />
     <ProjectReference Include="..\OneZero.Service\OneZero.Service.csproj" />
   </ItemGroup>
