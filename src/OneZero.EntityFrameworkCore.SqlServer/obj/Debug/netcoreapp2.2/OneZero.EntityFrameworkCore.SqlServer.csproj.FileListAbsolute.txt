@@ -1,0 +1,6 @@
+D:\AllOrNothing\OneZeroApi\src\OneZero.EntityFrameworkCore.SqlServer\bin\Debug\netcoreapp2.2\OneZero.Common.dll
+D:\AllOrNothing\OneZeroApi\src\OneZero.EntityFrameworkCore.SqlServer\bin\Debug\netcoreapp2.2\OneZero.Domain.dll
+D:\AllOrNothing\OneZeroApi\src\OneZero.EntityFrameworkCore.SqlServer\obj\Debug\netcoreapp2.2\OneZero.EntityFrameworkCore.SqlServer.csprojAssemblyReference.cache
+D:\AllOrNothing\OneZeroApi\src\OneZero.EntityFrameworkCore.SqlServer\obj\Debug\netcoreapp2.2\OneZero.EntityFrameworkCore.SqlServer.csproj.CoreCompileInputs.cache
+D:\AllOrNothing\OneZeroApi\src\OneZero.EntityFrameworkCore.SqlServer\obj\Debug\netcoreapp2.2\OneZero.EntityFrameworkCore.SqlServer.AssemblyInfoInputs.cache
+D:\AllOrNothing\OneZeroApi\src\OneZero.EntityFrameworkCore.SqlServer\obj\Debug\netcoreapp2.2\OneZero.EntityFrameworkCore.SqlServer.AssemblyInfo.cs

@@ -1,0 +1,6 @@
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero\bin\Debug\netcoreapp2.2\OneZero.deps.json
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero\bin\Debug\netcoreapp2.2\OneZero.dll
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero\obj\Debug\netcoreapp2.2\OneZero.csprojAssemblyReference.cache
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero\obj\Debug\netcoreapp2.2\OneZero.csproj.CoreCompileInputs.cache
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero\obj\Debug\netcoreapp2.2\OneZero.AssemblyInfoInputs.cache
+D:\AllOrNothing\OneZeroApi\EasySample\OneZero\obj\Debug\netcoreapp2.2\OneZero.AssemblyInfo.cs
