@@ -72,3 +72,15 @@ EasySample/\.idea/\.idea\.OneZero\.Api/riderModule\.iml
 EasySample/OneZero\.Api\.sln\.DotSettings\.user
 
 \.DS_Store
+
+src/\.vs/OneZero/v15/Server/sqlite3/
+
+src/OneZero/obj/
+
+src/OneZero\.Application/obj/
+
+src/OneZero\.Common/obj/
+
+src/OneZero\.Domain/obj/
+
+src/OneZero\.EntityFrameworkCore\.SqlServer/obj/
