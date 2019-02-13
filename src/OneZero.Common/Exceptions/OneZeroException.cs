@@ -1,24 +1,37 @@
-﻿using System;
+﻿using OneZero.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace OneZero.Common.Exceptions
 {
-    public class BaseException : Exception
+    public class OneZeroException : Exception
     {
-        public BaseException() : base()
+        public ResponseCode Code { get; set; }
+
+        public OneZeroException() : base()
         {
 
         }
 
-        public BaseException(string message) : base(message)
+        public OneZeroException(string message) : base(message)
         {
 
         }
 
-        public BaseException(string message, Exception innerException) : base(message, innerException)
+        public OneZeroException(string message, ResponseCode code) : base(message)
+        {
+            Code = code;
+        }
+
+        public OneZeroException(string message, Exception innerException) : base(message, innerException)
         {
 
+        }
+
+        public OneZeroException(string message, Exception innerException, ResponseCode code) : base(message, innerException)
+        {
+            Code = code;
         }
 
     }

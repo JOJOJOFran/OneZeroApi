@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <Folder Include="Dtos\" />
-    <Folder Include="EntityConfiguration\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>

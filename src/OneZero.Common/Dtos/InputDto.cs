@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OneZero.Domain.Dtos
+namespace OneZero.Common.Dtos
 {
     public class InputDto
     {

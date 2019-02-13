@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OneZero.Domain.Repositories
 {
@@ -17,12 +18,12 @@ namespace OneZero.Domain.Repositories
         /// <summary>
         /// 提交
         /// </summary>
-        void Commit();
+        Task<int> CommitAsync();
 
         /// <summary>
-        /// 回滚
+        /// 回滚(暂时不实现)
         /// </summary>
-        void Rollback();
+        Task RollbackAsync();
 
     }
 }

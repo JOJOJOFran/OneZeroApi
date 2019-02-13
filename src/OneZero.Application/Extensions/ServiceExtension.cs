@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace OneZero.Application.Extensions
 {
-    class ServiceExtension
+    public static class ServiceExtension
     {
+
     }
 }

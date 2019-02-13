@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OneZero.Domain.Dtos
+namespace OneZero.Domain.Enums
 {
     /// <summary>
     /// 请求响应结果码枚举值

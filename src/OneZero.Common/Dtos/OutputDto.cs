@@ -1,9 +1,10 @@
-﻿using System;
+﻿using OneZero.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
 
-namespace OneZero.Domain.Dtos
+namespace OneZero.Common.Dtos
 {
     public class OutputDto
     {
