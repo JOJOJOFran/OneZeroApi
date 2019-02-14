@@ -28,7 +28,7 @@ namespace OneZero.EntityFrameworkCore.SqlServer
         /// <param name="builder"></param>
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.AddEntityConfigFromAssembly(Assembly.GetExecutingAssembly());
+            builder.AddEntityConfigFromAssembly();
             base.OnModelCreating(builder);
         }
 

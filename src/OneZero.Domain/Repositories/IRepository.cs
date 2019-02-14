@@ -71,7 +71,7 @@ namespace OneZero.Domain.Repositories
         /// </summary>
         /// <param name="wherePredicate"></param>
         /// <returns></returns>
-        Task<OutputDto> DeleteAsync(Expression<Func<TEntity, Task<bool>>> wherePredicate);
+        Task<OutputDto> DeleteAsync(Expression<Func<TEntity, bool>> wherePredicate);
 
         #endregion
 
@@ -91,7 +91,7 @@ namespace OneZero.Domain.Repositories
         /// <param name="checkAction"></param>
         /// <param name="convertFunc"></param>
         /// <returns></returns>
-        //Task<OutputDto> UpdateAsync<TEditDto>(TEditDto dto,Func<TEditDto, TEntity, Task<TEntity>> convertFunc = null) where TEditDto : InputDto;
+        Task<OutputDto> UpdateAsync<TEditDto>(TEditDto dto,Func<TEntity,bool> whereFunc,Func<TEditDto, TEntity, Task<TEntity>> convertFunc = null) where TEditDto : InputDto;
 
         /// <summary>
         /// 异步更新所有符合特定条件的实体
@@ -99,7 +99,7 @@ namespace OneZero.Domain.Repositories
         /// <param name="predicate">查询条件谓语表达式</param>
         /// <param name="updateExpression">实体更新表达式</param>
         /// <returns>操作影响的行数</returns>
-        //Task<int> UpdateBatchAsync(Expression<Func<TEntity, bool>> predicate,Expression<Func<TEntity, TEntity>> updateExpression);
+        Task<int> UpdateBatchAsync(Expression<Func<TEntity, bool>> predicate,Expression<Func<TEntity, TEntity>> updateExpression);
         #endregion
 
         /// <summary>

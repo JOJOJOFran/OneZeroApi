@@ -8,6 +8,7 @@ namespace OneZero.Common.Exceptions
     public class OneZeroException : Exception
     {
         public ResponseCode Code { get; set; }
+        
 
         public OneZeroException() : base()
         {

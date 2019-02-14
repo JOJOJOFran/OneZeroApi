@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OneZero\OneZero.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\ApplicationFlow\Dtos\" />
+    <Folder Include="Areas\ApplicationFlow\Models\" />
+    <Folder Include="Areas\ApplicationFlow\Services\" />
+    <Folder Include="Areas\ApplicationFlow\Controllers\" />
+    <Folder Include="Areas\ApplicationFlow\Stores\" />
+    <Folder Include="Areas\Permission\Controllers\" />
+    <Folder Include="Areas\Setting\Controllers\" />
+    <Folder Include="Areas\Setting\Dtos\" />
+    <Folder Include="Areas\Setting\Models\" />
+    <Folder Include="Areas\Setting\Services\" />
+    <Folder Include="Areas\Setting\Stores\" />
+  </ItemGroup>
+
+</Project>

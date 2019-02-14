@@ -9,8 +9,8 @@ namespace OneZero
     /// </summary>
     public class OneZeroOption
     {
-        public DbContextOption dbContextOption { get; set; }
-        public JwtOption jwtOption { get; set; }
+        public DbContextOption DbContextOption { get; set; }
+        public JwtOption JwtOption { get; set; }
     }
 
 

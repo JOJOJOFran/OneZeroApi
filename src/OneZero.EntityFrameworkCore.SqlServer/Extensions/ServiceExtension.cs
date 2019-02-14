@@ -18,12 +18,12 @@ namespace OneZero.EntityFrameworkCore.SqlServer.Extensions
         /// <param name="dbConnection">连接字符串</param>
         /// <param name="poolSize">连接池大小（默认128）</param>
         /// <returns></returns>
-        public static IServiceCollection AddSqlServerContext<T>(this IServiceCollection services, ILoggerFactory loggerFactory, string dbConnection, int poolSize = 128) where T : DbContext
+        public static IServiceCollection AddSqlServerContextPool<T>(this IServiceCollection services, ILoggerFactory loggerFactory, string dbConnection, string assmblyName,int poolSize = 128) where T : DbContext
         {
 
             services.AddDbContextPool<T>(Options =>
             {
-                Options.UseSqlServer(dbConnection, b => b.MigrationsAssembly("OneZero.Api"));
+                Options.UseSqlServer(dbConnection, b => b.MigrationsAssembly(assmblyName));
                 Options.UseLoggerFactory(loggerFactory);
 
             });

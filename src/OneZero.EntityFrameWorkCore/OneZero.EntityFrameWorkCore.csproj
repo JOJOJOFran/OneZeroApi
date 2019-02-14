@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Z.EntityFramework.Plus.EFCore" Version="1.8.18" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OneZero.Common\OneZero.Common.csproj" />
     <ProjectReference Include="..\OneZero.Domain\OneZero.Domain.csproj" />
     <ProjectReference Include="..\OneZero.EntityFrameworkCore.SqlServer\OneZero.EntityFrameworkCore.SqlServer.csproj" />

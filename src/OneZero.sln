@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero", "OneZero\OneZero.csproj", "{A350CAD4-385A-4BC8-B3E5-23533C74B559}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C186F8F2-49FF-4BE5-BBD1-E7DD255E0237}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{C186F8F2-49FF-4BE5-BBD1-E7DD255E0237}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Domain", "OneZero.Domain\OneZero.Domain.csproj", "{57FA81A4-6C53-4207-81A7-4AB52B938401}"
 EndProject
@@ -15,7 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.EntityFrameworkCore
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Application", "OneZero.Application\OneZero.Application.csproj", "{10F8F54E-9AD5-4212-ABA4-8039CCAEB5E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneZero.EntityFrameWorkCore", "OneZero.EntityFrameWorkCore\OneZero.EntityFrameWorkCore.csproj", "{16A206C9-A537-48FD-ADD1-F906318CB707}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.EntityFrameWorkCore", "OneZero.EntityFrameWorkCore\OneZero.EntityFrameWorkCore.csproj", "{16A206C9-A537-48FD-ADD1-F906318CB707}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SouthStar.VehSch.Api", "SouthStar.VehSch.Api\SouthStar.VehSch.Api.csproj", "{AD71FB00-5EF2-4AA3-8AFB-7896B51F47A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.ConsoleDemo", "Test.Console\Test.ConsoleDemo.csproj", "{27DFEB5A-5054-4345-B7B7-59EC2F094D07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,9 +51,21 @@ Global
 		{16A206C9-A537-48FD-ADD1-F906318CB707}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16A206C9-A537-48FD-ADD1-F906318CB707}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16A206C9-A537-48FD-ADD1-F906318CB707}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD71FB00-5EF2-4AA3-8AFB-7896B51F47A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD71FB00-5EF2-4AA3-8AFB-7896B51F47A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD71FB00-5EF2-4AA3-8AFB-7896B51F47A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD71FB00-5EF2-4AA3-8AFB-7896B51F47A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27DFEB5A-5054-4345-B7B7-59EC2F094D07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27DFEB5A-5054-4345-B7B7-59EC2F094D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27DFEB5A-5054-4345-B7B7-59EC2F094D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27DFEB5A-5054-4345-B7B7-59EC2F094D07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AD71FB00-5EF2-4AA3-8AFB-7896B51F47A4} = {C186F8F2-49FF-4BE5-BBD1-E7DD255E0237}
+		{27DFEB5A-5054-4345-B7B7-59EC2F094D07} = {C186F8F2-49FF-4BE5-BBD1-E7DD255E0237}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8BC678F1-7E6E-4F9E-AF61-59F09C556C90}

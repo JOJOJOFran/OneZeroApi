@@ -27,6 +27,11 @@ namespace OneZero.Domain.Enums
         /// <summary>
         /// 内部错误
         /// </summary>
-        Error = 3
+        Error = 3,
+
+        /// <summary>
+        /// 灾难性错误
+        /// </summary>
+        Fatal=4
     }
 }

@@ -96,3 +96,13 @@ src/OneZero\.Common/bin/
 src/OneZero\.Application/bin/
 
 src/OneZero/bin/
+
+src/Test\.Console/bin/
+
+src/Test\.Console/obj/
+
+src/SouthStar\.VehSch\.Api/bin/
+
+src/SouthStar\.VehSch\.Api/obj/
+
+src/OneZero\.EntityFrameworkCore\.SqlServer/bin/
