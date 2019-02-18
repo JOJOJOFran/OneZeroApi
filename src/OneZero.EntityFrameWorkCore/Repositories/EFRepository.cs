@@ -14,6 +14,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Z.EntityFramework.Plus;
 using System.Threading;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace OneZero.EntityFrameWorkCore.Repositories
 {
@@ -38,6 +39,7 @@ namespace OneZero.EntityFrameWorkCore.Repositories
         private readonly ILogger _logger;
         private readonly string _moduleName;
         private OutputDto _output;
+ 
         #endregion
 
         #region 构造函数

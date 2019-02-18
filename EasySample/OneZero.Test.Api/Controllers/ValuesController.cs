@@ -14,8 +14,8 @@ using OneZero.Model.Identity;
 
 namespace OneZero.Test.Api.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [Route("api/[controller]/[action]")]
+    //[ApiController]
    // [Authorize]
     public class ValuesController : ControllerBase
     {
@@ -46,12 +46,19 @@ namespace OneZero.Test.Api.Controllers
             _logger.LogCritical("崩溃测试");
             _dbContext.Set<User>().FirstOrDefault();
             _dbContext.Set<User>().AddAsync(new User());
-            throw new ArgumentOutOfRangeException();
+            //throw new ArgumentOutOfRangeException();
             //DefaultDbActionAudit audit = new DefaultDbActionAudit(_dbContext);
             //var t = (DbRequestAudit)audit.RecordQuery();
             //    _logger.LogInformation("数据库：{DbName},Connextion:{connect},时间：{DateTime},事务：{trans},语句：{sql}", _dbContext.Database.ProviderName, _dbContext.Database.GetDbConnection().ConnectionString, _dbContext.Database.GetDbConnection().DataSource, _dbContext.Database.GetDbConnection().Database, t.CommandSql);
 
             return new string[] { "value1", "value2" };
+        }
+
+        [HttpGet]
+        public ActionResult<string> Test()
+        {
+            var testUser= _dbContext.Set<User>().FirstOrDefault();//_dbContext.Query<User>().FromSql("select * from TUser");
+            return new JsonResult(testUser);
         }
 
         // GET api/values/5

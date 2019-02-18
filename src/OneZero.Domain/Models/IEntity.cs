@@ -10,7 +10,7 @@ namespace OneZero.Domain.Models
     /// IEquatable:比较对象相等性
     /// </summary>
     /// <typeparam name="TKey">主键类型</typeparam>
-    public interface IEntity<out TKey> where TKey:IEquatable<TKey>
+    public interface IEntity<out TKey> 
     {
         TKey Id { get; }
     }

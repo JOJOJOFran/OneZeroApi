@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OneZero.Domain.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,5 +12,12 @@ namespace OneZero.EntityFrameworkCore.Extensions
         {
             return (DbContext)provider.GetService(typeof(DbContext));
         }
+
+        public static IDbContext GetDbContext(this IServiceProvider provider, Type type = null)
+        {
+            return (IDbContext)provider.GetService(typeof(IDbContext));
+        }
+
+
     }
 }
