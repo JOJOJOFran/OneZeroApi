@@ -4,7 +4,7 @@ using OneZero.EntityFrameworkCore.UnitOfWorks;
 using OneZero.Common.Dtos;
 using OneZero.Common.Exceptions;
 using OneZero.Common.Extensions;
-using OneZero.Domain.Enums;
+using OneZero.Common.Enums;
 using OneZero.Domain.Models;
 using OneZero.Domain.Repositories;
 using System;
@@ -14,7 +14,6 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Z.EntityFramework.Plus;
 using System.Threading;
-using Microsoft.EntityFrameworkCore.Storage;
 
 namespace OneZero.EntityFrameWorkCore.Repositories
 {
@@ -29,7 +28,7 @@ namespace OneZero.EntityFrameWorkCore.Repositories
         /// <summary>
         /// 数据库上下文
         /// </summary>
-        public readonly DbContext _dbContext;
+        private readonly DbContext _dbContext;
 
         /// <summary>
         /// 数据过滤开关(控制Entities和TrackingEntities是否经过DataFilter方法筛选)
@@ -37,15 +36,13 @@ namespace OneZero.EntityFrameWorkCore.Repositories
         public bool IsDataFilterOpen=true;
         private readonly DbSet<TEntity> _dbSet;
         private readonly ILogger _logger;
-        private readonly string _moduleName;
         private OutputDto _output;
- 
         #endregion
 
         #region 构造函数
-        public EFRepository(OutputDto output, Logger<EFRepository<TEntity, TKey>> logger, IUnitOfWork unitOfWork)
+        public EFRepository(OutputDto output, Logger<EFRepository<TEntity, TKey>> logger, IDbContext dbContext)
         {
-            _dbContext = ((EFUnitOfWork)unitOfWork).DbContext;
+            _dbContext = (DbContext)dbContext;
             _dbSet= _dbContext.Set<TEntity>();
             _logger = logger;
         }
@@ -60,17 +57,6 @@ namespace OneZero.EntityFrameWorkCore.Repositories
                     return _dbSet.AsQueryable().AsNoTracking().Where(DataFilter());
                 else
                     return _dbSet.AsQueryable().AsNoTracking();
-            }
-        }
-
-        public virtual IQueryable<TEntity> TrackingEntities
-        {
-            get
-            {
-                if (IsDataFilterOpen)
-                    return _dbSet.AsQueryable().Where(DataFilter());
-                else
-                    return _dbSet.AsQueryable();
             }
         }
 
@@ -90,7 +76,7 @@ namespace OneZero.EntityFrameWorkCore.Repositories
         {
             if (!EntityValidate(entities, out string entityInfo))
             {
-                _output.Message = _moduleName + "新增失败，数据实体不合法，请检查" + entityInfo + "后重新提交！";
+                _output.Message = "新增失败，数据实体不合法，请检查" + entityInfo + "后重新提交！";
                 _output.Code = ResponseCode.ExpectedException;
                 return 0;
             }
@@ -99,12 +85,12 @@ namespace OneZero.EntityFrameWorkCore.Repositories
                 try
                 {
                     await _dbContext.AddRangeAsync(entities);
-                    _output.Message = _moduleName + "新增成功！";
+                    _output.Message =  "新增成功！";
                     await _dbContext.SaveChangesAsync();
                 }
                 catch (Exception e)
                 {
-                    throw new OneZeroException(_moduleName + "新增失败", e, ResponseCode.UnExpectedException);
+                    throw new OneZeroException( "新增失败", e, ResponseCode.UnExpectedException);
                 }
             }
             return entities.Count();
@@ -121,12 +107,12 @@ namespace OneZero.EntityFrameWorkCore.Repositories
             try
             {
                 await _dbContext.AddAsync(entity);
-                _output.Message = _moduleName + ":新增成功！";
+                _output.Message =  "新增成功！";
                 await _dbContext.SaveChangesAsync();
             }
             catch (Exception e)
             {
-                throw new OneZeroException(_moduleName + ":新增失败", e, ResponseCode.UnExpectedException);
+                throw new OneZeroException( "新增失败", e, ResponseCode.UnExpectedException);
             }
             return _output;
         }
@@ -175,16 +161,16 @@ namespace OneZero.EntityFrameWorkCore.Repositories
                 {
                     _dbContext.Remove(entity);
                     await _dbContext.SaveChangesAsync();
-                    _output.Message = _moduleName + "删除成功";
+                    _output.Message =  "删除成功";
                 }
                 catch (Exception e)
                 {
-                    throw new OneZeroException(_moduleName + "删除失败", e, ResponseCode.UnExpectedException);
+                    throw new OneZeroException( "删除失败", e, ResponseCode.UnExpectedException);
                 }
             }
             else
             {
-                _output.Message = _moduleName + "，该数据已经被删除！";
+                _output.Message =  "，该数据已经被删除！";
                 _output.Code = ResponseCode.ExpectedException;
             }
             return _output;
@@ -195,18 +181,19 @@ namespace OneZero.EntityFrameWorkCore.Repositories
             if (entities?.Count > 0)
             {
                 try
+
                 {
                     _dbContext.RemoveRange(entities);
                     await _dbContext.SaveChangesAsync();
-                    _output.Message = String.Format("{0}，共{1}条，删除成功！", _moduleName, entities.Count());
+                    _output.Message = $"删除成功,共{entities.Count()}条！";
                 }
                 catch (Exception e)
                 {
-                    throw new OneZeroException(_moduleName + "删除失败", e, ResponseCode.UnExpectedException);
+                    throw new OneZeroException( "删除失败", e, ResponseCode.UnExpectedException);
                 }
                 return _output;
             }
-            _output.Message = _moduleName + ",该数据已经被删除！";
+            _output.Message =  ",该数据已经被删除！";
             return _output;
         }
         #endregion
@@ -229,11 +216,11 @@ namespace OneZero.EntityFrameWorkCore.Repositories
                 var newEntity = await convertFunc(dto, entity);
                 var result= _dbContext.Update(entity);
                 await _dbContext.SaveChangesAsync();
-                _output.Message = $"{_moduleName}：共{result}条，更新成功";
+                _output.Message = $"更新成功,共{result}条.";
             }
             catch (Exception e)
             {
-                throw new OneZeroException($"{_moduleName}：更新失败", e, ResponseCode.UnExpectedException);
+                throw new OneZeroException("更新失败", e, ResponseCode.UnExpectedException);
             }
             return _output;
         }

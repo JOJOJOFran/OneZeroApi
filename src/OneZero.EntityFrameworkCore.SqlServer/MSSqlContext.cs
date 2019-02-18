@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OneZero.Domain.Repositories;
 using OneZero.EntityFrameworkCore.SqlServer.Extensions;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,17 @@ namespace OneZero.EntityFrameworkCore.SqlServer
     /// <summary>
     /// SqlServer EF Context
     /// </summary>
-    public class MSSqlContext:DbContext
+    public class MSSqlContext:DbContext,IDbContext
     {
         public MSSqlContext(DbContextOptions<MSSqlContext> options) : base(options)
         {
 
         }
 
+        /// <summary>
+        /// OnConfiguring方法每次创建实例都要被调用
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

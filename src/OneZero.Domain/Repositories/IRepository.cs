@@ -2,19 +2,25 @@
 using OneZero.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace OneZero.Domain.Repositories
 {
-    public interface IRepository<TEntity, TKey> where TEntity : IEntity<TKey> 
+    public interface IRepository<TEntity, TKey> where TEntity : IEntity<TKey> //where TKey : IEquatable<TKey>
     {
         /// <summary>
         /// 工作单元
         /// </summary>
         IUnitOfWork _unitOfWork { get; }
-
+        
+        /// <summary>
+        /// 延迟加载实体
+        /// </summary>
+        /// <value></value>
+        IQueryable<TEntity> Entities{get;}
         #region 数据库操作
 
         #region 异步操作

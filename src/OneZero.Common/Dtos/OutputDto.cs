@@ -1,4 +1,4 @@
-﻿using OneZero.Domain.Enums;
+﻿using OneZero.Common.Enums;
 using System;
 using System.Collections.Generic;
 using System.Net;
