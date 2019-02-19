@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using OneZero.EntityFrameworkCore.Extensions;
 using OneZero.Common.Exceptions;
+using OneZero.Common.Enums;
 using OneZero.Domain.Repositories;
 using System;
 using System.Collections;
@@ -10,12 +11,12 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 using OneZero.Domain.Models;
-using OneZero.EntityFrameWorkCore.Repositories;
+using OneZero.EntityFrameworkCore.Repositories;
 
 namespace OneZero.EntityFrameworkCore.UnitOfWorks
 {
     /// <summary>
-    /// EF工作单元（Scope,如果想注册成单例，Hashtable需换成线程安全的哈希表）
+    /// EF工作单元（Scope）
     /// </summary>
     public class EFUnitOfWork : IUnitOfWork
     {
@@ -64,7 +65,7 @@ namespace OneZero.EntityFrameworkCore.UnitOfWorks
         /// <returns></returns>
         public virtual async Task BeginTransAsync()
         {
-             _trans=await ((DbContext)DbContext).Database.BeginTransactionAsync();
+             _trans =await ((DbContext)DbContext).Database.BeginTransactionAsync();
         }
 
         /// <summary>
@@ -90,7 +91,7 @@ namespace OneZero.EntityFrameworkCore.UnitOfWorks
             }
             catch (Exception e)
             {
-                throw new OneZeroException("UnitOfWork构建仓储示例失败",e, Domain.Enums.ResponseCode.Error);
+                throw new OneZeroException("UnitOfWork构建仓储示例失败",e, ResponseCode.Error);
             }
           
 
@@ -121,7 +122,7 @@ namespace OneZero.EntityFrameworkCore.UnitOfWorks
                 _trans.Rollback();
                 if (e.InnerException != null && e.InnerException.InnerException is SqlException)
                 {
-                    throw new OneZeroException("EFUnitOfWork提交事务失败", e, Domain.Enums.ResponseCode.UnExpectedException);
+                    throw new OneZeroException("EFUnitOfWork提交事务失败", e, ResponseCode.UnExpectedException);
                 }
                 throw new OneZeroException();
             }

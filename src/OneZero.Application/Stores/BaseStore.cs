@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using OneZero.Common.Dtos;
 using OneZero.Domain.Models;
 using OneZero.Domain.Repositories;
-using OneZero.EntityFrameWorkCore.Repositories;
+using OneZero.EntityFrameworkCore.Repositories;
 
 namespace OneZero.Application.Stores
 {

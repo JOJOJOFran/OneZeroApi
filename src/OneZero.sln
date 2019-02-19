@@ -11,15 +11,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Domain", "OneZero.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Common", "OneZero.Common\OneZero.Common.csproj", "{488D0469-B828-445C-8E05-3B298085C31A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.EntityFrameworkCore.SqlServer", "OneZero.EntityFrameworkCore.SqlServer\OneZero.EntityFrameworkCore.SqlServer.csproj", "{63DF8D9B-13BD-4342-9186-06E490855701}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.EntityFrameWorkCore.SqlServer", "OneZero.EntityFrameworkCore.SqlServer\OneZero.EntityFrameWorkCore.SqlServer.csproj", "{63DF8D9B-13BD-4342-9186-06E490855701}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.Application", "OneZero.Application\OneZero.Application.csproj", "{10F8F54E-9AD5-4212-ABA4-8039CCAEB5E8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.EntityFrameWorkCore", "OneZero.EntityFrameWorkCore\OneZero.EntityFrameWorkCore.csproj", "{16A206C9-A537-48FD-ADD1-F906318CB707}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OneZero.EntityFrameworkCore", "OneZero.EntityFrameWorkCore\OneZero.EntityFrameworkCore.csproj", "{16A206C9-A537-48FD-ADD1-F906318CB707}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SouthStar.VehSch.Api", "SouthStar.VehSch.Api\SouthStar.VehSch.Api.csproj", "{AD71FB00-5EF2-4AA3-8AFB-7896B51F47A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SouthStar.VehSch.Api", "SouthStar.VehSch.Api\SouthStar.VehSch.Api.csproj", "{AD71FB00-5EF2-4AA3-8AFB-7896B51F47A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.ConsoleDemo", "Test.Console\Test.ConsoleDemo.csproj", "{27DFEB5A-5054-4345-B7B7-59EC2F094D07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.ConsoleDemo", "Test.Console\Test.ConsoleDemo.csproj", "{27DFEB5A-5054-4345-B7B7-59EC2F094D07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

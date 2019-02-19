@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 using Z.EntityFramework.Plus;
 using System.Threading;
 
-namespace OneZero.EntityFrameWorkCore.Repositories
+namespace OneZero.EntityFrameworkCore.Repositories
 {
     public abstract class EFRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class, IEntity<TKey> where TKey : IEquatable<TKey>
     {
