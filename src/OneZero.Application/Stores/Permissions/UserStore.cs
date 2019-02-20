@@ -9,10 +9,8 @@ using OneZero.EntityFrameworkCore.Repositories;
 
 namespace OneZero.Application.Stores.Permissions
 {
-    public class UserStore : BaseStore<User, Guid>
+    public class UserStore 
     {
-        public UserStore(OutputDto output, Logger<EFRepository<User, Guid>> logger, IDbContext dbContext) : base(output, logger, dbContext)
-        {
-        }
+
     }
 }
