@@ -17,7 +17,7 @@ using System.Threading;
 
 namespace OneZero.EntityFrameworkCore.Repositories
 {
-    public abstract class EFRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class, IEntity<TKey> where TKey : IEquatable<TKey>
+    public class EFRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class, IEntity<TKey> where TKey : IEquatable<TKey>
     {
         #region field
         /// <summary>
@@ -40,7 +40,14 @@ namespace OneZero.EntityFrameworkCore.Repositories
         #endregion
 
         #region 构造函数
-        public EFRepository(OutputDto output, Logger<EFRepository<TEntity, TKey>> logger, IDbContext dbContext)
+        public EFRepository( IDbContext dbContext)
+        {
+            _dbContext = (DbContext)dbContext;
+            _dbSet = _dbContext.Set<TEntity>();
+           
+        }
+
+        public EFRepository(Logger<EFRepository<TEntity, TKey>> logger, IDbContext dbContext)
         {
             _dbContext = (DbContext)dbContext;
             _dbSet= _dbContext.Set<TEntity>();
@@ -74,14 +81,14 @@ namespace OneZero.EntityFrameworkCore.Repositories
         #region 新增方法
         public virtual async Task<int> AddAsync(params TEntity[] entities)
         {
-            if (!EntityValidate(entities, out string entityInfo))
-            {
-                _output.Message = "新增失败，数据实体不合法，请检查" + entityInfo + "后重新提交！";
-                _output.Code = ResponseCode.ExpectedException;
-                return 0;
-            }
-            else
-            {
+            //if (!EntityValidate(entities, out string entityInfo))
+            //{
+            //    _output.Message = "新增失败，数据实体不合法，请检查" + entityInfo + "后重新提交！";
+            //    _output.Code = ResponseCode.ExpectedException;
+            //    return 0;
+            //}
+            //else
+            //{
                 try
                 {
                     await _dbContext.AddRangeAsync(entities);
@@ -92,7 +99,7 @@ namespace OneZero.EntityFrameworkCore.Repositories
                 {
                     throw new OneZeroException( "新增失败", e, ResponseCode.UnExpectedException);
                 }
-            }
+            //}
             return entities.Count();
         }
 
@@ -252,21 +259,5 @@ namespace OneZero.EntityFrameworkCore.Repositories
         
         #endregion
 
-        #region 抽象方法
-        /// <summary>
-        /// 实体类验证
-        /// </summary>
-        /// <returns></returns>
-        public abstract bool EntityValidate(TEntity entity, out string entityInfo);
-        public abstract bool EntityValidate(IEnumerable<TEntity> entities, out string entityInfo);
-        public abstract Task<IEnumerable<DataDto>> GetListAsync(IEnumerable<TEntity> entities);
-        public abstract Task<IEnumerable<DataDto>> GetItemAsync(TEntity entity);
-
-
-        //public Task<bool> CheckExistsAsync(Expression<Func<TEntity, bool>> predicate, TKey id = default(TKey))
-        //{
-        //    throw new NotImplementedException();
-        //}
-        #endregion
     }
 }

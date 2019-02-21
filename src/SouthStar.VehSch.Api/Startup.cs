@@ -11,6 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using OneZero.Domain.Repositories;
+using OneZero.EntityFrameworkCore.SqlServer;
+using OneZero.EntityFrameworkCore.UnitOfWorks;
 using OneZero.Extensions;
 
 namespace SouthStar.VehSch.Api
@@ -38,6 +41,10 @@ namespace SouthStar.VehSch.Api
             }, LoggerFactory
             , Assembly.GetExecutingAssembly().GetName().ToString());
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddScoped<IUnitOfWork, EFUnitOfWork>();
+            services.AddScoped<IDbContext, MSSqlContext>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

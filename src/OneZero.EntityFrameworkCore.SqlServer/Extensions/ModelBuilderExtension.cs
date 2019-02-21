@@ -20,9 +20,9 @@ namespace OneZero.EntityFrameworkCore.SqlServer.Extensions
         public static void AddEntityConfigFromAssembly(this ModelBuilder builder, string path = null)
         {
             int count = 0;
-            foreach (var file in Directory.GetFiles(path ?? AppDomain.CurrentDomain.BaseDirectory + @"\", "*.dll"))
-            {                
-                var types = Assembly.Load(file).LoadEntityConfigration(typeof(IEntityTypeConfiguration<>));
+            foreach (var file in Directory.GetFiles(path ?? AppDomain.CurrentDomain.BaseDirectory , "*.dll"))
+            {
+                var types =  Assembly.LoadFrom(file).LoadEntityConfigration(typeof(IEntityTypeConfiguration<>));
                 if (types == null || types.Count() < 1)
                     continue;
 
@@ -49,7 +49,7 @@ namespace OneZero.EntityFrameworkCore.SqlServer.Extensions
 
             return assembly.GetTypes().Where(v => !v.GetType().IsAbstract &&
                                                   !v.GetType().IsInterface &&
-                                                  type.IsAssignableFrom(v)&&
+                                                 // type.IsAssignableFrom(v)&&
                                                   v.GetInterfaces().Any(x => x.GetTypeInfo().IsGenericType &&
                                                                                 x.GetGenericTypeDefinition() == type));
         }

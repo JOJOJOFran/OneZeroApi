@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <Folder Include="Dtos\Permission\" />
-    <Folder Include="Services\Permission\" />
   </ItemGroup>
 
 </Project>

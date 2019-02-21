@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using OneZero.Application.Services.Permission;
+using OneZero.Domain.Repositories;
 
 namespace SouthStar.VehSch.Api.Controllers
 {
@@ -10,6 +12,12 @@ namespace SouthStar.VehSch.Api.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+
+        public ValuesController(IUnitOfWork unitOfWork)
+        {
+            var service = new UserService(unitOfWork);
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
