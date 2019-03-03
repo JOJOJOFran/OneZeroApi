@@ -17,8 +17,8 @@ using System.Threading;
 
 namespace OneZero.EntityFrameworkCore.Repositories
 {
-    public class EFRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class, IEntity<TKey> where TKey : IEquatable<TKey>
-    {
+    public class EFRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class, IEntity<TKey>
+    { 
         #region field
         /// <summary>
         /// 工作单元
@@ -45,9 +45,11 @@ namespace OneZero.EntityFrameworkCore.Repositories
             _dbContext = (DbContext)dbContext;
             _dbSet = _dbContext.Set<TEntity>();
            
+
+
         }
 
-        public EFRepository(Logger<EFRepository<TEntity, TKey>> logger, IDbContext dbContext)
+        public EFRepository(IDbContext dbContext,Logger<EFRepository<TEntity, TKey>> logger )
         {
             _dbContext = (DbContext)dbContext;
             _dbSet= _dbContext.Set<TEntity>();
