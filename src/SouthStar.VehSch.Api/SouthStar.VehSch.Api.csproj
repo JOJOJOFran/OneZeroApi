@@ -16,16 +16,12 @@
 
   <ItemGroup>
     <Folder Include="Areas\ApplicationFlow\Dtos\" />
-    <Folder Include="Areas\ApplicationFlow\Models\" />
     <Folder Include="Areas\ApplicationFlow\Services\" />
     <Folder Include="Areas\ApplicationFlow\Controllers\" />
     <Folder Include="Areas\ApplicationFlow\Stores\" />
     <Folder Include="Areas\Permission\Controllers\" />
     <Folder Include="Areas\Setting\Controllers\" />
-    <Folder Include="Areas\Setting\Dtos\" />
-    <Folder Include="Areas\Setting\Models\" />
     <Folder Include="Areas\Setting\Services\" />
-    <Folder Include="Areas\Setting\Stores\" />
   </ItemGroup>
 
 </Project>

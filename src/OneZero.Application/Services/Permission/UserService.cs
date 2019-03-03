@@ -17,6 +17,7 @@ namespace OneZero.Application.Services.Permission
             _userRepository = _unitOfWork.GetRepository<User, Guid>();
         }
 
+        
 
     }
 }
