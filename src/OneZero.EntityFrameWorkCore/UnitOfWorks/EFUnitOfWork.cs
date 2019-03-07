@@ -85,8 +85,12 @@ namespace OneZero.EntityFrameworkCore.UnitOfWorks
                 if (!repositories.ContainsKey(entityType.Name))
                 {
                     var baseType = typeof(EFRepository<,>);
+<<<<<<< HEAD
                    
                     var repositoryInstance = Activator.CreateInstance(baseType.MakeGenericType(entityType, typeof(TKey)), DbContext,_provider.GetLogger<EFRepository<TEntity, TKey>>());
+=======
+                    var repositoryInstance = Activator.CreateInstance(baseType.MakeGenericType(entityType), DbContext,_provider.GetLogger< EFRepository <TEntity,TKey>> ());
+>>>>>>> master
                     repositories.Add(entityType.Name, repositoryInstance);
                 }
             }

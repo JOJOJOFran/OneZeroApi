@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OneZero.Domain.Repositories
 {
-    public interface IRepository<TEntity, TKey> where TEntity : IEntity<TKey> //where TKey : IEquatable<TKey>
+    public interface IRepository<TEntity, TKey> where TEntity : IEntity<TKey> 
     {
         /// <summary>
         /// 工作单元
