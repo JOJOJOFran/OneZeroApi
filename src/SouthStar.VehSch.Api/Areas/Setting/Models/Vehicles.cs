@@ -1,4 +1,6 @@
 ﻿using OneZero.Application.Models;
+using SouthStar.VehSch.Api.Areas.Setting.Models.Enum;
+using SouthStar.VehSch.Api.Common.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -113,8 +115,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Models
         /// 车辆性质
         /// </summary>
         [Required]
-        [MaxLength(20)]
-        public string VehicleProperties { get; set; }
+        public CarProperty VehicleProperties { get; set; }
 
         /// <summary>
         /// 固定资产卡编号
@@ -126,7 +127,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Models
         /// 油料类型
         /// </summary>
         [MaxLength(20)]
-        public string OilType { get; set; }
+        public OilType OilType { get; set; }
 
         /// <summary>
         /// 车辆图标
@@ -156,7 +157,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Models
         /// 车辆状态xq
         /// </summary>
         [MaxLength(50)]
-        public string CurrentState { get; set; }
+        public CurrentState CurrentState { get; set; }
 
         /// <summary>
         /// 图片

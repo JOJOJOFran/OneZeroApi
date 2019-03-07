@@ -17,7 +17,7 @@ using System.Threading;
 
 namespace OneZero.EntityFrameworkCore.Repositories
 {
-    public class EFRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class, IEntity<TKey> where TKey : IEquatable<TKey>
+    public class EFRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class, IEntity<TKey>
     {
         #region field
         /// <summary>
@@ -40,14 +40,13 @@ namespace OneZero.EntityFrameworkCore.Repositories
         #endregion
 
         #region 构造函数
-        public EFRepository( IDbContext dbContext)
+        public EFRepository(IDbContext dbContext)
         {
             _dbContext = (DbContext)dbContext;
-            _dbSet = _dbContext.Set<TEntity>();
-           
+            _dbSet = _dbContext.Set<TEntity>();           
         }
 
-        public EFRepository(Logger<EFRepository<TEntity, TKey>> logger, IDbContext dbContext)
+        public EFRepository(IDbContext dbContext,ILogger<EFRepository<TEntity, TKey>> logger)
         {
             _dbContext = (DbContext)dbContext;
             _dbSet= _dbContext.Set<TEntity>();
@@ -73,24 +72,31 @@ namespace OneZero.EntityFrameworkCore.Repositories
         /// <returns></returns>
         public virtual Expression<Func<TEntity, bool>> DataFilter()
         {
-            return x => 1==1;
+            return x => x.IsDelete==false;
         }
         #endregion
 
         #region Interface Implemention
         #region 新增方法
+        public virtual async Task<int> AddAsync(TEntity entity)
+        {
+            int result = 0;
+            try
+            {
+                await _dbContext.AddAsync(entity);
+                result = await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                throw new OneZeroException("新增失败", e, ResponseCode.UnExpectedException);
+            }
+            return result;
+        }
+
         public virtual async Task<int> AddAsync(params TEntity[] entities)
         {
-            //if (!EntityValidate(entities, out string entityInfo))
-            //{
-            //    _output.Message = "新增失败，数据实体不合法，请检查" + entityInfo + "后重新提交！";
-            //    _output.Code = ResponseCode.ExpectedException;
-            //    return 0;
-            //}
-            //else
-            //{
                 try
-                {
+                {           
                     await _dbContext.AddRangeAsync(entities);
                     _output.Message =  "新增成功！";
                     await _dbContext.SaveChangesAsync();
@@ -99,20 +105,20 @@ namespace OneZero.EntityFrameworkCore.Repositories
                 {
                     throw new OneZeroException( "新增失败", e, ResponseCode.UnExpectedException);
                 }
-            //}
             return entities.Count();
         }
 
         public virtual async Task<OutputDto> AddAsync<TInputDto>(TInputDto dto, 
-                                                                 Func<TInputDto, Task<bool>> checkAction = null, 
-                                                                 Func<TInputDto, Task<TEntity>> convertFunc = null) where TInputDto : InputDto
+                                                                 Func<TInputDto, bool> checkAction = null, 
+                                                                 Func<TInputDto, TEntity> convertFunc = null) where TInputDto : DataDto
         {
-            if (!await checkAction(dto))
+            if (checkAction!=null&&checkAction(dto))
                 _output.Message = "输入模型不合法，请检查";
 
-            var entity = await convertFunc(dto);
+            var entity =  convertFunc(dto);
             try
             {
+
                 await _dbContext.AddAsync(entity);
                 _output.Message =  "新增成功！";
                 await _dbContext.SaveChangesAsync();
@@ -126,6 +132,8 @@ namespace OneZero.EntityFrameworkCore.Repositories
         #endregion
 
         #region 删除方法
+        
+
         public virtual async Task<OutputDto> DeleteAsync(params TEntity[] entities)
         {
             entities.NotNull();
@@ -139,6 +147,15 @@ namespace OneZero.EntityFrameworkCore.Repositories
             return await BasicDeleteAsync(entity);
         }
 
+        public virtual async Task<OutputDto> MarkDeleteAsync(TKey key)
+        {
+
+            var entity = await Entities.FirstOrDefaultAsync(v => v.Id.Equals(key));
+            entity.IsDelete = true;
+            await UpdateAsync(entity,true);
+            return null;
+        }
+
         /// <summary>
         /// 暂时不实现
         /// </summary>
@@ -146,7 +163,7 @@ namespace OneZero.EntityFrameworkCore.Repositories
         /// <param name="checkAction"></param>
         /// <param name="whereFunc"></param>
         /// <returns></returns>
-        public virtual async Task<OutputDto> DeleteAsync(ICollection<TKey> ids, Func<TEntity, Task<bool>> checkAction = null, Func<TEntity, TEntity> whereFunc = null)
+        public virtual async Task<OutputDto> DeleteAsync(ICollection<TKey> ids, Func<TEntity, bool> checkAction = null, Func<TEntity, TEntity> whereFunc = null)
         {
             throw new NotImplementedException();
         }
@@ -211,16 +228,38 @@ namespace OneZero.EntityFrameworkCore.Repositories
         #endregion
 
         #region 更新方法
+        /// <summary>
+        /// 更新单个实体
+        /// </summary>
+        /// <param name="entity">实体</param>
+        /// <param name="IsMarkDelete">是否式标记删除</param>
+        /// <returns></returns>
+        public virtual async Task<OutputDto> UpdateAsync(TEntity entity,bool IsMarkDelete=false)
+        {
+            string action = (IsMarkDelete ? "清除" : "更新");
+            try
+            {
+                var result = _dbContext.Update(entity);
+                await _dbContext.SaveChangesAsync();
+                _output.Message = $"{action}成功,共{result}条.";
+            }
+            catch (Exception e)
+            {
+                throw new OneZeroException($"{action}失败", e, ResponseCode.UnExpectedException);
+            }
+            return _output;
+        }
+
         public virtual async Task<OutputDto> UpdateAsync<TEditDto>(TEditDto dto, 
                                                                    Func<TEntity, bool> whereFunc, 
-                                                                   Func<TEditDto, TEntity, Task<TEntity>> convertFunc) where TEditDto : InputDto
+                                                                   Func<TEditDto, TEntity,TEntity> convertFunc) where TEditDto : DataDto
         {
             whereFunc.NotNull();
             convertFunc.NotNull();
             try
             {
                 var entity = await _dbContext.Set<TEntity>().FirstOrDefaultAsync(v => whereFunc(v));
-                var newEntity = await convertFunc(dto, entity);
+                var newEntity =  convertFunc(dto, entity);
                 var result= _dbContext.Update(entity);
                 await _dbContext.SaveChangesAsync();
                 _output.Message = $"更新成功,共{result}条.";
@@ -253,7 +292,7 @@ namespace OneZero.EntityFrameworkCore.Repositories
         /// <returns></returns>
         public virtual async Task<TEntity> GetAsync(TKey key)
         {
-            return await Entities.FirstOrDefaultAsync(v => v.Id.Equals(key));
+            return await _dbSet.FindAsync(key);
         }
 
         

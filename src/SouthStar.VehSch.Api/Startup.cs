@@ -1,4 +1,5 @@
 ﻿using System;
+using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -12,9 +13,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OneZero.Domain.Repositories;
+using OneZero.Common.Dapper;
 using OneZero.EntityFrameworkCore.SqlServer;
 using OneZero.EntityFrameworkCore.UnitOfWorks;
 using OneZero.Extensions;
+using SouthStar.VehSch.Api.Areas.Setting.Services;
 
 namespace SouthStar.VehSch.Api
 {
@@ -33,7 +36,7 @@ namespace SouthStar.VehSch.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.UseOneZero(option =>
+            services.AddOneZero(option =>
             {
                 option.DbContextOption = new OneZero.DbContextOption
                 { ConnectString = Configuration.GetConnectionString("DefaultConnection"), DBType = OneZero.DbType.SqlServer };
@@ -44,7 +47,11 @@ namespace SouthStar.VehSch.Api
 
             services.AddScoped<IUnitOfWork, EFUnitOfWork>();
             services.AddScoped<IDbContext, MSSqlContext>();
-            
+            services.AddScoped<IDapperProvider, DapperProvider>();
+            services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<VehcileServeice>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

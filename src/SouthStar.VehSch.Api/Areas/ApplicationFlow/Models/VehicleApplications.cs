@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OneZero.Application.Models;
+using SouthStar.VehSch.Api.Areas.ApplicationFlow.Models.Enum;
+using SouthStar.VehSch.Api.Common.Enums;
 
 namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Models
 {
@@ -25,7 +27,7 @@ namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Models
         /// 申请人ID
         /// </summary>
         [Required]
-        public int ApplicantId { get; set; }
+        public Guid ApplicantId { get; set; }
 
         /// <summary>
         /// 申请人姓名
@@ -43,7 +45,7 @@ namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Models
         /// 用车单位ID
         /// </summary>
         [Required]
-        public int DepartmentId { get; set; }
+        public Guid DepartmentId { get; set; }
 
         /// <summary>
         /// 用车单位名称
@@ -88,8 +90,7 @@ namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Models
         /// 车辆性质
         /// </summary>
         [Required]
-        [MaxLength(50)]
-        public string CarProperty { get; set; }
+        public CarProperty CarProperty { get; set; }
 
         /// <summary>
         /// 使用区域
@@ -134,7 +135,7 @@ namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Models
         /// <summary>
         /// 推送人
         /// </summary>
-        public int? ReciverId { get; set; }
+        public Guid? ReciverId { get; set; }
 
         /// <summary>
         /// 推送电话
@@ -149,9 +150,9 @@ namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Models
         public string Remark { get; set; }
 
         /// <summary>
-        /// 审核状态
+        /// 申请状态
         /// </summary>
-        public int Status { get; set; }
+        public ApplyState Status { get; set; }
 
         /// <summary>
         /// 创建时间

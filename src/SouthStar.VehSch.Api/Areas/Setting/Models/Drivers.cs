@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OneZero.Application.Models;
+using SouthStar.VehSch.Api.Areas.Setting.Models.Enum;
+using SouthStar.VehSch.Api.Common.Enum;
+using OneZero.Common.Enums;
 
 namespace SouthStar.VehSch.Api.Areas.Setting.Models
 {
@@ -26,8 +29,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Models
         /// <summary>
         /// 性别
         /// </summary>
-        [MaxLength(10)]
-        public string Sex { get; set; }
+        public Gender Sex { get; set; }
 
 
         /// <summary>
@@ -94,7 +96,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Models
         /// 状态
         /// </summary>
         [MaxLength(10)]
-        public string Status { get; set; }
+        public PersonState Status { get; set; }
 
         /// <summary>
         /// 图片

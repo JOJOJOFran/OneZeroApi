@@ -14,7 +14,7 @@ namespace OneZero.Application.Models
         /// <summary>
         /// 主键
         /// </summary>
-        public TKey Id { get; set; }
+        public TKey Id { get; set; } = default(TKey);
 
         /// <summary>
         /// 租户Id
@@ -25,6 +25,8 @@ namespace OneZero.Application.Models
         /// 是否删除
         /// </summary>
         public bool IsDelete { get; set; } = false;
+
+
 
         /// <summary>
         /// 重写Equals

@@ -1,11 +1,13 @@
-﻿using System;
+﻿using OneZero.Common.Dtos;
+using SouthStar.VehSch.Api.Common.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SouthStar.VehSch.Api.Areas.Setting.Dtos
 {
-    public class VehicleData
+    public class VehicleData:DataDto
     {
         #region
         /// <summary>
@@ -18,21 +20,12 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Dtos
         /// </summary>
         public Guid DriverId { get; set; }
 
-        /// <summary>
-        /// 驾驶员名称
-        /// </summary>
-        public string DriverName { get; set; }
 
         /// <summary>
         /// 部门ID
         /// </summary>
         public int DepartmentId { get; set; }
 
-
-        /// <summary>
-        /// 部门名称
-        /// </summary>
-        public string DepartmentName { get; set; }
 
         /// <summary>
         /// 车牌号
@@ -49,20 +42,11 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Dtos
         /// </summary>
         public string VehicleBrand { get; set; }
 
-        /// <summary>
-        /// 车辆品牌
-        /// </summary>
-        public string VehicleBrandName { get; set; }
 
         /// <summary>
         /// 车辆类型
         /// </summary>
         public string VechileType { get; set; }
-
-        /// <summary>
-        /// 车辆类型
-        /// </summary>
-        public string VechileTypeName { get; set; }
 
 
         /// <summary>
@@ -119,7 +103,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Dtos
         /// <summary>
         /// 车辆性质
         /// </summary>
-        public string VehicleProperties { get; set; }
+        public CarProperty VehicleProperties { get; set; }
 
         /// <summary>
         /// 固定资产卡编号

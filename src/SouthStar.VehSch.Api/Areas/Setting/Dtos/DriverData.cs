@@ -1,16 +1,20 @@
-﻿using System;
+﻿using OneZero.Common.Dtos;
+using OneZero.Common.Enums;
+using SouthStar.VehSch.Api.Areas.Setting.Models.Enum;
+using SouthStar.VehSch.Api.Common.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SouthStar.VehSch.Api.Areas.Setting.Dtos
 {
-    public class DriverData
+    public class DriverData:DataDto
     {
         /// <summary>
         /// 驾驶员Id
         /// </summary>
-        public Guid  DriverId { get; set; }
+        public Guid  Id { get; set; }
 
         /// <summary>
         /// 部门ID
@@ -31,7 +35,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Dtos
         /// <summary>
         /// 性别
         /// </summary>
-        public string Sex { get; set; }
+        public Gender Sex { get; set; }
 
         /// <summary>
         /// 性别
@@ -86,7 +90,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Dtos
         /// <summary>
         /// 状态
         /// </summary>
-        public string Status { get; set; }
+        public PersonState Status { get; set; }
 
         /// <summary>
         /// 图片

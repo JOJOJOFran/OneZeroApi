@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace OneZero.Domain.Repositories
 {
-    public interface IDbContext
+    public interface IDbContext:IDisposable
     {
         int SaveChanges();
 
         Task<int> SaveChangesAsync(CancellationToken token = default(CancellationToken));
+
+  
     }
 }

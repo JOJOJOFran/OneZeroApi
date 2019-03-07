@@ -15,13 +15,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\ApplicationFlow\Dtos\" />
-    <Folder Include="Areas\ApplicationFlow\Services\" />
     <Folder Include="Areas\ApplicationFlow\Controllers\" />
-    <Folder Include="Areas\ApplicationFlow\Stores\" />
+    <Folder Include="Areas\Dispatch\Controllers\" />
+    <Folder Include="Areas\Dispatch\Dtos\" />
+    <Folder Include="Areas\Dispatch\Services\" />
     <Folder Include="Areas\Permission\Controllers\" />
-    <Folder Include="Areas\Setting\Controllers\" />
-    <Folder Include="Areas\Setting\Services\" />
+    <Folder Include="Areas\Reminder\" />
   </ItemGroup>
 
 </Project>

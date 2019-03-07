@@ -1,16 +1,17 @@
-﻿using System;
+﻿using OneZero.Common.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SouthStar.VehSch.Api.Areas.Setting.Dtos
 {
-    public class DriverListData
+    public class DriverListData:DataDto
     {
         /// <summary>
         /// 驾驶员Id
         /// </summary>
-        public Guid DriverId { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// 部门ID

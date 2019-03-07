@@ -27,9 +27,9 @@ namespace OneZero.Domain.Repositories
         /// <summary>
         /// 根据类型获取数据库上下文
         /// </summary>
-        /// <param name="entityType"></param>
+        /// <param name="entityType">实体类型，不填写的话则代表获取默认数据库</param>
         /// <returns></returns>
-        IDbContext GetDbContext(Type entityType);
+        IDbContext GetDbContext(Type entityType=null);
 
         /// <summary>
         /// 根据实体类型获取仓储
@@ -37,7 +37,7 @@ namespace OneZero.Domain.Repositories
         /// <typeparam name="TEntity"></typeparam>
         /// <typeparam name="TKey"></typeparam>
         /// <returns></returns>
-        IRepository<TEntity, TKey> GetRepository<TEntity, TKey>() where TEntity : IEntity<TKey>;
+        IRepository<TEntity, TKey> GetRepository<TEntity, TKey>() where TEntity : class,IEntity<TKey>;
 
         /// <summary>
         /// 提交

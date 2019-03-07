@@ -226,6 +226,278 @@ namespace SouthStar.VehSch.Api.Migrations
                     b.ToTable("TUserRole");
                 });
 
+            modelBuilder.Entity("SouthStar.VehSch.Api.Areas.ApplicationFlow.Models.VehicleApplications", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ApplicantId");
+
+                    b.Property<string>("ApplicantName")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("ApplicantPhone")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("ApplyNum")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("ApplyReson")
+                        .HasMaxLength(500);
+
+                    b.Property<DateTime>("BackPlanTime");
+
+                    b.Property<string>("CarProperty")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("CarType")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<int>("DepartmentId");
+
+                    b.Property<string>("DepartmentName")
+                        .HasMaxLength(500);
+
+                    b.Property<string>("Destination")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("FileName")
+                        .HasMaxLength(100);
+
+                    b.Property<bool>("IsDelete");
+
+                    b.Property<int?>("ReciverId");
+
+                    b.Property<string>("ReciverMobile")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Remark")
+                        .HasMaxLength(500);
+
+                    b.Property<DateTime>("StartPlanTime");
+
+                    b.Property<string>("StartPoint")
+                        .HasMaxLength(200);
+
+                    b.Property<int>("Status");
+
+                    b.Property<Guid>("TenanId");
+
+                    b.Property<string>("UseArea")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("UserCount")
+                        .IsRequired()
+                        .HasMaxLength(10);
+
+                    b.Property<string>("UserMobile")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("UserTitle")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplyNum")
+                        .IsUnique();
+
+                    b.ToTable("TVehicleApplications");
+                });
+
+            modelBuilder.Entity("SouthStar.VehSch.Api.Areas.Setting.Models.Departments", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("DepartmentName")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<bool>("IsDelete");
+
+                    b.Property<int>("ParentDepartmentId");
+
+                    b.Property<string>("Remark")
+                        .HasMaxLength(500);
+
+                    b.Property<Guid>("TenanId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepartmentName")
+                        .IsUnique();
+
+                    b.ToTable("TDepartments");
+                });
+
+            modelBuilder.Entity("SouthStar.VehSch.Api.Areas.Setting.Models.Drivers", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("Age");
+
+                    b.Property<Guid>("DepartmentId");
+
+                    b.Property<string>("DrivingLicNum")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("DrivingLicType")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
+                    b.Property<DateTime>("ExpirationDate");
+
+                    b.Property<string>("Image")
+                        .HasMaxLength(50);
+
+                    b.Property<bool>("IsDelete");
+
+                    b.Property<DateTime>("IssueDate");
+
+                    b.Property<string>("MobileNum")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("PermittedType")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("PhoneNum")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Remark")
+                        .HasMaxLength(500);
+
+                    b.Property<string>("Sex")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("Status")
+                        .HasMaxLength(10);
+
+                    b.Property<Guid>("TenanId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DrivingLicNum")
+                        .IsUnique();
+
+                    b.HasIndex("PhoneNum")
+                        .IsUnique()
+                        .HasFilter("[PhoneNum] IS NOT NULL");
+
+                    b.ToTable("TDrivers");
+                });
+
+            modelBuilder.Entity("SouthStar.VehSch.Api.Areas.Setting.Models.Vehicles", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ApprovedSeating");
+
+                    b.Property<string>("BookOriginValue")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("CarIcon")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("CurbWeight")
+                        .HasMaxLength(20);
+
+                    b.Property<int>("CurrentState")
+                        .HasMaxLength(50);
+
+                    b.Property<Guid>("DepartmentId");
+
+                    b.Property<string>("Displacament")
+                        .HasMaxLength(20);
+
+                    b.Property<Guid>("DriverId");
+
+                    b.Property<string>("EngineNo")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<string>("FACardNum")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Image")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("InitMileage");
+
+                    b.Property<bool>("IsDelete");
+
+                    b.Property<string>("LoadWeight")
+                        .HasMaxLength(20);
+
+                    b.Property<int>("OilType")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("PlateNumber")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<int>("PurchasePrice");
+
+                    b.Property<string>("Remark")
+                        .HasMaxLength(500);
+
+                    b.Property<int>("TankCapacity");
+
+                    b.Property<Guid>("TenanId");
+
+                    b.Property<string>("TerminalNo")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("VIN")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<string>("VechileType")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("VehicleBrand")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("VehicleColor")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("VehicleLicOwner")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("VehicleProperties")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EngineNo")
+                        .IsUnique();
+
+                    b.HasIndex("PlateNumber")
+                        .IsUnique();
+
+                    b.ToTable("TVehicles");
+                });
+
             modelBuilder.Entity("OneZero.Application.Models.Permissions.ModuleType", b =>
                 {
                     b.HasOne("OneZero.Application.Models.Permissions.ModuleType")

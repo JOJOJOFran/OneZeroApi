@@ -4,7 +4,8 @@ using System.Text;
 
 namespace OneZero.Common.Dtos
 {
-    public class InputDto
+    public class InputDto:DataDto
     {
+
     }
 }

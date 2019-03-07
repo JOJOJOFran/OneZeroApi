@@ -28,6 +28,13 @@ namespace OneZero.Domain.Repositories
         /// <summary>
         /// 插入实体
         /// </summary>
+        /// <param name="entity">单个实体</param>
+        /// <returns>操作影响行数</returns>
+        Task<int> AddAsync(TEntity entity);
+
+        /// <summary>
+        /// 插入实体
+        /// </summary>
         /// <param name="entities">实体对象集合</param>
         /// <returns>操作影响行数</returns>
         Task<int> AddAsync(params TEntity[] entities);
@@ -41,8 +48,8 @@ namespace OneZero.Domain.Repositories
         /// <param name="convertFunc">Dto到实体转换</param>
         /// <returns>操作输出结果</returns>
         Task<OutputDto> AddAsync<TInputDto>(TInputDto dto,
-                                            Func<TInputDto, Task<bool>> checkAction = null,
-                                            Func<TInputDto, Task<TEntity>> convertFunc = null) where TInputDto : InputDto;
+                                            Func<TInputDto, bool> checkAction = null,
+                                            Func<TInputDto, TEntity> convertFunc = null) where TInputDto : DataDto;
 
         //Task<OutputDto> AddRangeAsync 暂时不写批量操作
         #endregion
@@ -63,13 +70,20 @@ namespace OneZero.Domain.Repositories
         Task<OutputDto> DeleteAsync(TKey key);
 
         /// <summary>
+        /// 标记删除
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        Task<OutputDto> MarkDeleteAsync(TKey key);
+
+        /// <summary>
         /// 按条件从Id集合中选择删除
         /// </summary>
         /// <param name="checkAction">合法性验证</param>
         /// <param name="whereFunc">条件语句</param>
         /// <returns></returns>
         Task<OutputDto> DeleteAsync(ICollection<TKey> ids,
-                                       Func<TEntity, Task<bool>> checkAction = null,
+                                       Func<TEntity, bool> checkAction = null,
                                        Func<TEntity, TEntity> whereFunc = null);
 
         /// <summary>
@@ -83,11 +97,12 @@ namespace OneZero.Domain.Repositories
 
         #region 更新操作
         /// <summary>
-        /// 更新实体
+        /// 更新单个实体
         /// </summary>
-        /// <param name="entities"></param>
+        /// <param name="entity">实体</param>
+        /// <param name="IsMarkDelete">是否式标记删除</param>
         /// <returns></returns>
-        //Task<int> UpdateAsync(params TEntity[] entities);
+        Task<OutputDto> UpdateAsync(TEntity entitie, bool IsMarkDelete = false);
 
         /// <summary>
         /// 异步以DTO为载体更新实体
@@ -97,7 +112,7 @@ namespace OneZero.Domain.Repositories
         /// <param name="checkAction"></param>
         /// <param name="convertFunc"></param>
         /// <returns></returns>
-        Task<OutputDto> UpdateAsync<TEditDto>(TEditDto dto,Func<TEntity,bool> whereFunc,Func<TEditDto, TEntity, Task<TEntity>> convertFunc = null) where TEditDto : InputDto;
+        Task<OutputDto> UpdateAsync<TEditDto>(TEditDto dto,Func<TEntity,bool> whereFunc,Func<TEditDto, TEntity, TEntity> convertFunc = null) where TEditDto : DataDto;
 
         /// <summary>
         /// 异步更新所有符合特定条件的实体

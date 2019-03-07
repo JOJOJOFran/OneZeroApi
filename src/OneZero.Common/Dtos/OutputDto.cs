@@ -18,7 +18,9 @@ namespace OneZero.Common.Dtos
 
         public string Message { get; set; }
 
-        public List<DataDto> Datas { get; set; }
+        public PageInfo PageInfo { get; set; }
+
+        public IEnumerable<DataDto> Datas { get; set; }
 
         public ResponseCode Code { get; set; }
 

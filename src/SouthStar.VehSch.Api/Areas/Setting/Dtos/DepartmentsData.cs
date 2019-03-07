@@ -1,11 +1,12 @@
-﻿using System;
+﻿using OneZero.Common.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SouthStar.VehSch.Api.Areas.Setting.Dtos
 {
-    public class DepartmentData
+    public class DepartmentData:DataDto
     {
         public Guid DepartmentId { get; set; }
 

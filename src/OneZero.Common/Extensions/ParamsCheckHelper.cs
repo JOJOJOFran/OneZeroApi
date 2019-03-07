@@ -13,6 +13,12 @@ namespace OneZero.Common.Extensions
                 throw new OneZeroException(typeof(T).Name+":参数为空");
         }
 
+        public static void NotNull<T>(this T item, string paramName)
+        {
+            if (item == null)
+                throw new OneZeroException($"参数{paramName}不允许未空！");
+        }
+
         public static void NotNull<T>(this T param, T value, string paramName)
         {
             Require<ArgumentNullException>(value != null, $"参数{paramName}不允许未空！");

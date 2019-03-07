@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OneZero.Common.Dapper
 {
@@ -9,6 +10,22 @@ namespace OneZero.Common.Dapper
     /// </summary>
     public interface IDapperProvider
     {
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <param name="sql"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
         IEnumerable<dynamic> FromSql(string connectionString, string sql,object param=null);
+
+        /// <summary>
+        /// 异步查询
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <param name="sql"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        Task<IEnumerable<dynamic>> FromSqlAsync(string connectionString, string sql, object param = null);
     }
 }

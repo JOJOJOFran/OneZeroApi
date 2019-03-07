@@ -13,5 +13,10 @@ namespace OneZero.Domain.Models
     public interface IEntity<out TKey> 
     {
         TKey Id { get; }
+
+        /// <summary>
+        /// 是否删除
+        /// </summary>
+        bool IsDelete { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace OneZero.Extensions
 {
     public static class ServiceExtension
     {
-        public static IServiceCollection UseOneZero(this IServiceCollection services, Action<OneZeroOption> func,ILoggerFactory loggerFactory,string assmblyName, int poolSize = 128)
+        public static IServiceCollection AddOneZero(this IServiceCollection services, Action<OneZeroOption> func,ILoggerFactory loggerFactory,string assmblyName, int poolSize = 128)
         {
             var option = new OneZeroOption();
             func?.Invoke(option);
