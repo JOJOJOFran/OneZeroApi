@@ -22,6 +22,8 @@ using SouthStar.VehSch.Api.Areas.Setting.Services;
 using System.IO;
 using Swashbuckle.AspNetCore.Swagger;
 using OneZero.Middleware;
+using SouthStar.VehSch.Api.Areas.ApplicationFlow.Services;
+using SouthStar.VehSch.Api.Areas.Dispatch.Services;
 
 namespace SouthStar.VehSch.Api
 {
@@ -78,6 +80,11 @@ namespace SouthStar.VehSch.Api
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<VehcileService>();
             services.AddScoped<DriverService>();
+            services.AddScoped<DepartmentService>();
+            services.AddScoped<VehicleApplyService>();
+            services.AddScoped<CheckService>();
+            services.AddScoped<VehicleDispatchService>();
+            services.AddScoped<DispatchFeeService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options =>
             {

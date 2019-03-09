@@ -11,7 +11,7 @@ namespace SouthStar.VehSch.Api.Areas.Dispatch.Dtos
         /// <summary>
         /// 费用ID
         /// </summary>
-        public Guid? FeeId { get; set; }
+        public Guid? Id { get; set; }
 
         /// <summary>
         /// 派车单ID

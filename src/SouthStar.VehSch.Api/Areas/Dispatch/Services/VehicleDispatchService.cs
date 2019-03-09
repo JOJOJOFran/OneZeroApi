@@ -40,7 +40,7 @@ namespace SouthStar.VehSch.Api.Areas.Dispatch.Services
 
 
         /// <summary>
-        /// 查询用车申请列表
+        /// 查询派车列表
         /// </summary>
         /// <param name="applicantId">申请人Id</param>
         /// <param name="status">申请状态</param>
@@ -100,6 +100,22 @@ namespace SouthStar.VehSch.Api.Areas.Dispatch.Services
                             PlateNumber = dsi.PlateNumber
                         };
             output.Datas = await query?.ToListAsync();
+            return output;
+        }
+
+        /// <summary>
+        /// GetItemAsync
+        /// </summary>
+        /// <param name="dispatchId"></param>
+        /// <returns></returns>
+        public async Task<OutputDto> GetItemAsync(Guid dispatchId)
+        {
+            var dispatch = await _dispatchRepository.Entities.FirstOrDefaultAsync(v => (v.Id .Equals(dispatchId)));
+
+            if (dispatch != null)
+            {
+                output.Datas = new List<VehicleDispatchData> { ConvertToDataDto<VehicleDispatchs, VehicleDispatchData>(dispatch) };
+            }
             return output;
         }
     }
