@@ -50,12 +50,11 @@ namespace SouthStar.VehSch.Api.Areas.Dispatch.Services
         /// <param name="page"></param>
         /// <param name="limit"></param>
         /// <returns></returns>
-        public async Task<OutputDto> GetVehicleDispatchListAsync(ApplyState? status, string applyNum, DateTime? startDate = null, DateTime? endDate = null, int page = 1, int limit = 20)
+        public async Task<OutputDto> GetVehicleDispatchListAsync( string applyNum, DateTime? startDate = null, DateTime? endDate = null, int page = 1, int limit = 20)
         {
             int skipCount = 0;
             //找到申请状态为已审核且审核状态为通过或者已派车的申请单
-            var apply = from a in _applyRepository.Entities.Where(v => (string.IsNullOrWhiteSpace(applyNum) || EF.Functions.Like(v.ApplyNum, "%" + applyNum + "%")
-                                                                    && (status == null || v.Status.Equals(status))
+            var apply = from a in _applyRepository.Entities.Where(v => (string.IsNullOrWhiteSpace(applyNum) || EF.Functions.Like(v.ApplyNum, "%" + applyNum + "%")                                                                
                                                                     && (v.Status == ApplyState.Checked)                           //不能是起草的申请
                                                                     && (startDate == null || v.CreateDate >= startDate)
                                                                     && (endDate == null || v.CreateDate <= endDate))).OrderBy(v => v.ApplyNum)
