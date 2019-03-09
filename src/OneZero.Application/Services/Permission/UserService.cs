@@ -14,7 +14,7 @@ namespace OneZero.Application.Services.Permission
         public UserService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _userRepository = _unitOfWork.GetRepository<User, Guid>();
+            _userRepository = _unitOfWork.Repository<User, Guid>();
         }
 
         

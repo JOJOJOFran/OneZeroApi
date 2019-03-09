@@ -1,7 +1,9 @@
-﻿using OneZero.Common.Dtos;
+﻿using Newtonsoft.Json;
+using OneZero.Common.Dtos;
 using OneZero.Common.Enums;
 using SouthStar.VehSch.Api.Areas.Setting.Models.Enum;
 using SouthStar.VehSch.Api.Common.Enum;
+using SouthStar.VehSch.Api.Common.JsonConvert;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +16,13 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Dtos
         /// <summary>
         /// 驾驶员Id
         /// </summary>
+        [JsonConverter(typeof(GuidJsonConvert))]
         public Guid  Id { get; set; }
 
         /// <summary>
         /// 部门ID
         /// </summary>
+        [JsonConverter(typeof(GuidJsonConvert))]
         public Guid DepartmentId { get; set; }
 
 

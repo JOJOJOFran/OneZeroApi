@@ -16,7 +16,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
     public class VehicleController:BaseController
     {
         private readonly ILogger<VehicleController> _logger;
-        private readonly VehcileServeice _vehicleManageService;
+        private readonly VehcileService _vehicleManageService;
         
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="vehicleManageService"></param>
-        public VehicleController(ILogger<VehicleController> logger, VehcileServeice vehicleManageService)
+        public VehicleController(ILogger<VehicleController> logger, VehcileService vehicleManageService)
         {
             _logger = logger;
             _vehicleManageService = vehicleManageService;
@@ -67,7 +67,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
                 return Json(BadParameter("Id格式不匹配"));
             }
             var vehicleInfo = await _vehicleManageService.GetItemAsync(_id);
-            return Json(vehicleInfo);
+            return Ok(Json(vehicleInfo));
         }
 
         /// <summary>
@@ -156,7 +156,8 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
                 return Json(BadParameter("Id格式不匹配"));
             }
             dto = await _vehicleManageService.MarkDeleteAsync(_id);
-            return Json(dto);
+            return Ok(dto);
+            //return Json(dto);
         }
     }
 }

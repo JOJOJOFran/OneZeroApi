@@ -1,6 +1,7 @@
 ﻿using OneZero.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace OneZero.Application.Models
@@ -11,15 +12,17 @@ namespace OneZero.Application.Models
     /// <typeparam name="TKey"></typeparam>
     public class BaseEntity<TKey> : IEntity<TKey> where TKey : IEquatable<TKey>
     {
+
         /// <summary>
         /// 主键
         /// </summary>
-        public TKey Id { get; set; } = default(TKey);
+        [Required]
+        public TKey Id { get; set; } 
 
         /// <summary>
         /// 租户Id
         /// </summary>
-        public TKey TenanId { get; set; } = default(TKey);
+        public TKey TenanId { get; set; } 
 
         /// <summary>
         /// 是否删除

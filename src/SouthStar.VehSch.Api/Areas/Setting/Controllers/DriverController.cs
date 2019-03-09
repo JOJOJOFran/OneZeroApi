@@ -125,7 +125,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
         /// </summary>
         /// <param name="driverId">司机ID</param>
         /// <returns></returns>
-        [HttpDelete("{VehicleId}")]
+        [HttpDelete("{driverId}")]
         public async Task<IActionResult> Delete(string driverId)
         {
             if (!Guid.TryParse(driverId, out _id))

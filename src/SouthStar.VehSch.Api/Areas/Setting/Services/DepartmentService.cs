@@ -17,12 +17,12 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Services
     public class DepartmentService : BaseService
     {
         private IRepository<Departments, Guid> _departmentRepository;
-        private ILogger<VehcileServeice> _logger;
+        private ILogger<VehcileService> _logger;
         private readonly OutputDto output = new OutputDto();
 
-        public DepartmentService(IUnitOfWork unitOfWork, ILogger<VehcileServeice> logger, IDapperProvider dapper, IMapper mapper) : base(unitOfWork, dapper, mapper)
+        public DepartmentService(IUnitOfWork unitOfWork, ILogger<VehcileService> logger, IDapperProvider dapper, IMapper mapper) : base(unitOfWork, dapper, mapper)
         {
-            _departmentRepository = unitOfWork.GetRepository<Departments, Guid>();
+            _departmentRepository = unitOfWork.Repository<Departments, Guid>();
             _logger = logger;
         }
     }

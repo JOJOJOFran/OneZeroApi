@@ -25,9 +25,9 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Services
 
         public DriverService(IUnitOfWork unitOfWork, ILogger<DriverService> logger, IDapperProvider dapper, IMapper mapper) : base(unitOfWork, dapper, mapper)
         {
-            _vehicleRepository = unitOfWork.GetRepository<Vehicles, Guid>();
-            _departmentRepository = unitOfWork.GetRepository<Departments, Guid>();
-            _driverRepository = unitOfWork.GetRepository<Drivers, Guid>();
+            _vehicleRepository = unitOfWork.Repository<Vehicles, Guid>();
+            _departmentRepository = unitOfWork.Repository<Departments, Guid>();
+            _driverRepository = unitOfWork.Repository<Drivers, Guid>();
             _logger = logger;
         }
 
@@ -98,8 +98,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Services
         public async Task<OutputDto> AddAsync(DriverData driverData)
         {
             driverData.NotNull("司机信息(新增)");
-            var driver = _mapper.Map<Drivers>(driverData);
-            driver.Id = GuidHelper.NewGuid();
+            driverData.Id = GuidHelper.NewGuid();
             return await _driverRepository.AddAsync(driverData,
                                                      null,
                                                      v => (ConvertToModel<DriverData, Drivers>(driverData)));

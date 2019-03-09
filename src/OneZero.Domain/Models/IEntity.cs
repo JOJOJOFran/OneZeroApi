@@ -12,7 +12,7 @@ namespace OneZero.Domain.Models
     /// <typeparam name="TKey">主键类型</typeparam>
     public interface IEntity<out TKey> 
     {
-        TKey Id { get; }
+        TKey Id { get;  }
 
         /// <summary>
         /// 是否删除

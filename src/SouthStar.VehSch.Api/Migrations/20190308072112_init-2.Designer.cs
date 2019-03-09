@@ -10,8 +10,8 @@ using OneZero.EntityFrameworkCore.SqlServer;
 namespace SouthStar.VehSch.Api.Migrations
 {
     [DbContext(typeof(MSSqlContext))]
-    [Migration("20190304091221_init3")]
-    partial class init3
+    [Migration("20190308072112_init-2")]
+    partial class init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -228,12 +228,51 @@ namespace SouthStar.VehSch.Api.Migrations
                     b.ToTable("TUserRole");
                 });
 
+            modelBuilder.Entity("SouthStar.VehSch.Api.Areas.ApplicationFlow.Models.CheckContents", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("ApplyId");
+
+                    b.Property<string>("ApplyNum")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("ApplyType");
+
+                    b.Property<string>("CheckReply")
+                        .HasMaxLength(500);
+
+                    b.Property<int>("CheckStatus");
+
+                    b.Property<Guid>("CheckUserId");
+
+                    b.Property<string>("CheckUserName")
+                        .HasMaxLength(30);
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<bool>("IsDelete");
+
+                    b.Property<DateTime>("LastUpdateTime");
+
+                    b.Property<Guid>("TenanId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplyNum")
+                        .IsUnique()
+                        .HasFilter("[ApplyNum] IS NOT NULL");
+
+                    b.ToTable("TCheckContents");
+                });
+
             modelBuilder.Entity("SouthStar.VehSch.Api.Areas.ApplicationFlow.Models.VehicleApplications", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ApplicantId");
+                    b.Property<Guid>("ApplicantId");
 
                     b.Property<string>("ApplicantName")
                         .HasMaxLength(100);
@@ -250,9 +289,7 @@ namespace SouthStar.VehSch.Api.Migrations
 
                     b.Property<DateTime>("BackPlanTime");
 
-                    b.Property<string>("CarProperty")
-                        .IsRequired()
-                        .HasMaxLength(50);
+                    b.Property<int>("CarProperty");
 
                     b.Property<string>("CarType")
                         .IsRequired()
@@ -260,7 +297,7 @@ namespace SouthStar.VehSch.Api.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
-                    b.Property<int>("DepartmentId");
+                    b.Property<Guid>("DepartmentId");
 
                     b.Property<string>("DepartmentName")
                         .HasMaxLength(500);
@@ -273,7 +310,7 @@ namespace SouthStar.VehSch.Api.Migrations
 
                     b.Property<bool>("IsDelete");
 
-                    b.Property<int?>("ReciverId");
+                    b.Property<Guid>("ReciverId");
 
                     b.Property<string>("ReciverMobile")
                         .HasMaxLength(50);
@@ -312,6 +349,114 @@ namespace SouthStar.VehSch.Api.Migrations
                         .IsUnique();
 
                     b.ToTable("TVehicleApplications");
+                });
+
+            modelBuilder.Entity("SouthStar.VehSch.Api.Areas.Dispatch.Models.DispatchFees", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("DispatchId");
+
+                    b.Property<float>("EndMiles");
+
+                    b.Property<float>("EtcFee");
+
+                    b.Property<float>("HighSpeedFee");
+
+                    b.Property<bool>("IsDelete");
+
+                    b.Property<float>("OilFee");
+
+                    b.Property<float>("ParkFee");
+
+                    b.Property<float>("StartMiles");
+
+                    b.Property<Guid>("TenanId");
+
+                    b.Property<float>("TotalPrice");
+
+                    b.Property<float>("UnitPrice");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DispatchId")
+                        .IsUnique();
+
+                    b.ToTable("TDispatchFees");
+                });
+
+            modelBuilder.Entity("SouthStar.VehSch.Api.Areas.Dispatch.Models.VehicleDispatchs", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ApplicantName");
+
+                    b.Property<string>("ApplicantPhone");
+
+                    b.Property<DateTime>("ApplyDate");
+
+                    b.Property<Guid>("ApplyId");
+
+                    b.Property<string>("ApplyNum")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("ApplyReson")
+                        .HasMaxLength(500);
+
+                    b.Property<DateTime>("BackPlanTime");
+
+                    b.Property<int>("CarProperty");
+
+                    b.Property<string>("CarType")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<string>("Destination")
+                        .HasMaxLength(200);
+
+                    b.Property<int>("DispatchType");
+
+                    b.Property<Guid>("DriverId");
+
+                    b.Property<string>("DriverName");
+
+                    b.Property<string>("DriverPhone");
+
+                    b.Property<bool>("IsDelete");
+
+                    b.Property<string>("PlateNumber");
+
+                    b.Property<int>("QueueNo");
+
+                    b.Property<DateTime>("StartPlanTime");
+
+                    b.Property<string>("StartPoint")
+                        .HasMaxLength(200);
+
+                    b.Property<Guid>("TenanId");
+
+                    b.Property<string>("UserCount");
+
+                    b.Property<string>("UserDepartment");
+
+                    b.Property<string>("UserMobile");
+
+                    b.Property<string>("UserName");
+
+                    b.Property<string>("UserTitle");
+
+                    b.Property<Guid>("VehcileId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplyNum")
+                        .IsUnique()
+                        .HasFilter("[ApplyNum] IS NOT NULL");
+
+                    b.ToTable("TVehicleDispatchs");
                 });
 
             modelBuilder.Entity("SouthStar.VehSch.Api.Areas.Setting.Models.Departments", b =>
@@ -386,10 +531,9 @@ namespace SouthStar.VehSch.Api.Migrations
                     b.Property<string>("Remark")
                         .HasMaxLength(500);
 
-                    b.Property<string>("Sex")
-                        .HasMaxLength(10);
+                    b.Property<int>("Sex");
 
-                    b.Property<string>("Status")
+                    b.Property<int>("Status")
                         .HasMaxLength(10);
 
                     b.Property<Guid>("TenanId");
@@ -449,7 +593,7 @@ namespace SouthStar.VehSch.Api.Migrations
                     b.Property<string>("LoadWeight")
                         .HasMaxLength(20);
 
-                    b.Property<string>("OilType")
+                    b.Property<int>("OilType")
                         .HasMaxLength(20);
 
                     b.Property<string>("PlateNumber")
@@ -485,9 +629,7 @@ namespace SouthStar.VehSch.Api.Migrations
                     b.Property<string>("VehicleLicOwner")
                         .HasMaxLength(30);
 
-                    b.Property<string>("VehicleProperties")
-                        .IsRequired()
-                        .HasMaxLength(20);
+                    b.Property<int>("VehicleProperties");
 
                     b.HasKey("Id");
 

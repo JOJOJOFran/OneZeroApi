@@ -129,13 +129,13 @@ namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Models
         /// <summary>
         /// 附件
         /// </summary>
-        [MaxLength(100)]
+        [MaxLength(2000)]
         public string FileName { get; set; }
 
         /// <summary>
         /// 推送人
         /// </summary>
-        public Guid? ReciverId { get; set; }
+        public Guid ReciverId { get; set; }
 
         /// <summary>
         /// 推送电话

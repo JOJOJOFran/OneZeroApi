@@ -30,41 +30,46 @@ namespace OneZero.EntityFrameworkCore.Repositories
         /// </summary>
         private readonly DbContext _dbContext;
 
-        /// <summary>
-        /// 数据过滤开关(控制Entities和TrackingEntities是否经过DataFilter方法筛选)
-        /// </summary>
-        public bool IsDataFilterOpen=true;
+
         private readonly DbSet<TEntity> _dbSet;
         private readonly ILogger _logger;
-        private OutputDto _output;
+        private OutputDto _output=new OutputDto();
         #endregion
 
         #region 构造函数
         public EFRepository(IDbContext dbContext)
         {
             _dbContext = (DbContext)dbContext;
-            _dbSet = _dbContext.Set<TEntity>();           
+            _dbSet = _dbContext.Set<TEntity>();
         }
 
-        public EFRepository(IDbContext dbContext,ILogger<EFRepository<TEntity, TKey>> logger)
+        public EFRepository(IDbContext dbContext, ILogger<EFRepository<TEntity, TKey>> logger)
         {
             _dbContext = (DbContext)dbContext;
-            _dbSet= _dbContext.Set<TEntity>();
+            _dbSet = _dbContext.Set<TEntity>();
             _logger = logger;
         }
         #endregion
 
         #region IQueryable用于暴露查询
-        public virtual  IQueryable<TEntity> Entities
+        public IQueryable<TEntity> Entities
         {
             get
             {
-                if (IsDataFilterOpen)
-                    return _dbSet.AsQueryable().AsNoTracking().Where(DataFilter());
-                else
-                    return _dbSet.AsQueryable().AsNoTracking();
+                return _dbSet.AsQueryable().AsNoTracking().Where(DataFilter());
             }
         }
+
+
+        public IQueryable<TEntity> NoFilterEntities
+        {
+            get
+            {
+                return _dbSet.AsQueryable().AsNoTracking();
+            } 
+}
+
+        public Expression<Func<TEntity, bool>> FilterExpression { get; set; }
 
         /// <summary>
         /// 数据筛选，可以来用来排除IsDelete数据
@@ -72,7 +77,8 @@ namespace OneZero.EntityFrameworkCore.Repositories
         /// <returns></returns>
         public virtual Expression<Func<TEntity, bool>> DataFilter()
         {
-            return x => x.IsDelete==false;
+            //if()
+            return x => x.IsDelete == false;
         }
         #endregion
 
@@ -95,44 +101,44 @@ namespace OneZero.EntityFrameworkCore.Repositories
 
         public virtual async Task<int> AddAsync(params TEntity[] entities)
         {
-                try
-                {           
-                    await _dbContext.AddRangeAsync(entities);
-                    _output.Message =  "新增成功！";
-                    await _dbContext.SaveChangesAsync();
-                }
-                catch (Exception e)
-                {
-                    throw new OneZeroException( "新增失败", e, ResponseCode.UnExpectedException);
-                }
-            return entities.Count();
-        }
-
-        public virtual async Task<OutputDto> AddAsync<TInputDto>(TInputDto dto, 
-                                                                 Func<TInputDto, bool> checkAction = null, 
-                                                                 Func<TInputDto, TEntity> convertFunc = null) where TInputDto : DataDto
-        {
-            if (checkAction!=null&&checkAction(dto))
-                _output.Message = "输入模型不合法，请检查";
-
-            var entity =  convertFunc(dto);
             try
             {
-
-                await _dbContext.AddAsync(entity);
-                _output.Message =  "新增成功！";
+                await _dbContext.AddRangeAsync(entities);
+                _output.Message = "新增成功！";
                 await _dbContext.SaveChangesAsync();
             }
             catch (Exception e)
             {
-                throw new OneZeroException( "新增失败", e, ResponseCode.UnExpectedException);
+                throw new OneZeroException("新增失败", e, ResponseCode.UnExpectedException);
+            }
+            return entities.Count();
+        }
+
+        public virtual async Task<OutputDto> AddAsync<TInputDto>(TInputDto dto,
+                                                                 Func<TInputDto, bool> checkAction = null,
+                                                                 Func<TInputDto, TEntity> convertFunc = null) where TInputDto : DataDto
+        {
+            if (checkAction != null && checkAction(dto))
+                _output.Message = "输入模型不合法，请检查";
+
+            var entity = convertFunc(dto);
+            try
+            {
+
+                await _dbContext.AddAsync(entity);
+                _output.Message = "新增成功！";
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                throw new OneZeroException("新增失败", e, ResponseCode.UnExpectedException);
             }
             return _output;
         }
         #endregion
 
         #region 删除方法
-        
+
 
         public virtual async Task<OutputDto> DeleteAsync(params TEntity[] entities)
         {
@@ -151,9 +157,13 @@ namespace OneZero.EntityFrameworkCore.Repositories
         {
 
             var entity = await Entities.FirstOrDefaultAsync(v => v.Id.Equals(key));
-            entity.IsDelete = true;
-            await UpdateAsync(entity,true);
-            return null;
+            if (entity != null)
+            {
+                entity.IsDelete = true;
+                await UpdateAsync(entity, true);
+            }              
+            _output.Message = "操作成功";
+            return _output;
         }
 
         /// <summary>
@@ -172,7 +182,7 @@ namespace OneZero.EntityFrameworkCore.Repositories
         public virtual async Task<OutputDto> DeleteAsync(Expression<Func<TEntity, bool>> wherePredicate)
         {
             wherePredicate.NotNull(wherePredicate, nameof(wherePredicate));
-            var entities = await Entities.Where(wherePredicate).ToListAsync(); 
+            var entities = await Entities.Where(wherePredicate).ToListAsync();
             return await BasicDeleteBatchAsync(entities);
         }
 
@@ -185,16 +195,16 @@ namespace OneZero.EntityFrameworkCore.Repositories
                 {
                     _dbContext.Remove(entity);
                     await _dbContext.SaveChangesAsync();
-                    _output.Message =  "删除成功";
+                    _output.Message = "删除成功";
                 }
                 catch (Exception e)
                 {
-                    throw new OneZeroException( "删除失败", e, ResponseCode.UnExpectedException);
+                    throw new OneZeroException("删除失败", e, ResponseCode.UnExpectedException);
                 }
             }
             else
             {
-                _output.Message =  "，该数据已经被删除！";
+                _output.Message = "，该数据已经被删除！";
                 _output.Code = ResponseCode.ExpectedException;
             }
             return _output;
@@ -213,11 +223,11 @@ namespace OneZero.EntityFrameworkCore.Repositories
                 }
                 catch (Exception e)
                 {
-                    throw new OneZeroException( "删除失败", e, ResponseCode.UnExpectedException);
+                    throw new OneZeroException("删除失败", e, ResponseCode.UnExpectedException);
                 }
                 return _output;
             }
-            _output.Message =  ",该数据已经被删除！";
+            _output.Message = ",该数据已经被删除！";
             return _output;
         }
         #endregion
@@ -234,7 +244,7 @@ namespace OneZero.EntityFrameworkCore.Repositories
         /// <param name="entity">实体</param>
         /// <param name="IsMarkDelete">是否式标记删除</param>
         /// <returns></returns>
-        public virtual async Task<OutputDto> UpdateAsync(TEntity entity,bool IsMarkDelete=false)
+        public virtual async Task<OutputDto> UpdateAsync(TEntity entity, bool IsMarkDelete = false)
         {
             string action = (IsMarkDelete ? "清除" : "更新");
             try
@@ -250,17 +260,17 @@ namespace OneZero.EntityFrameworkCore.Repositories
             return _output;
         }
 
-        public virtual async Task<OutputDto> UpdateAsync<TEditDto>(TEditDto dto, 
-                                                                   Func<TEntity, bool> whereFunc, 
-                                                                   Func<TEditDto, TEntity,TEntity> convertFunc) where TEditDto : DataDto
+        public virtual async Task<OutputDto> UpdateAsync<TEditDto>(TEditDto dto,
+                                                                   Func<TEntity, bool> whereFunc,
+                                                                   Func<TEditDto, TEntity, TEntity> convertFunc) where TEditDto : DataDto
         {
             whereFunc.NotNull();
             convertFunc.NotNull();
             try
             {
                 var entity = await _dbContext.Set<TEntity>().FirstOrDefaultAsync(v => whereFunc(v));
-                var newEntity =  convertFunc(dto, entity);
-                var result= _dbContext.Update(entity);
+                var newEntity = convertFunc(dto, entity);
+                var result = _dbContext.Update(entity);
                 await _dbContext.SaveChangesAsync();
                 _output.Message = $"更新成功,共{result}条.";
             }
@@ -285,6 +295,28 @@ namespace OneZero.EntityFrameworkCore.Repositories
 
         #endregion
 
+
+
+
+        /// <summary>
+        /// 异步检查实体是否存在
+        /// </summary>
+        /// <param name="predicate">查询条件谓语表达式</param>
+        /// <param name="id">编辑的实体标识</param>
+        /// <returns>是否存在</returns>
+        public virtual async Task<bool> CheckExistsAsync(Expression<Func<TEntity, bool>> predicate, TKey id = default(TKey))
+        {
+            predicate.NotNull(nameof(predicate));
+
+            TKey defaultId = default(TKey);
+            var entity = await _dbSet.Where(predicate).Select(m => new { m.Id }).FirstOrDefaultAsync();
+            bool exists = !typeof(TKey).IsValueType && ReferenceEquals(id, null) || id.Equals(defaultId)
+                ? entity != null
+                : entity != null && !IEntity<TKey>.Equals(entity.Id, id);
+            return exists;
+        }
+
+
         /// <summary>
         /// 根据主键查询
         /// </summary>
@@ -295,7 +327,7 @@ namespace OneZero.EntityFrameworkCore.Repositories
             return await _dbSet.FindAsync(key);
         }
 
-        
+
         #endregion
 
     }

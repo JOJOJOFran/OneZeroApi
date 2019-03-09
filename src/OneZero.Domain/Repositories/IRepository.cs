@@ -21,6 +21,14 @@ namespace OneZero.Domain.Repositories
         /// </summary>
         /// <value></value>
         IQueryable<TEntity> Entities{get;}
+
+        /// <summary>
+        /// 延迟加载实体(未过滤)
+        /// </summary>
+        /// <value></value>
+        IQueryable<TEntity> NoFilterEntities { get; }
+
+        Expression<Func<TEntity, bool>> FilterExpression { get;  }
         #region 数据库操作
 
         #region 异步操作
@@ -132,5 +140,7 @@ namespace OneZero.Domain.Repositories
 
         #endregion
         #endregion
+
+        Task<bool> CheckExistsAsync(Expression<Func<TEntity, bool>> predicate, TKey id = default(TKey));
     }
 }

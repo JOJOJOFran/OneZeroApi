@@ -4,6 +4,7 @@ using OneZero.Application.Models;
 using OneZero.Common.Dapper;
 using OneZero.Common.Dtos;
 using OneZero.Common.Exceptions;
+using OneZero.Common.Extensions;
 using OneZero.Domain;
 using OneZero.Domain.Models;
 using OneZero.Domain.Repositories;
@@ -73,7 +74,8 @@ namespace SouthStar.VehSch.Api
         {
             try
             {
-                return _mapper.Map<TDestination>(dataDto);
+                var model= _mapper.Map<TDestination>(dataDto);
+                return model;
             }
             catch (Exception e)
             {
@@ -103,7 +105,7 @@ namespace SouthStar.VehSch.Api
             pageInfo.Limit = limit;
             pageInfo.Page = page;
             pageInfo.PageCount = (sum+limit-1)/limit;
-            pageInfo.CurrentCount = page < pageInfo.PageCount ? limit : 0;
+            pageInfo.CurrentCount = page < pageInfo.PageCount ? 0 : limit;
             pageInfo.Sum = sum;
             return pageInfo;
         }

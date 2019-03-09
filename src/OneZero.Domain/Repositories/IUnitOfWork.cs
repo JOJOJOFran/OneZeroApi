@@ -37,7 +37,7 @@ namespace OneZero.Domain.Repositories
         /// <typeparam name="TEntity"></typeparam>
         /// <typeparam name="TKey"></typeparam>
         /// <returns></returns>
-        IRepository<TEntity, TKey> GetRepository<TEntity, TKey>() where TEntity : class,IEntity<TKey>;
+        IRepository<TEntity, TKey> Repository<TEntity, TKey>() where TEntity : class,IEntity<TKey>;
 
         /// <summary>
         /// 提交

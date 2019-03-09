@@ -132,5 +132,10 @@ namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Dtos
         /// 申请状态
         /// </summary>      
         public ApplyState Status { get; set; }
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime CreateDate { get; set; }
     }
 }

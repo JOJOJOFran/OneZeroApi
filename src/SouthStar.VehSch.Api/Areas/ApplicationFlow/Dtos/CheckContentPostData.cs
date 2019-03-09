@@ -30,6 +30,11 @@ namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Dtos
         public CheckStatus CheckStatus { get; set; }
 
         /// <summary>
+        /// 申请类型
+        /// </summary>
+        public ApplyType ApplyType { get; set; }
+
+        /// <summary>
         /// 审核意见
         /// </summary>
         public string CheckReply { get; set; }

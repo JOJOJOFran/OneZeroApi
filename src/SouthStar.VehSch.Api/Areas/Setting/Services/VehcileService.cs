@@ -19,21 +19,21 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Services
     /// 车辆服务
     /// Lifetime:Scope
     /// </summary>
-    public class VehcileServeice : BaseService
+    public class VehcileService : BaseService
     {
 
         private IRepository<Vehicles, Guid> _vehicleRepository;
         private IRepository<Departments, Guid> _departmentRepository;
         private IRepository<Drivers, Guid> _driverRepository;
-        private ILogger<VehcileServeice> _logger;
+        private ILogger<VehcileService> _logger;
         private readonly OutputDto output = new OutputDto();
 
 
-        public VehcileServeice(IUnitOfWork unitOfWork, ILogger<VehcileServeice> logger, IDapperProvider dapper, IMapper mapper) : base(unitOfWork, dapper, mapper)
+        public VehcileService(IUnitOfWork unitOfWork, ILogger<VehcileService> logger, IDapperProvider dapper, IMapper mapper) : base(unitOfWork, dapper, mapper)
         {
-            _vehicleRepository = unitOfWork.GetRepository<Vehicles, Guid>();
-            _departmentRepository = unitOfWork.GetRepository<Departments, Guid>();
-            _driverRepository = unitOfWork.GetRepository<Drivers, Guid>();
+            _vehicleRepository = unitOfWork.Repository<Vehicles, Guid>();
+            _departmentRepository = unitOfWork.Repository<Departments, Guid>();
+            _driverRepository = unitOfWork.Repository<Drivers, Guid>();
             _logger = logger;
         }
 
@@ -124,8 +124,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Services
         public async Task<OutputDto> AddAsync(VehicleData vehicleData)
         {
             vehicleData.NotNull("车辆信息(新增)");
-            var vehicle = _mapper.Map<Vehicles>(vehicleData);
-            vehicle.Id = GuidHelper.NewGuid();
+            vehicleData.Id = GuidHelper.NewGuid();
             return await _vehicleRepository.AddAsync(vehicleData,
                                                      null,
                                                      v => (ConvertToModel<VehicleData, Vehicles>(vehicleData)));

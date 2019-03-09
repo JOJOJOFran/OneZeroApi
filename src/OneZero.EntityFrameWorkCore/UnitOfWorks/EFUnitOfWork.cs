@@ -74,7 +74,7 @@ namespace OneZero.EntityFrameworkCore.UnitOfWorks
         /// <typeparam name="TEntity"></typeparam>
         /// <typeparam name="TKey"></typeparam>
         /// <returns></returns>
-        public virtual IRepository<TEntity, TKey> GetRepository<TEntity, TKey>() where TEntity : class,IEntity<TKey> 
+        public virtual IRepository<TEntity, TKey> Repository<TEntity, TKey>() where TEntity : class,IEntity<TKey> 
         {
             if (repositories == null)
                 repositories = new Hashtable();
@@ -85,12 +85,9 @@ namespace OneZero.EntityFrameworkCore.UnitOfWorks
                 if (!repositories.ContainsKey(entityType.Name))
                 {
                     var baseType = typeof(EFRepository<,>);
-<<<<<<< HEAD
                    
                     var repositoryInstance = Activator.CreateInstance(baseType.MakeGenericType(entityType, typeof(TKey)), DbContext,_provider.GetLogger<EFRepository<TEntity, TKey>>());
-=======
-                    var repositoryInstance = Activator.CreateInstance(baseType.MakeGenericType(entityType), DbContext,_provider.GetLogger< EFRepository <TEntity,TKey>> ());
->>>>>>> master
+
                     repositories.Add(entityType.Name, repositoryInstance);
                 }
             }

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using OneZero.EntityFrameworkCore.SqlServer;
 using OneZero.EntityFrameworkCore.SqlServer.Extensions;
+using OneZero.Middleware;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,6 +16,8 @@ namespace OneZero.Extensions
             var option = new OneZeroOption();
             func?.Invoke(option);
             services.AddSqlServerContextPool<MSSqlContext>(loggerFactory, option.DbContextOption.ConnectString, assmblyName, poolSize);
+            services.AddScoped<IOneZeroContext, OneZeroContext>();
+            
             return services;
         }
     }
