@@ -105,7 +105,14 @@ namespace OneZero.Domain.Repositories
 
         #region 更新操作
         /// <summary>
-        /// 更新单个实体
+        /// 更新单个实体（返回影响行数）
+        /// </summary>
+        /// <param name="entitie"></param>
+        /// <returns></returns>
+        Task<int> UpdateOneAsync(TEntity entitie);
+
+        /// <summary>
+        /// 更新单个实体(包含标记删除)
         /// </summary>
         /// <param name="entity">实体</param>
         /// <param name="IsMarkDelete">是否式标记删除</param>

@@ -8,6 +8,7 @@ using OneZero.Common.Extensions;
 using OneZero.Domain.Repositories;
 using SouthStar.VehSch.Api.Areas.Setting.Dtos;
 using SouthStar.VehSch.Api.Areas.Setting.Models;
+using SouthStar.VehSch.Api.Areas.Setting.Models.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -160,6 +161,21 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Services
         {
             vehicleInfo.Id = vehicleId;
             return await _vehicleRepository.UpdateAsync(vehicleInfo);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vehicleId"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        public async Task<int> ChangeStatus(Guid vehicleId, CurrentState state)
+        {
+           var vehicle= await _vehicleRepository.Entities.Where(v => v.Id.Equals(vehicleId)).FirstOrDefaultAsync();
+            if (vehicle == null)
+                return 0;
+            vehicle.CurrentState = state;
+            return await _vehicleRepository.UpdateOneAsync(vehicle);
         }
 
     }

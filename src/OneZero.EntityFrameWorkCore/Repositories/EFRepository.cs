@@ -238,6 +238,26 @@ namespace OneZero.EntityFrameworkCore.Repositories
         #endregion
 
         #region 更新方法
+
+        /// <summary>
+        /// 更新单个实体
+        /// </summary>
+        /// <param name="entitie"></param>
+        /// <returns></returns>
+        public virtual async Task<int> UpdateOneAsync(TEntity entitie)
+        {
+            try
+            {
+                _dbContext.Update(entitie);
+                var result = await _dbContext.SaveChangesAsync();
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw new OneZeroException($"更新失败", e, ResponseCode.UnExpectedException);
+            }
+        }
+
         /// <summary>
         /// 更新单个实体
         /// </summary>
@@ -249,8 +269,8 @@ namespace OneZero.EntityFrameworkCore.Repositories
             string action = (IsMarkDelete ? "清除" : "更新");
             try
             {
-                var result = _dbContext.Update(entity);
-                await _dbContext.SaveChangesAsync();
+                 _dbContext.Update(entity);
+                var result = await _dbContext.SaveChangesAsync();
                 _output.Message = $"{action}成功,共{result}条.";
             }
             catch (Exception e)

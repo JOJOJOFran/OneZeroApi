@@ -127,8 +127,8 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Services
         /// <summary>
         /// 更新司机信息
         /// </summary>
-        /// <param name="vehicleId"></param>
-        /// <param name="vehicleInfo"></param>
+        /// <param name="driverId"></param>
+        /// <param name="driverInfo"></param>
         /// <returns></returns>
         public async Task<OutputDto> UpdateAsync(Guid driverId, Drivers driverInfo)
         {
