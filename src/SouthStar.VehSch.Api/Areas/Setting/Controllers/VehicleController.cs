@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SouthStar.VehSch.Api.Areas.Setting.Dtos;
 using SouthStar.VehSch.Api.Areas.Setting.Models;
+using SouthStar.VehSch.Api.Areas.Setting.Models.Enum;
 using SouthStar.VehSch.Api.Areas.Setting.Services;
 using SouthStar.VehSch.Api.Controllers;
 using System;
@@ -34,6 +35,8 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
         /// <summary>
         /// 查询车辆列表
         /// </summary>
+        /// <param name="page">页码</param>
+        /// <param name="limit">每一页行数</param>
         /// <param name="plateNumber">车牌号</param>
         /// <param name="currentState">车辆当前状态</param>
         /// <param name="departmentId">部门ID</param>
@@ -50,6 +53,18 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
 
             var vehicleList = await _vehicleManageService.GetListAsync(plateNumber, currentState, departmentId==null? null: (Guid?)depId, page,limit);
             return Json(vehicleList);
+        }
+
+ 
+        /// <summary>
+        /// 获取可用车辆
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> EnableList()
+        {
+            var vehicleList = await _vehicleManageService.GetEnableList();
+            return Ok(vehicleList);
         }
 
 
@@ -143,6 +158,25 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
             return Json(dto);
         }
 
+
+        /// <summary>
+        /// 改成车辆状态
+        /// </summary>
+        /// <param name="vehicleId"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        [HttpPost("{vehicleId}")]
+        public async Task<IActionResult> ChangeStatus(string vehicleId, CurrentState state)
+        {
+            if (!Guid.TryParse(vehicleId, out _id))
+            {
+                return Json(BadParameter("Id格式不匹配"));
+            }
+
+            var dto = await _vehicleManageService.ChangeStatusAsync(_id, state);
+            return Json(dto);
+        }
+
         /// <summary>
         /// 删除车辆信息(标记删除)
         /// </summary>
@@ -157,7 +191,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
             }
             dto = await _vehicleManageService.MarkDeleteAsync(_id);
             return Ok(dto);
-            //return Json(dto);
         }
     }
+
 }

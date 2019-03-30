@@ -10,8 +10,4 @@
     <ProjectReference Include="..\OneZero.EntityFrameWorkCore\OneZero.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dtos\Permission\" />
-  </ItemGroup>
-
 </Project>

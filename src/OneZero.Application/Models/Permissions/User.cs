@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
 
 namespace OneZero.Application.Models.Permissions
@@ -15,7 +16,7 @@ namespace OneZero.Application.Models.Permissions
         [Required]
         [MaxLength(256)]
         [Description("用户名")]
-        public string UserName { get; set; }
+        public string Account { get; set; }
 
         /// <summary>
         /// 展示名称
@@ -81,7 +82,7 @@ namespace OneZero.Application.Models.Permissions
         /// <summary>
         /// 角色集合
         /// </summary>
-        public ICollection<Role> Roles { get; set; }
+        public IEnumerable<UserRole> UserRoles { get; set; }
         #endregion
     }
 }

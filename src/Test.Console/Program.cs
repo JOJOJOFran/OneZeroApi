@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.IO;
 using System.Reflection;
 
@@ -10,7 +11,33 @@ namespace Test.ConsoleDemo
         {
             Console.WriteLine("Hello World!");
             Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
-            GetAssembly3();
+            // GetAssembly3();
+
+            //ConcurrentQueue<int> currentQueue = new ConcurrentQueue<int>();
+            //currentQueue.Enqueue(1);
+            //currentQueue.Enqueue(2);
+            //currentQueue.Enqueue(3);
+            //currentQueue.Enqueue(4);
+            //int peek = 0;
+            //currentQueue.TryPeek(out peek);
+            //Console.WriteLine(peek);
+            //foreach (var item in currentQueue)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //foreach (var item in currentQueue)
+            //{
+            //    int i = 0;
+            //    currentQueue.TryDequeue(out i);
+            //    Console.WriteLine(i);
+            //}
+
+            //string str = "1^20975961.jpg|2^9ef08fee-2aeb-4e08-96d2-6e6fd2449eba.jpg";
+
+            int i = 4;
+            int j = 5;
+            Console.WriteLine(Convert.ToString(i,2));
+            Console.WriteLine(Convert.ToString(j, 2));
             Console.ReadKey();          
         }
 

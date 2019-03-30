@@ -8,7 +8,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Dtos
 {
     public class DepartmentListData : DataDto
     {
-        public Guid DepartmentId { get; set; }
+        public Guid Id { get; set; }
 
         public Guid ParentDepartmentId { get; set; }
 

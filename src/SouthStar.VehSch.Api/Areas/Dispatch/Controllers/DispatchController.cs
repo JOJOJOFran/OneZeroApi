@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using SouthStar.VehSch.Api.Areas.Dispatch.Dtos;
 using SouthStar.VehSch.Api.Areas.Dispatch.Services;
 using SouthStar.VehSch.Api.Controllers;
 using System;
@@ -9,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace SouthStar.VehSch.Api.Areas.Dispatch.Controllers
 {
+    [Route("api/[controller]/[action]")]
     public class DispatchController:BaseController
     {
         private readonly ILogger<DispatchController> _logger;
@@ -56,6 +59,42 @@ namespace SouthStar.VehSch.Api.Areas.Dispatch.Controllers
             }
             var applyInfo = await _dispatchService.GetItemAsync(_id);
             return Json(applyInfo);
+        }
+
+        /// <summary>
+        /// 生成派车单
+        /// </summary>
+        /// <param name="applyId"></param>
+        /// <returns></returns>
+        [HttpPost("{applyId}")]
+        public async Task<IActionResult> Dispatch(string applyId, [FromBody]Object value)
+        {
+            if (!Guid.TryParse(applyId, out _id)|| value==null)
+            {
+                return Json(BadParameter("Id格式不匹配"));
+            }
+            var postData = JsonConvert.DeserializeObject<VehicleDispatchPostData>(value.ToString());
+            var dispatchList = await _dispatchService.AddDispatchAsync(_id, postData);
+            return Json(dispatchList);
+        }
+
+
+        /// <summary>
+        /// 重新调度
+        /// </summary>
+        /// <param name="applyId"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        [HttpPost("{applyId}")]
+        public async Task<IActionResult> ReDispatch(string applyId, [FromBody]Object value)
+        {
+            if (!Guid.TryParse(applyId, out _id) || value == null)
+            {
+                return Json(BadParameter("Id格式不匹配"));
+            }
+            var postData = JsonConvert.DeserializeObject<VehicleDispatchPostData>(value.ToString());
+            var dispatchList = await _dispatchService.UpdateDispatchAsync(_id, postData);
+            return Json(dispatchList);
         }
     }
 }

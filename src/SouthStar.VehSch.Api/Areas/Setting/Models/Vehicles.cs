@@ -162,7 +162,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Models
         /// <summary>
         /// 图片
         /// </summary>
-        [MaxLength(100)]
+        [MaxLength(2000)]
         public string Image { get; set; }
         #endregion
 

@@ -24,15 +24,27 @@ using Swashbuckle.AspNetCore.Swagger;
 using OneZero.Middleware;
 using SouthStar.VehSch.Api.Areas.ApplicationFlow.Services;
 using SouthStar.VehSch.Api.Areas.Dispatch.Services;
+using MediatR;
+using OneZero.Common.QiniuTool;
+using OneZero;
+using SouthStar.VehSch.Api.Areas.Home.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace SouthStar.VehSch.Api
 {
     public class Startup
     {
+        private JwtOption jwtSettings;
+        private OneZeroOption oneZeroOption;
+
         public Startup(IConfiguration configuration, ILoggerFactory factory)
         {
             Configuration = configuration;
             LoggerFactory = factory;
+            jwtSettings = new JwtOption();
+            oneZeroOption=OptionConfig();
         }
 
         public ILoggerFactory LoggerFactory { get; }
@@ -73,9 +85,34 @@ namespace SouthStar.VehSch.Api
                     //.SetIsOriginAllowed (Configuration.GetSection("").ToString().Split(","),true);
                 });
             });
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            }) //认证middleware配置
+            .AddJwtBearer(o =>
+            {
+                o.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidIssuer = jwtSettings.Issuer,
+                    ValidAudience = jwtSettings.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey)),
+                    ClockSkew = new TimeSpan(0, 0, 30),
+                    RequireExpirationTime = true,
+                    ValidateLifetime = true
+
+                };
+
+
+            });
+            //services.AddDefaultIdentity();
+            services.AddMediatR();
+            services.AddHttpContextAccessor();
             services.AddTransient<ExceptionMiddleware>();
-            services.AddScoped<IUnitOfWork, EFUnitOfWork>();
             services.AddScoped<IDbContext, MSSqlContext>();
+            services.AddScoped<IUnitOfWork, EFUnitOfWork>();       
             services.AddScoped<IDapperProvider, DapperProvider>();
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<VehcileService>();
@@ -85,30 +122,45 @@ namespace SouthStar.VehSch.Api
             services.AddScoped<CheckService>();
             services.AddScoped<VehicleDispatchService>();
             services.AddScoped<DispatchFeeService>();
+            services.AddScoped<QiniuHelper>();
+            services.AddScoped<LoginService>();
+            services.AddSingleton(oneZeroOption);
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options =>
             {
                 options.SerializerSettings.DateFormatString = "yyyy-MM-dd";
             }); ;
+         
+        }
 
-           
+        private OneZeroOption OptionConfig()
+        {
+            QiniuOption qiniuOption = new QiniuOption();         
+            OneZeroOption oneZeroOption = new OneZeroOption();
+            Configuration.GetSection("Qiniu").Bind(qiniuOption);
+            Configuration.GetSection("JWT").Bind(jwtSettings);
+            oneZeroOption.QiniuOption = qiniuOption;
+            oneZeroOption.JwtOption = jwtSettings;
 
+            return oneZeroOption;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseOneZreoException();
-            app.UseOneZero();
+            
+            //app.UseOneZreoException();
+            //app.UseOneZero();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+            //else
+            //{
+            //    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            //    app.UseHsts();
+            //}
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -117,7 +169,8 @@ namespace SouthStar.VehSch.Api
             });
             app.UseHttpsRedirection();
             app.UseMvc();
-            
+           
+
         }
     }
 }

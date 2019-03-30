@@ -7,6 +7,7 @@ using OneZero.Common.Enums;
 using OneZero.Common.Exceptions;
 using OneZero.Common.Extensions;
 using OneZero.Domain.Repositories;
+using OneZero.Application;
 using SouthStar.VehSch.Api.Areas.ApplicationFlow.Dtos;
 using SouthStar.VehSch.Api.Areas.ApplicationFlow.Models;
 using SouthStar.VehSch.Api.Areas.ApplicationFlow.Models.Enum;
@@ -32,6 +33,24 @@ namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Services
             _checkRepository = unitOfWork.Repository<CheckContents, Guid>();
             _departmentRepository = unitOfWork.Repository<Departments, Guid>();
             _logger = logger;
+        }
+
+        /// <summary>
+        /// 改变审核状态
+        /// </summary>
+        /// <param name="applyId"></param>
+        /// <returns></returns>
+        public async Task<string> ChangeStatusHandlerAsync(Guid applyId)
+        {
+
+            int result = 1;
+            var apply = await _checkRepository.Entities.Where(v => v.ApplyId.Equals(applyId)).FirstOrDefaultAsync();
+            if (apply == null)
+                return "申请单未审核或不存在";
+
+            apply.CheckStatus = CheckStatus.Dispatched;
+            result = await _checkRepository.UpdateOneAsync(apply);
+            return "操作成功";
         }
 
 

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace SouthStar.VehSch.Api.Controllers
 {
     [EnableCors("AllowCrossOrigin")]
+    [Route("api/[controller]/[action]")]
     public class BaseController : Controller
     {
         protected OutputDto dto;

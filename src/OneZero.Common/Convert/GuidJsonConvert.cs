@@ -9,6 +9,7 @@ namespace OneZero.Common.Convert
     {
         public override Guid ReadJson(JsonReader reader, Type objectType, Guid existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
+ 
             Guid guid;
             if (!Guid.TryParse((string)reader.Value, out guid))
             {

@@ -1,4 +1,6 @@
-﻿using OneZero.Common.Dtos;
+﻿using Newtonsoft.Json;
+using OneZero.Common.Convert;
+using OneZero.Common.Dtos;
 using SouthStar.VehSch.Api.Areas.ApplicationFlow.Models.Enum;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Dtos
         /// <summary>
         /// 审批ID
         /// </summary>
+        [JsonConverter(typeof(GuidJsonConvert))]
         public Guid Id { get; set; }
 
         /// <summary>

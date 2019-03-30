@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SouthStar.VehSch.Api
+namespace OneZero.Application
 {
     public class BaseService: IMapService, IPagingService
     {
@@ -34,6 +34,11 @@ namespace SouthStar.VehSch.Api
         #endregion
 
         #region ctor
+        public BaseService()
+        {
+
+        }
+
         public BaseService(IUnitOfWork unitOfWork, IDapperProvider dapper,IMapper mapper)
         {
             _unitOfWork = unitOfWork;

@@ -1,4 +1,6 @@
-﻿using OneZero.Common.Dtos;
+﻿using Newtonsoft.Json;
+using OneZero.Common.Convert;
+using OneZero.Common.Dtos;
 using SouthStar.VehSch.Api.Areas.Dispatch.Models.Enums;
 using SouthStar.VehSch.Api.Common.Enums;
 using System;
@@ -11,11 +13,13 @@ namespace SouthStar.VehSch.Api.Areas.Dispatch.Dtos
     public class VehicleDispatchData:DataDto
     {
         #region 申请信息
+        [JsonConverter(typeof(GuidJsonConvert))]
         public Guid Id { get; set; }
 
         /// <summary>
         /// 申请单Id
         /// </summary>
+        [JsonConverter(typeof(GuidJsonConvert))]
         public Guid ApplyId { get; set; }
 
         /// <summary>
@@ -106,6 +110,7 @@ namespace SouthStar.VehSch.Api.Areas.Dispatch.Dtos
         /// <summary>
         /// 驾驶员Id
         /// </summary>
+        [JsonConverter(typeof(GuidJsonConvert))]
         public Guid DriverId { get; set; }
 
         /// <summary>
@@ -121,6 +126,7 @@ namespace SouthStar.VehSch.Api.Areas.Dispatch.Dtos
         /// <summary>
         /// 车辆Id
         /// </summary>
+        [JsonConverter(typeof(GuidJsonConvert))]
         public Guid VehcileId { get; set; }
 
         /// <summary>

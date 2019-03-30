@@ -11,6 +11,7 @@ namespace OneZero.Application.EntityConfiguration.Permission
         {
             builder.ToTable("TModuleType");
             builder.HasKey(v => v.Id);
+            builder.Property(v => v.ParentId).IsRequired(false);
             builder.HasIndex(v => v.Name);
         }
 

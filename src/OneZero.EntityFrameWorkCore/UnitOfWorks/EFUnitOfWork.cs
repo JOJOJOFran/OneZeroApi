@@ -136,7 +136,9 @@ namespace OneZero.EntityFrameworkCore.UnitOfWorks
         {
             if (_trans != null)
                 _trans.Dispose();
-            
+            //DbContext.Dispose();
+
+
         }
 
         /// <summary>

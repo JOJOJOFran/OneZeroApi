@@ -22,6 +22,12 @@ namespace OneZero.Application.Models.Permissions
         [Description("备注")]
         public string Remark { get; set; }
 
-        public ICollection<ModuleType> Modules { get; set; }
+        public IEnumerable<RoleModule> RoleModules { get; set; }
+
+        public IEnumerable<RolePermission> RolePermission { get; set; }
+
+
+
+
     }
 }

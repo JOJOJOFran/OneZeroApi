@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using OneZero.Application;
 using OneZero.Common.Dapper;
 using OneZero.Common.Dtos;
 using OneZero.Common.Extensions;

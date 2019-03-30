@@ -8,6 +8,7 @@ namespace OneZero.Test.Api
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, TestRequirement requirement)
         {
             var con = context;
+            context.
             context.Succeed(requirement);
             return Task.CompletedTask;
         }

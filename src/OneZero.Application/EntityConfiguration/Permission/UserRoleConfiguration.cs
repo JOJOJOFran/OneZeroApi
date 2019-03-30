@@ -10,7 +10,9 @@ namespace OneZero.Application.EntityConfiguration.Permission
         {
             builder.ToTable("TUserRole");
             builder.HasKey(v => v.Id);
+
             builder.HasIndex(v => new { v.RoleId, v.UserId });
+  
         }
     }
 }

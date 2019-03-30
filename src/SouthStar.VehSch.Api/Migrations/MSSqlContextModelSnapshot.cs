@@ -19,30 +19,6 @@ namespace SouthStar.VehSch.Api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("OneZero.Application.Models.Permissions.ModulePermission", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("IsDelete");
-
-                    b.Property<Guid>("ModuleId");
-
-                    b.Property<Guid>("PermissionId");
-
-                    b.Property<int>("SeqNo");
-
-                    b.Property<Guid>("TenanId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SeqNo");
-
-                    b.HasIndex("PermissionId", "ModuleId");
-
-                    b.ToTable("TModulePermission");
-                });
-
             modelBuilder.Entity("OneZero.Application.Models.Permissions.ModuleType", b =>
                 {
                     b.Property<Guid>("Id")
@@ -57,29 +33,21 @@ namespace SouthStar.VehSch.Api.Migrations
 
                     b.Property<bool>("IsDelete");
 
-                    b.Property<Guid?>("ModuleTypeId");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<Guid>("ParentId");
+                    b.Property<Guid?>("ParentId");
 
                     b.Property<string>("Path")
                         .IsRequired()
                         .HasMaxLength(500);
 
-                    b.Property<Guid?>("RoleId");
-
                     b.Property<Guid>("TenanId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ModuleTypeId");
-
                     b.HasIndex("Name");
-
-                    b.HasIndex("RoleId");
 
                     b.ToTable("TModuleType");
                 });
@@ -98,7 +66,8 @@ namespace SouthStar.VehSch.Api.Migrations
 
                     b.Property<bool>("IsDelete");
 
-                    b.Property<Guid?>("ModuleTypeId");
+                    b.Property<Guid>("ModuleId")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -112,8 +81,6 @@ namespace SouthStar.VehSch.Api.Migrations
                     b.Property<Guid>("TenanId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ModuleTypeId");
 
                     b.HasIndex("Name");
 
@@ -140,13 +107,9 @@ namespace SouthStar.VehSch.Api.Migrations
 
                     b.Property<Guid>("TenanId");
 
-                    b.Property<Guid?>("UserId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Name");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("TRole");
                 });
@@ -155,6 +118,10 @@ namespace SouthStar.VehSch.Api.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Account")
+                        .IsRequired()
+                        .HasMaxLength(256);
 
                     b.Property<string>("DisplayName")
                         .IsRequired()
@@ -192,38 +159,12 @@ namespace SouthStar.VehSch.Api.Migrations
 
                     b.Property<Guid>("TenanId");
 
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(256);
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserName")
+                    b.HasIndex("Account")
                         .IsUnique();
 
                     b.ToTable("TUser");
-                });
-
-            modelBuilder.Entity("OneZero.Application.Models.Permissions.UserRole", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("IsDelete");
-
-                    b.Property<Guid>("RoleId");
-
-                    b.Property<int>("RowNo");
-
-                    b.Property<Guid>("TenanId");
-
-                    b.Property<Guid>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId", "UserId");
-
-                    b.ToTable("TUserRole");
                 });
 
             modelBuilder.Entity("SouthStar.VehSch.Api.Areas.ApplicationFlow.Models.CheckContents", b =>
@@ -468,10 +409,12 @@ namespace SouthStar.VehSch.Api.Migrations
 
                     b.Property<bool>("IsDelete");
 
-                    b.Property<int>("ParentDepartmentId");
+                    b.Property<Guid>("ParentDepartmentId");
 
                     b.Property<string>("Remark")
                         .HasMaxLength(500);
+
+                    b.Property<int>("RowNo");
 
                     b.Property<Guid>("TenanId");
 
@@ -640,29 +583,99 @@ namespace SouthStar.VehSch.Api.Migrations
                     b.ToTable("TVehicles");
                 });
 
-            modelBuilder.Entity("OneZero.Application.Models.Permissions.ModuleType", b =>
-                {
-                    b.HasOne("OneZero.Application.Models.Permissions.ModuleType")
-                        .WithMany("SubMouldes")
-                        .HasForeignKey("ModuleTypeId");
-
-                    b.HasOne("OneZero.Application.Models.Permissions.Role")
-                        .WithMany("Modules")
-                        .HasForeignKey("RoleId");
-                });
-
-            modelBuilder.Entity("OneZero.Application.Models.Permissions.PermissionType", b =>
-                {
-                    b.HasOne("OneZero.Application.Models.Permissions.ModuleType")
-                        .WithMany("Permissions")
-                        .HasForeignKey("ModuleTypeId");
-                });
-
             modelBuilder.Entity("OneZero.Application.Models.Permissions.Role", b =>
                 {
-                    b.HasOne("OneZero.Application.Models.Permissions.User")
-                        .WithMany("Roles")
-                        .HasForeignKey("UserId");
+                    b.OwnsMany("OneZero.Application.Models.Permissions.RoleModule", "RoleModules", b1 =>
+                        {
+                            b1.Property<Guid>("Id")
+                                .ValueGeneratedOnAdd();
+
+                            b1.Property<bool>("IsDelete");
+
+                            b1.Property<Guid>("ModuleId");
+
+                            b1.Property<Guid>("RoleId");
+
+                            b1.Property<int>("RowNo");
+
+                            b1.Property<Guid>("TenanId");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("RoleId", "ModuleId");
+
+                            b1.ToTable("TRoleModule");
+
+                            b1.HasOne("OneZero.Application.Models.Permissions.Role")
+                                .WithMany("RoleModules")
+                                .HasForeignKey("RoleId")
+                                .OnDelete(DeleteBehavior.Cascade);
+                        });
+
+                    b.OwnsMany("OneZero.Application.Models.Permissions.RolePermission", "RolePermission", b1 =>
+                        {
+                            b1.Property<Guid>("Id")
+                                .ValueGeneratedOnAdd();
+
+                            b1.Property<bool>("IsDelete");
+
+                            b1.Property<Guid>("ModuleId");
+
+                            b1.Property<Guid>("PermissionId");
+
+                            b1.Property<Guid>("RoleId");
+
+                            b1.Property<int>("SeqNo");
+
+                            b1.Property<Guid>("TenanId");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("RoleId");
+
+                            b1.HasIndex("SeqNo");
+
+                            b1.HasIndex("PermissionId", "RoleId");
+
+                            b1.ToTable("TRolePermission");
+
+                            b1.HasOne("OneZero.Application.Models.Permissions.Role")
+                                .WithMany("RolePermission")
+                                .HasForeignKey("RoleId")
+                                .OnDelete(DeleteBehavior.Cascade);
+                        });
+                });
+
+            modelBuilder.Entity("OneZero.Application.Models.Permissions.User", b =>
+                {
+                    b.OwnsMany("OneZero.Application.Models.Permissions.UserRole", "UserRoles", b1 =>
+                        {
+                            b1.Property<Guid>("Id")
+                                .ValueGeneratedOnAdd();
+
+                            b1.Property<bool>("IsDelete");
+
+                            b1.Property<Guid>("RoleId");
+
+                            b1.Property<int>("RowNo");
+
+                            b1.Property<Guid>("TenanId");
+
+                            b1.Property<Guid>("UserId");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("UserId");
+
+                            b1.HasIndex("RoleId", "UserId");
+
+                            b1.ToTable("TUserRole");
+
+                            b1.HasOne("OneZero.Application.Models.Permissions.User")
+                                .WithMany("UserRoles")
+                                .HasForeignKey("UserId")
+                                .OnDelete(DeleteBehavior.Cascade);
+                        });
                 });
 #pragma warning restore 612, 618
         }

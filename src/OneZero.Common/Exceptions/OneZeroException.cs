@@ -8,7 +8,7 @@ namespace OneZero.Common.Exceptions
     public class OneZeroException : Exception
     {
         public ResponseCode Code { get; set; }
-        
+        public string ErrorMsg { get; set; }
 
         public OneZeroException() : base()
         {
@@ -27,12 +27,13 @@ namespace OneZero.Common.Exceptions
 
         public OneZeroException(string message, Exception innerException) : base(message, innerException)
         {
-
+            ErrorMsg = innerException.Message;
         }
 
         public OneZeroException(string message, Exception innerException, ResponseCode code) : base(message, innerException)
         {
             Code = code;
+            ErrorMsg = innerException.Message;
         }
 
     }

@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using SouthStar.VehSch.Api.Areas.Setting.Dtos;
 using SouthStar.VehSch.Api.Areas.Setting.Models;
 using SouthStar.VehSch.Api.Areas.Setting.Services;
+using SouthStar.VehSch.Api.Common.Enum;
 using SouthStar.VehSch.Api.Controllers;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
         /// 构造函数
         /// </summary>
         /// <param name="logger"></param>
-        /// <param name="vehicleManageService"></param>
+        /// <param name="driverManageService"></param>
         public DriverController(ILogger<VehicleController> logger, DriverService driverService)
         {
             _logger = logger;
@@ -41,7 +42,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
         /// <param name="departmentId"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> List(int page , int limit ,string name = null, string drivingLicNum = null, string departmentId = null)
+        public async Task<IActionResult> List(int page, int limit, string name = null, string drivingLicNum = null, string departmentId = null)
         {
             Guid depId = default(Guid);
             if (departmentId != null)
@@ -50,8 +51,23 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
                     return Json(BadParameter("Id格式不匹配"));
                 }
 
-            var vehicleList = await _driverService.GetListAsync(name, drivingLicNum, departmentId == null ? null : (Guid?)depId, page, limit);
-            return Json(vehicleList);
+            var driverList = await _driverService.GetListAsync(name, drivingLicNum, departmentId == null ? null : (Guid?)depId, page, limit);
+            var a = JsonConvert.SerializeObject(driverList);
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+
+            return Json(driverList);
+        }
+
+
+        /// <summary>
+        /// 获取可用司机
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> EnableList()
+        {
+            var driverList = await _driverService.GetEnableList();
+            return Ok(driverList);
         }
 
 
@@ -68,8 +84,8 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
             {
                 return Json(BadParameter("Id格式不匹配"));
             }
-            var vehicleInfo = await _driverService.GetItemAsync(_id);
-            return Json(vehicleInfo);
+            var driverInfo = await _driverService.GetItemAsync(_id);
+            return Json(driverInfo);
         }
 
         /// <summary>
@@ -78,9 +94,25 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
         /// <param name="value">司机信息</param>
         /// <remarks>
         /// 新增司机信息示例
-        /// {
-
-        /// }
+        ///        {
+        ///  "id": "a45228f2-259c-4204-b1a3-bc31a7f64cd8",
+        ///  "departmentId": "d92ba7ef-8930-452d-a003-e80b155929cd",
+        ///  "departmentName": null,
+        ///  "name": "wangjf",
+        ///  "sex": 0,
+        ///  "age": 20,
+        ///  "phoneNum": "110",
+        ///  "mobileNum": "119",
+        ///  "address": "普安新村",
+        ///  "drivingLicNum": "423r31314",
+        ///  "issueDate": "2019-03-09T17:15:03.2681419",
+        ///  "expirationDate": "2019-03-09T17:15:03.2681419",
+        ///  "permittedType": "unkown",
+        ///  "drivingLicType": "unkown",
+        ///  "remark": "unkown",
+        ///  "status": 0,
+        ///  "image": ""
+        ///}
         /// </remarks>
         /// <model></model>
         /// <returns></returns>      
@@ -91,8 +123,8 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
             {
                 return Json(BadParameter("司机信息内容不能为空"));
             }
-            var vehicleInfo = JsonConvert.DeserializeObject<DriverData>(value.ToString());
-            var dto = await _driverService.AddAsync(vehicleInfo);
+            var driverInfo = JsonConvert.DeserializeObject<DriverData>(value.ToString());
+            var dto = await _driverService.AddAsync(driverInfo);
             return Json(dto);
         }
 
@@ -115,10 +147,29 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
             {
                 return Json(BadParameter("司机信息内容不能为空"));
             }
-            var vehicleInfo = JsonConvert.DeserializeObject<Drivers>(value.ToString());
-            var dto = await _driverService.UpdateAsync(_id, vehicleInfo);
+            var driverInfo = JsonConvert.DeserializeObject<Drivers>(value.ToString());
+            var dto = await _driverService.UpdateAsync(_id, driverInfo);
             return Json(dto);
         }
+
+        /// <summary>
+        /// 改变司机状态
+        /// </summary>
+        /// <param name="driverId"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        [HttpPost("{driverId}")]
+        public async Task<IActionResult> ChangeStatus(string driverId, PersonState state)
+        {
+            if (!Guid.TryParse(driverId, out _id))
+            {
+                return Json(BadParameter("Id格式不匹配"));
+            }
+            var dto = await _driverService.ChangeStatusAsync(_id, state);
+            return Json(dto);
+        }
+
+
 
         /// <summary>
         /// 删除司机信息(标记删除)

@@ -8,10 +8,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>D:\AllOrNothing\OneZeroApi\src\SouthStar.VehSch.Api\SouthStar.VehSch.Api.xml</DocumentationFile>
     <OutputPath>bin\Debug\netcoreapp2.2\</OutputPath>
+    <NoWarn>1701;1702;1591;</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="6.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="4.0.1" />
@@ -23,8 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Home\Modles\" />
+    <Folder Include="Areas\Notifications\Models\EntityConfiguration\" />
     <Folder Include="Areas\Permission\Controllers\" />
-    <Folder Include="Areas\Reminder\" />
   </ItemGroup>
 
 </Project>

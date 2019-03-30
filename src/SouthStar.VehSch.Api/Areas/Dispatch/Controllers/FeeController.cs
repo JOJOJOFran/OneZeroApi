@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace SouthStar.VehSch.Api.Areas.Dispatch.Controllers
 {
+    /// <summary>
+    /// 用车费用
+    /// </summary>
     public class FeeController : BaseController
     {
         private readonly ILogger<FeeController> _logger;

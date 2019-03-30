@@ -10,8 +10,13 @@ namespace OneZero.Application.Models.Permissions
     {
         [Required]
         [MaxLength(50)]
+        public Guid ModuleId { get; set; }
+
+        [Required]
+        [MaxLength(50)]
         [Description("权限")]
         public string Name { get; set; }
+
 
         [Required]
         [MaxLength(50)]
@@ -29,5 +34,7 @@ namespace OneZero.Application.Models.Permissions
         [Required]
         [Description("行号")]
         public int RowNo { get; set; }
+
+
     }
 }

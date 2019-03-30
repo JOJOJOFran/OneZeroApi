@@ -11,8 +11,8 @@ namespace OneZero.Application.EntityConfiguration.Permission
         {
             builder.ToTable("TUser");
             builder.HasKey(v => v.Id);
-            builder.HasIndex(v => v.UserName).IsUnique();
-
+            builder.HasIndex(v => v.Account).IsUnique();
+            builder.OwnsMany(v => v.UserRoles).HasForeignKey(v=>v.UserId);
             builder.Property(v => v.IsDelete).HasDefaultValue(false);
             builder.Property(v => v.LockoutEnabled).HasDefaultValue(false);
             builder.Property(v => v.PhoneConfirmed).HasDefaultValue(false);

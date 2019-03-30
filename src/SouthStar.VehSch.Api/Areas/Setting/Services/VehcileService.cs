@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using OneZero.Application;
 using OneZero.Common.Dapper;
 using OneZero.Common.Dtos;
 using OneZero.Common.Exceptions;
@@ -47,22 +48,6 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Services
         /// <returns></returns>
         public async Task<OutputDto> GetListAsync(string plateNumber = null, int? currentState = null, Guid? departmentId = null, int page=1, int limit = 20)
         {
-            #region sql执行示例：
-            //string sql = $"SELECT V.Id, V.VIN, V.VehicleProperties, V.VehicleBrand, V.VechileType, V.TerminalNo, V.Remark, V.PlateNumber, D.DepartmentName, V.CurrentState, V.ApprovedSeating, R.Name AS DriverName " +
-            //    $" FROM dbo.TVehicles V FROM dbo.TVehicles V " +
-            //    $" LEFT JOIN dbo.TDepartments D ON V.DepartmentId=D.Id " +
-            //    $" LEFT JOIN dbo.TDrivers R ON V.DriverId=R.Id " +
-            //    $" WHERE 1=1 ";
-            //if (!string.IsNullOrWhiteSpace(plateNumber))
-            //    sql += $" AND V.PlateNumber LIKE '%'+'{plateNumber}'+'%' ";
-            //if (!string.IsNullOrWhiteSpace(currentState))
-            //    sql += $" AND V.CurrentState='{currentState}' ";
-            //if (departmentId != null)
-            //    sql += $"  AND D.Id='{departmentId}' ";
-
-            //IEnumerable<VehicleListData> data = (IEnumerable<VehicleListData>)await _dapper.FromSqlAsync(DefaultConnectString, sql);
-            //output.Datas = data;
-            #endregion
             int skipCount = 0;
 
             var vehicles = _vehicleRepository.Entities.Where(v => (string.IsNullOrEmpty(plateNumber) || v.PlateNumber == plateNumber)
@@ -101,6 +86,17 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Services
             output.Datas = await query?.ToListAsync();
 
 
+            return output;
+        }
+
+        /// <summary>
+        /// 获取可用车辆
+        /// </summary>
+        /// <returns></returns>
+        public async Task<OutputDto> GetEnableList()
+        {
+            var query= _vehicleRepository.Entities.Where(v => v.CurrentState == CurrentState.OnWait).OrderBy(v=>v.PlateNumber).Select(v=>new {v.Id,v.PlateNumber,v.VehicleProperties,v.VechileType });
+            output.Datas = await query?.ToListAsync();
             return output;
         }
 
@@ -164,19 +160,47 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Services
         }
 
         /// <summary>
-        /// 
+        /// 改变车辆状态
         /// </summary>
         /// <param name="vehicleId"></param>
         /// <param name="state"></param>
         /// <returns></returns>
-        public async Task<int> ChangeStatus(Guid vehicleId, CurrentState state)
+        public async Task<OutputDto> ChangeStatusAsync(Guid vehicleId, CurrentState state)
         {
            var vehicle= await _vehicleRepository.Entities.Where(v => v.Id.Equals(vehicleId)).FirstOrDefaultAsync();
+            output.Message = "数据不存在";
             if (vehicle == null)
-                return 0;
+                return output;
+
             vehicle.CurrentState = state;
-            return await _vehicleRepository.UpdateOneAsync(vehicle);
+            var result= await _vehicleRepository.UpdateOneAsync(vehicle);
+            if(result==1)
+                output.Message = "操作成功";
+            return output;
         }
+
+
+        public async Task<string> ChangeStatusHandlerAsync(Guid oldVehicleID, Guid vehicleId, CurrentState state)
+        {
+            Vehicles oldDriver;
+            int oldResult = 1;
+            int result = 1;
+            var vehicle = await _vehicleRepository.Entities.Where(v => v.Id.Equals(vehicleId)).FirstOrDefaultAsync();
+            if (vehicle == null)
+                return "车辆不存在";
+            if (!oldVehicleID.Equals(vehicleId))
+            {
+                oldDriver = await _vehicleRepository.Entities.Where(v => v.Id.Equals(oldVehicleID)).FirstOrDefaultAsync();
+                oldDriver.CurrentState = CurrentState.OnWait;
+                oldResult = await _vehicleRepository.UpdateOneAsync(oldDriver);
+            }
+
+            vehicle.CurrentState = state;
+            result = await _vehicleRepository.UpdateOneAsync(vehicle);
+            return "操作成功";
+
+        }
+
 
     }
 }

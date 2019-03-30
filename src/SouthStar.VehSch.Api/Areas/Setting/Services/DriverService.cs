@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using OneZero.Application;
 using OneZero.Common.Dapper;
 using OneZero.Common.Dtos;
 using OneZero.Common.Exceptions;
@@ -8,6 +9,7 @@ using OneZero.Common.Extensions;
 using OneZero.Domain.Repositories;
 using SouthStar.VehSch.Api.Areas.Setting.Dtos;
 using SouthStar.VehSch.Api.Areas.Setting.Models;
+using SouthStar.VehSch.Api.Common.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace SouthStar.VehSch.Api.Areas.Setting.Services
 {
-    public class DriverService:BaseService
+    public class DriverService : BaseService
     {
         private IRepository<Vehicles, Guid> _vehicleRepository;
         private IRepository<Departments, Guid> _departmentRepository;
@@ -23,7 +25,17 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Services
         private ILogger<DriverService> _logger;
         private readonly OutputDto output = new OutputDto();
 
-        public DriverService(IUnitOfWork unitOfWork, ILogger<DriverService> logger, IDapperProvider dapper, IMapper mapper) : base(unitOfWork, dapper, mapper)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="unitOfWork"></param>
+        /// <param name="logger"></param>
+        /// <param name="dapper"></param>
+        /// <param name="mapper"></param>
+        public DriverService(IUnitOfWork unitOfWork, 
+                             ILogger<DriverService> logger, 
+                             IDapperProvider dapper, 
+                             IMapper mapper) : base(unitOfWork, dapper, mapper)
         {
             _vehicleRepository = unitOfWork.Repository<Vehicles, Guid>();
             _departmentRepository = unitOfWork.Repository<Departments, Guid>();
@@ -54,7 +66,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Services
 
             var query = from item in drivers.Skip(skipCount).Take(limit)
                         join d in _departmentRepository.Entities on item.DepartmentId equals d.Id into d_join
-                        from di in d_join.DefaultIfEmpty()                      
+                        from di in d_join.DefaultIfEmpty()
                         select new DriverListData()
                         {
                             Address = item.Address,
@@ -74,7 +86,18 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Services
                         };
             output.Datas = await query?.ToListAsync();
 
+            return output;
+        }
 
+
+        /// <summary>
+        /// 获取可用司机
+        /// </summary>
+        /// <returns></returns>
+        public async Task<OutputDto> GetEnableList()
+        {
+            var query = _driverRepository.Entities.Where(v => v.Status == PersonState.OnWait || v.Status == PersonState.OnDuty).OrderBy(v => v.Name).Select(v => new { v.Id, v.Name, v.PhoneNum, v.Status, v.PermittedType });
+            output.Datas = await query?.ToListAsync();
             return output;
         }
 
@@ -134,6 +157,57 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Services
         {
             driverInfo.Id = driverId;
             return await _driverRepository.UpdateAsync(driverInfo);
+        }
+
+        /// <summary>
+        /// 改变司机状态
+        /// </summary>
+        /// <param name="driverId"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        public async Task<OutputDto> ChangeStatusAsync(Guid driverId, PersonState state)
+        {
+            var driver = await _driverRepository.Entities.Where(v => v.Id.Equals(driverId)).FirstOrDefaultAsync();
+            output.Message = "数据不存在";
+            if (driver == null)
+                return output;
+            driver.Status = state;
+            var result = await _driverRepository.UpdateOneAsync(driver);
+            if (result == 1)
+                output.Message = "操作成功";
+            return output;
+        }
+
+
+        /// <summary>
+        /// 改变司机状态事件处理
+        /// </summary>
+        /// <param name="oldDriverId"></param>
+        /// <param name="driverId"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        public async Task<string> ChangeStatusHandlerAsync(Guid oldDriverId, Guid driverId, PersonState state)
+        {
+            Drivers oldDriver;
+            int oldResult = 1;
+            int result = 1;
+
+            var driver = await _driverRepository.Entities.Where(v => v.Id.Equals(driverId)).FirstOrDefaultAsync();
+            if (driver == null)
+                return "司机不存在";
+
+            if (!oldDriverId.Equals(driverId))
+            {
+                oldDriver = await _driverRepository.Entities.Where(v => v.Id.Equals(oldDriverId)).FirstOrDefaultAsync();
+                oldDriver.Status = PersonState.OnWait;
+                oldResult = await _driverRepository.UpdateOneAsync(oldDriver);
+            }
+
+            driver.Status = state;
+            result = await _driverRepository.UpdateOneAsync(driver);
+
+
+            return "操作成功";
         }
     }
 }

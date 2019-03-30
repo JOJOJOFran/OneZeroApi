@@ -1,4 +1,6 @@
-﻿using OneZero.Common.Dtos;
+﻿using Newtonsoft.Json;
+using OneZero.Common.Convert;
+using OneZero.Common.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,7 @@ namespace SouthStar.VehSch.Api.Areas.Dispatch.Dtos
         /// <summary>
         /// 派车单ID
         /// </summary>
+        [JsonConverter(typeof(GuidJsonConvert))]
         public Guid DispatchId { get; set; }
 
         /// <summary>

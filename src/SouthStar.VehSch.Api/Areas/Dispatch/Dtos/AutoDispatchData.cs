@@ -1,4 +1,6 @@
-﻿using OneZero.Common.Dtos;
+﻿using Newtonsoft.Json;
+using OneZero.Common.Convert;
+using OneZero.Common.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +10,7 @@ namespace SouthStar.VehSch.Api.Areas.Dispatch.Dtos
 {
     public class AutoDispatchData:DataDto
     {
+        [JsonConverter(typeof(GuidJsonConvert))]
         public Guid DriverId { get; set; }
 
         public string DriverName { get; set; }

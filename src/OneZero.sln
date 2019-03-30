@@ -21,6 +21,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SouthStar.VehSch.Api", "Sou
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.ConsoleDemo", "Test.Console\Test.ConsoleDemo.csproj", "{27DFEB5A-5054-4345-B7B7-59EC2F094D07}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{11B3B330-019B-4495-8088-C5AE5E0B1711}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SouthStar.Vehsch.Api.UnitTests", "SouthStar.Vehsch.Api.UnitTests\SouthStar.Vehsch.Api.UnitTests.csproj", "{E99498B4-EF33-43D7-A22F-B08138E862BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +63,10 @@ Global
 		{27DFEB5A-5054-4345-B7B7-59EC2F094D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27DFEB5A-5054-4345-B7B7-59EC2F094D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27DFEB5A-5054-4345-B7B7-59EC2F094D07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E99498B4-EF33-43D7-A22F-B08138E862BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E99498B4-EF33-43D7-A22F-B08138E862BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E99498B4-EF33-43D7-A22F-B08138E862BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E99498B4-EF33-43D7-A22F-B08138E862BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +74,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{AD71FB00-5EF2-4AA3-8AFB-7896B51F47A4} = {C186F8F2-49FF-4BE5-BBD1-E7DD255E0237}
 		{27DFEB5A-5054-4345-B7B7-59EC2F094D07} = {C186F8F2-49FF-4BE5-BBD1-E7DD255E0237}
+		{E99498B4-EF33-43D7-A22F-B08138E862BC} = {11B3B330-019B-4495-8088-C5AE5E0B1711}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8BC678F1-7E6E-4F9E-AF61-59F09C556C90}

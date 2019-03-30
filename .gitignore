@@ -106,3 +106,7 @@ src/SouthStar\.VehSch\.Api/bin/
 src/SouthStar\.VehSch\.Api/obj/
 
 src/OneZero\.EntityFrameworkCore\.SqlServer/bin/
+
+src/MeditRTest/
+
+src/OneZero\.EntityFrameWorkCore\.PgSql/

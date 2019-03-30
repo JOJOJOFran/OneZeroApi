@@ -7,5 +7,6 @@ namespace SouthStar.VehSch.Api.Areas.Dispatch.Services
 {
     public interface IDispatch
     {
+       
     }
 }

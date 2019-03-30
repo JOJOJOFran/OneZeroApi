@@ -11,7 +11,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Models
     {
 
         [Required]
-        public int ParentDepartmentId { get; set; }
+        public Guid ParentDepartmentId { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -19,5 +19,8 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Models
 
         [MaxLength(500)]
         public string Remark { get; set; }
+
+
+        public int RowNo { get; set; }
     }
 }

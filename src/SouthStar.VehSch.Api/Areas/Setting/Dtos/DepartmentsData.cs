@@ -1,4 +1,6 @@
-﻿using OneZero.Common.Dtos;
+﻿using Newtonsoft.Json;
+using OneZero.Common.Convert;
+using OneZero.Common.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +10,11 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Dtos
 {
     public class DepartmentData:DataDto
     {
-        public Guid DepartmentId { get; set; }
+        [JsonConverter(typeof(GuidJsonConvert))]
+        public Guid Id { get; set; }
 
-        public Guid ParentDepartmentId { get; set; }
+        [JsonConverter(typeof(GuidJsonConvert))]
+        public Guid? ParentDepartmentId { get; set; }
 
         public string ParentDepartmentName { get; set; }
 

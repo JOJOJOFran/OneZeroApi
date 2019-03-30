@@ -18,5 +18,7 @@ namespace OneZero.Application.Models.Permissions
 
         [Description("行号")]
         public int RowNo { get; set; }
+
+       
     }
 }

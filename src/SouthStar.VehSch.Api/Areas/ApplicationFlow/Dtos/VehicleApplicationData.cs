@@ -1,4 +1,6 @@
-﻿using OneZero.Common.Dtos;
+﻿using Newtonsoft.Json;
+using OneZero.Common.Convert;
+using OneZero.Common.Dtos;
 using SouthStar.VehSch.Api.Areas.ApplicationFlow.Models.Enum;
 using SouthStar.VehSch.Api.Common.Enums;
 using System;
@@ -13,6 +15,7 @@ namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Dtos
         /// <summary>
         /// 申请ID
         /// </summary>       
+        [JsonConverter(typeof(GuidJsonConvert))]
         public Guid Id { get; set; }
 
         /// <summary>
@@ -24,6 +27,7 @@ namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Dtos
         /// <summary>
         /// 申请人ID
         /// </summary>
+        [JsonConverter(typeof(GuidJsonConvert))]
         public Guid ApplicantId { get; set; }
 
         /// <summary>

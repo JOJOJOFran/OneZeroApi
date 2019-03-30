@@ -6,7 +6,7 @@ using System.Text;
 
 namespace OneZero.Common.Dtos
 {
-    [JsonConverter(typeof(GuidJsonConvert))]
+
     public class DataDto
     {
 

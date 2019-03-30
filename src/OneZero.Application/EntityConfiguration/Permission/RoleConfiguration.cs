@@ -11,6 +11,8 @@ namespace OneZero.Application.EntityConfiguration.Permission
             builder.ToTable("TRole");
             builder.HasKey(v => v.Id);
             builder.HasIndex(v => v.Name);
+            builder.OwnsMany(v => v.RolePermission);
+            builder.OwnsMany(v => v.RoleModules);
         }
     }
 }

@@ -17,12 +17,12 @@ namespace SouthStar.VehSch.Api.Areas.Dispatch.Models
         /// <summary>
         /// 车辆Id
         /// </summary>
-        public int? VehicleId { get; set; }
+        public Guid? VehicleId { get; set; }
 
         /// <summary>
         /// 司机Id
         /// </summary>
-        public int? DriverId { get; set; }
+        public Guid DriverId { get; set; }
 
         /// <summary>
         /// 车辆类型码

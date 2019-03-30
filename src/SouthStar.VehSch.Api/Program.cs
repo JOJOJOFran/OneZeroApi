@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using OneZero;
 
 namespace SouthStar.VehSch.Api
 {
@@ -21,4 +22,7 @@ namespace SouthStar.VehSch.Api
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }
+
+
+ 
 }
