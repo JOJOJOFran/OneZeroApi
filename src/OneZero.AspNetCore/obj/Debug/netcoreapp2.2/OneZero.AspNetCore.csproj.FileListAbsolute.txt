@@ -1,0 +1,12 @@
+D:\AllOrNothing\OneZeroApi\src(1.1)\OneZero.AspNetCore\bin\Debug\netcoreapp2.2\OneZero.AspNetCore.deps.json
+D:\AllOrNothing\OneZeroApi\src(1.1)\OneZero.AspNetCore\bin\Debug\netcoreapp2.2\OneZero.AspNetCore.dll
+D:\AllOrNothing\OneZeroApi\src(1.1)\OneZero.AspNetCore\bin\Debug\netcoreapp2.2\OneZero.AspNetCore.pdb
+D:\AllOrNothing\OneZeroApi\src(1.1)\OneZero.AspNetCore\bin\Debug\netcoreapp2.2\OneZero.dll
+D:\AllOrNothing\OneZeroApi\src(1.1)\OneZero.AspNetCore\bin\Debug\netcoreapp2.2\OneZero.pdb
+D:\AllOrNothing\OneZeroApi\src(1.1)\OneZero.AspNetCore\obj\Debug\netcoreapp2.2\OneZero.AspNetCore.csprojAssemblyReference.cache
+D:\AllOrNothing\OneZeroApi\src(1.1)\OneZero.AspNetCore\obj\Debug\netcoreapp2.2\OneZero.AspNetCore.csproj.CoreCompileInputs.cache
+D:\AllOrNothing\OneZeroApi\src(1.1)\OneZero.AspNetCore\obj\Debug\netcoreapp2.2\OneZero.AspNetCore.AssemblyInfoInputs.cache
+D:\AllOrNothing\OneZeroApi\src(1.1)\OneZero.AspNetCore\obj\Debug\netcoreapp2.2\OneZero.AspNetCore.AssemblyInfo.cs
+D:\AllOrNothing\OneZeroApi\src(1.1)\OneZero.AspNetCore\obj\Debug\netcoreapp2.2\OneZero.AspNetCore.csproj.CopyComplete
+D:\AllOrNothing\OneZeroApi\src(1.1)\OneZero.AspNetCore\obj\Debug\netcoreapp2.2\OneZero.AspNetCore.dll
+D:\AllOrNothing\OneZeroApi\src(1.1)\OneZero.AspNetCore\obj\Debug\netcoreapp2.2\OneZero.AspNetCore.pdb

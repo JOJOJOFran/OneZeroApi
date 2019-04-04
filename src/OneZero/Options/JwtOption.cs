@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OneZero
+namespace OneZero.Options
 {
     /// <summary>
     /// JWT配置

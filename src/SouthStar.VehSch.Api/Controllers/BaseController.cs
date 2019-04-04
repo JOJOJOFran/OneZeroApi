@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using OneZero.Common.Dtos;
-using OneZero.Common.Enums;
+using OneZero.Dtos;
+using OneZero.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

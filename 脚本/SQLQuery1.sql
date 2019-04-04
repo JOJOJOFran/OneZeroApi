@@ -1,8 +1,8 @@
 INSERT INTO dbo.TDepartments(Id, TenanId, IsDelete, ParentDepartmentId, DepartmentName, Remark)
 VALUES(NEWID(), -- Id - uniqueidentifier
 '8CAB1C61-A36B-4910-B8EC-7351EA11BA71', -- TenanId - uniqueidentifier
-0, -- IsDelete - bit
-0   , -- ParentDepartmentId - int
+'00000000-0000-0000-0000-000000000000' , -- IsDelete - bit
+'00000000-0000-0000-0000-000000000000'   , -- ParentDepartmentId - int
 N'ÐÂ³ÇÍ¨' , -- DepartmentName - nvarchar(100)
 N'' -- Remark - nvarchar(500)
     )
@@ -12,10 +12,10 @@ N'' -- Remark - nvarchar(500)
 SELECT * FROM 	TDepartments
 SELECT * FROM  TDrivers
 SELECT * FROM TVehicles
-INSERT INTO dbo.TDrivers(Id, TenanId, IsDelete, DepartmentId, Name, Sex, Age, PhoneNum, MobileNum, Address, DrivingLicNum, IssueDate, ExpirationDate, PermittedType, DrivingLicType, Remark, Status, Image)
+INSERT INTO dbo.TDrivers(Id, TenanId, IsDelete, DepartmentId, Name, Sex, Age, PhoneNum, MobileNum, Address, DrivingLicNum, IssueDate, ExpirationDate, PermittedType,  Remark, Status, Image)
 VALUES(NEWID(), -- Id - uniqueidentifier
 '8CAB1C61-A36B-4910-B8EC-7351EA11BA71', -- TenanId - uniqueidentifier
-0, -- IsDelete - bit
+'00000000-0000-0000-0000-000000000000' , -- IsDelete - bit
 'D92BA7EF-8930-452D-A003-E80B155929CD', -- DepartmentId - uniqueidentifier
 N'wangjf' , -- Name - nvarchar(50)
 0   , -- Sex - int
@@ -27,7 +27,6 @@ N'423r31314' , -- DrivingLicNum - nvarchar(50)
 SYSDATETIME(), -- IssueDate - datetime2(7)
 SYSDATETIME(), -- ExpirationDate - datetime2(7)
 N'unkown' , -- PermittedType - nvarchar(30)
-N'unkown' , -- DrivingLicType - nvarchar(30)
 N'unkown' , -- Remark - nvarchar(500)
 0   , -- Status - int
 N'' -- Image - nvarchar(50)
@@ -36,7 +35,7 @@ N'' -- Image - nvarchar(50)
 INSERT INTO dbo.TVehicles(Id, TenanId, IsDelete, DriverId, DepartmentId, PlateNumber, VehicleColor, VehicleBrand, VechileType, ApprovedSeating, VIN, EngineNo, PurchasePrice, TerminalNo, InitMileage, TankCapacity, VehicleLicOwner, BookOriginValue, Displacament, VehicleProperties, FACardNum, OilType, CarIcon, LoadWeight, CurbWeight, Remark, CurrentState, Image)
 VALUES(NEWID(), -- Id - uniqueidentifier
 '8CAB1C61-A36B-4910-B8EC-7351EA11BA71', -- TenanId - uniqueidentifier
-0, -- IsDelete - bit
+'00000000-0000-0000-0000-000000000000' , -- IsDelete - bit
 'A45228F2-259C-4204-B1A3-BC31A7F64CD8', -- DriverId - uniqueidentifier
 'D92BA7EF-8930-452D-A003-E80B155929CD', -- DepartmentId - uniqueidentifier
 N'¶õAX39007' , -- PlateNumber - nvarchar(20)

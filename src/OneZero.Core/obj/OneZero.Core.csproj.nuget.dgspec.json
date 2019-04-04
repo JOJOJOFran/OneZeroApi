@@ -1,0 +1,277 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.Core\\OneZero.Core.csproj": {}
+  },
+  "projects": {
+    "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.Core\\OneZero.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.Core\\OneZero.Core.csproj",
+        "projectName": "OneZero.Core",
+        "projectPath": "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.Core\\OneZero.Core.csproj",
+        "packagesPath": "G:\\Users\\Fran\\.nuget\\packages\\",
+        "outputPath": "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "G:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "G:\\Users\\Fran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "G:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.EntityFrameworkCore.SqlServer\\OneZero.EntityFrameworkCore.SqlServer.csproj": {
+                "projectPath": "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.EntityFrameworkCore.SqlServer\\OneZero.EntityFrameworkCore.SqlServer.csproj"
+              },
+              "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero\\OneZero.csproj": {
+                "projectPath": "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero\\OneZero.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.EntityFrameworkCore.SqlServer\\OneZero.EntityFrameworkCore.SqlServer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.EntityFrameworkCore.SqlServer\\OneZero.EntityFrameworkCore.SqlServer.csproj",
+        "projectName": "OneZero.EntityFrameworkCore.SqlServer",
+        "projectPath": "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.EntityFrameworkCore.SqlServer\\OneZero.EntityFrameworkCore.SqlServer.csproj",
+        "packagesPath": "G:\\Users\\Fran\\.nuget\\packages\\",
+        "outputPath": "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.EntityFrameworkCore.SqlServer\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "G:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "G:\\Users\\Fran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "G:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.EntityFrameworkCore\\OneZero.EntityFrameworkCore.csproj": {
+                "projectPath": "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.EntityFrameworkCore\\OneZero.EntityFrameworkCore.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.3, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.EntityFrameworkCore\\OneZero.EntityFrameworkCore.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.EntityFrameworkCore\\OneZero.EntityFrameworkCore.csproj",
+        "projectName": "OneZero.EntityFrameworkCore",
+        "projectPath": "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.EntityFrameworkCore\\OneZero.EntityFrameworkCore.csproj",
+        "packagesPath": "G:\\Users\\Fran\\.nuget\\packages\\",
+        "outputPath": "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero.EntityFrameworkCore\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "G:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "G:\\Users\\Fran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "G:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero\\OneZero.csproj": {
+                "projectPath": "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero\\OneZero.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.3, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Z.EntityFramework.Plus.EFCore": {
+              "target": "Package",
+              "version": "[1.8.18, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero\\OneZero.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero\\OneZero.csproj",
+        "projectName": "OneZero",
+        "projectPath": "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero\\OneZero.csproj",
+        "packagesPath": "G:\\Users\\Fran\\.nuget\\packages\\",
+        "outputPath": "D:\\AllOrNothing\\OneZeroApi\\src(1.1)\\OneZero\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "G:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "G:\\Users\\Fran\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "G:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "G:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Dapper": {
+              "target": "Package",
+              "version": "[1.60.6, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "NLog": {
+              "target": "Package",
+              "version": "[4.6.1, )"
+            },
+            "Qiniu.SDK": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

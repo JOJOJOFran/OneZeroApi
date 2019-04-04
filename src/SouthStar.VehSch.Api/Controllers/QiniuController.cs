@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using OneZero;
-using OneZero.Common.Dtos;
-using OneZero.Common.Exceptions;
-using OneZero.Common.QiniuTool;
+using OneZero.Common.Qiniu;
+using OneZero.Dtos;
+using OneZero.Exceptions;
+using OneZero.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,28 +16,29 @@ namespace SouthStar.VehSch.Api.Controllers
     [Route("api/[controller]/[action]")]
     public class QiniuController : BaseController
     {
-        private readonly QiniuOption _option;
+        private readonly OneZeroOption _option;
         private readonly QiniuHelper _qiniu;
+        private readonly ILogger<QiniuController> _logger;
 
-        public QiniuController(OneZeroOption option)
+        public QiniuController(ILogger<QiniuController> logger, OneZeroOption option,IConfiguration configuration)
         {
-            _option = option.QiniuOption;
-            QiniuHelper qiniu = new QiniuHelper(_option);
-            _qiniu = qiniu;
+            _logger = logger;            
+            _option = option;
+            _qiniu = new QiniuHelper(_option);
+
         }
 
         /// <summary>
         /// 获取文件上传凭证
         /// </summary>
         /// <param name="fileKey"></param>
-        /// <param name="option"></param>
         /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> UploadToken(string fileKey)
         {
             var token = _qiniu.CreateUploadToken(fileKey);
-            dto.Datas = new QiniuDto() { UploadToken = token };
-            return Json(dto);
+            dto.Datas = new { UploadToken = token };
+            return await Task.FromResult(Json(dto));
         }
 
 
@@ -48,9 +51,9 @@ namespace SouthStar.VehSch.Api.Controllers
         public async Task<IActionResult> FileUrls(string fileKeys)
         {
             if (string.IsNullOrWhiteSpace(fileKeys))
-                throw new OneZeroException("文件参数字符为空", OneZero.Common.Enums.ResponseCode.ExpectedException);
-            dto.Datas = new QiniuDto() { DownloadUrl = _qiniu.CreatePrivateUrlList(fileKeys) };
-            return Json(dto);
+                throw new OneZeroException("文件参数字符为空", OneZero.Enums.ResponseCode.ExpectedException);
+            dto.Datas = new { DownloadUrl = _qiniu.CreatePrivateUrlList(fileKeys) };
+            return await Task.FromResult(Json(dto));
         }
     }
 }

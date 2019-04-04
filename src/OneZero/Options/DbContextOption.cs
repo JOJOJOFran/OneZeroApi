@@ -1,8 +1,10 @@
-﻿using System;
+﻿using OneZero.Enums;
+using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OneZero
+namespace OneZero.Options
 {
     /// <summary>
     /// 数据库配置
@@ -11,10 +13,10 @@ namespace OneZero
     {
         public string ConnectString { get; set; }
 
-        public DbType DBType;
+        public DatabaseType DBType;
 
         public Type DbContextType;
 
-        public Dictionary<Type, Type> EntityList { get; set; }
+        public  ConcurrentBag<Type> EntityInstanceList { get; set; }
     }
 }

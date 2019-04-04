@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading.Tasks;
+using Hangfire;
+using Hangfire.Common;
 using Microsoft.AspNetCore.Mvc;
-using OneZero.Application.Services.Permission;
-using OneZero.Common.Exceptions;
-using OneZero.Domain.Repositories;
+using SouthStar.VehSch.Core.Setting.Services;
 
 namespace SouthStar.VehSch.Api.Controllers
 {
@@ -13,19 +15,19 @@ namespace SouthStar.VehSch.Api.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        
+        private DriverService _driverService;
+        private readonly IServiceProvider _serviceProvider;
 
-        public ValuesController(IUnitOfWork unitOfWork)
+        public ValuesController(DriverService driverService,IServiceProvider serviceProvider)
         {
-            //var service = new UserRoleService(unitOfWork);
+            _driverService = driverService;
+            _serviceProvider = serviceProvider;
         }
-
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<IEnumerable<string>>>Get()
         {
-          
-            //throw new OneZeroException("ssss");
+
             return new string[] { "value1", "value2" };
         }
 
