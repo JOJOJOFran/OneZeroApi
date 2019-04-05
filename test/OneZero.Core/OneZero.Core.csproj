@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OneZero.EntityFrameworkCore.SqlServer\OneZero.EntityFrameworkCore.SqlServer.csproj" />
+    <ProjectReference Include="..\OneZero\OneZero.csproj" />
+  </ItemGroup>
+
+</Project>

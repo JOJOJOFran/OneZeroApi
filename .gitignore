@@ -110,3 +110,20 @@ src/OneZero\.EntityFrameworkCore\.SqlServer/bin/
 src/MeditRTest/
 
 src/OneZero\.EntityFrameWorkCore\.PgSql/
+/.vs
+/test/.vs/OneZero
+/test/OneZero/bin/Debug/netcoreapp2.2
+/test/OneZero/obj
+/test/OneZero.AspNetCore/obj
+/test/OneZero.Core/obj
+/test/OneZero.EntityFrameworkCore/obj
+/test/OneZero.EntityFrameworkCore/bin/Debug/netcoreapp2.2
+/test/OneZero.EntityFrameworkCore.SqlServer/bin/Debug/netcoreapp2.2
+/test/OneZero.EntityFrameworkCore.SqlServer/obj
+/test/SouthStar.VehSch.Api/bin/Debug/netcoreapp2.2
+/test/SouthStar.VehSch.Api/obj
+/test/SouthStar.Vehsch.Core/bin/Debug/netcoreapp2.2
+/test/SouthStar.Vehsch.Core/obj
+/test/2019-04-03.log
+/test/2019-04-04.log
+/test/OneZero.AspNetCore/bin/Debug/netcoreapp2.2

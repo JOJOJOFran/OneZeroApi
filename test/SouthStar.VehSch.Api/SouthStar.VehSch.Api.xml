@@ -1,0 +1,861 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SouthStar.VehSch.Api</name>
+    </assembly>
+    <members>
+        <member name="M:SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers.CheckController.#ctor(Microsoft.Extensions.Logging.ILogger{SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers.CheckController},SouthStar.VehSch.Core.ApplicationFlow.Services.CheckService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="logger"></param>
+            <param name="checkService"></param>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers.CheckController.List(System.Int32,System.Int32,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            查询用车审核列表
+            </summary>
+            <param name="page"></param>
+            <param name="limit"></param>
+            <param name="applicantId"></param>
+            <param name="status"></param>
+            <param name="applyNum"></param>
+            <param name="startDate"></param>
+            <param name="endDate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers.CheckController.DetailItem(System.String)">
+            <summary>
+            获取详细信息
+            </summary>
+            <param name="checkId">审核ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers.CheckController.Check(System.String,SouthStar.VehSch.Core.ApplicationFlow.Dtos.CheckContentPostData)">
+            <summary>
+            审核
+            </summary>
+            <param name="checkId">审核Id</param>
+            <param name="value">审核状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers.VehicleApplyController.#ctor(Microsoft.Extensions.Logging.ILogger{SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers.VehicleApplyController},SouthStar.VehSch.Core.ApplicationFlow.Services.VehicleApplyService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="logger"></param>
+            <param name="applyService"></param>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers.VehicleApplyController.List(System.Int32,System.Int32,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            查询用车申请列表
+            </summary>
+            <param name="page">页数</param>
+            <param name="limit">每页行数</param>
+            <param name="applicantId">申请人ID</param>
+            <param name="status">状态</param>
+            <param name="applyNum">申请编号（支持模糊查询）</param>
+            <param name="startDate">开始日期</param>
+            <param name="endDate">结束日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers.VehicleApplyController.Item(System.String)">
+            <summary>
+            获取申请用车信息
+            </summary>
+            <param name="applyId">申请用车ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers.VehicleApplyController.AddNotSend(SouthStar.VehSch.Core.ApplicationFlow.Dtos.VehicleApplicationData)">
+            <summary>
+            起草申请信息但不送审核
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers.VehicleApplyController.AddAndSend(SouthStar.VehSch.Core.ApplicationFlow.Dtos.VehicleApplicationData)">
+            <summary>
+            起草申请信息并送审核
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers.VehicleApplyController.Update(System.String,SouthStar.VehSch.Core.ApplicationFlow.Dtos.VehicleApplicationData)">
+            <summary>
+            更新用车申请信息
+            </summary>
+            <param name="applyId">用车申请ID</param>
+            <param name="value">用车申请信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers.VehicleApplyController.Delete(System.String)">
+            <summary>
+            删除用车申请信息(标记删除)
+            </summary>
+            <param name="applyId">用车申请ID</param>
+            <returns></returns>
+        </member>
+        <member name="T:SouthStar.VehSch.Api.Areas.Controllers.DashboardController">
+            <summary>
+            主页面板
+            </summary>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.DashboardController.#ctor(Microsoft.Extensions.Logging.ILogger{SouthStar.VehSch.Api.Areas.Controllers.DashboardController},SouthStar.VehSch.Core.Setting.Services.VehcileService,SouthStar.VehSch.Core.Setting.Services.DriverService,SouthStar.VehSch.Core.Dashboard.Services.DashboardService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="logger"></param>
+            <param name="vehicleManageService"></param>
+            <param name="driverService"></param>
+            <param name="dashboardService"></param>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.DashboardController.VehicleStateCount">
+            <summary>
+            获取所有状态的车辆数量
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.DashboardController.VehiclePropertyCount">
+            <summary>
+            获取所有性质的车辆数量
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.DashboardController.SpecificVehicleList(System.Nullable{SouthStar.VehSch.Core.Common.Enums.CurrentState},System.Nullable{SouthStar.VehSch.Core.Common.Enums.CarProperty})">
+            <summary>
+            指定性质或状态的车辆列表
+            </summary>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.DashboardController.DriverStateCount">
+            <summary>
+            获取所有状态的司机人数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.DashboardController.SpecificDriverList(System.Nullable{SouthStar.VehSch.Core.Common.Enums.PersonState})">
+            <summary>
+            指定状态的司机列表
+            </summary>
+        </member>
+        <member name="T:SouthStar.VehSch.Api.Areas.Controllers.Permissions.ModuleController">
+            <summary>
+            带单模块
+            </summary>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.ModuleController.List(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            查询菜单列表
+            </summary>
+            <param name="page"></param>
+            <param name="limit"></param>
+            <param name="name"></param>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.ModuleController.AllList">
+            <summary>
+            获得所有菜单树
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.ModuleController.Item(System.String)">
+            <summary>
+            获取菜单信息
+            </summary>
+            <param name="Id">角色ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.ModuleController.Add(OneZero.Core.Dtos.Permissions.ModuleData)">
+            <summary>
+            新增菜单
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.ModuleController.Update(System.String,OneZero.Core.Dtos.Permissions.ModuleData)">
+            <summary>
+            更新菜单信息
+            </summary>
+            <param name="Id">ID</param>
+            <param name="value">菜单信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.ModuleController.Delete(System.String)">
+            <summary>
+            删除菜单信息(标记删除)
+            </summary>
+            <param name="roleId">用户ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.ModuleController.ModuleList(System.String)">
+            <summary>
+            获取菜单权限列表
+            </summary>
+            <param name="Id">用户ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.PermissionController.List(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            查询权限列表
+            </summary>
+            <param name="page"></param>
+            <param name="limit"></param>
+            <param name="name"></param>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.PermissionController.Item(System.String)">
+            <summary>
+            获取权限信息
+            </summary>
+            <param name="Id">权限ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.PermissionController.Add(OneZero.Core.Dtos.Permission.PermissionData)">
+            <summary>
+            新增权限
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.PermissionController.Update(System.String,OneZero.Core.Dtos.Permission.PermissionData)">
+            <summary>
+            更新权限信息
+            </summary>
+            <param name="Id">ID</param>
+            <param name="value">菜单信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.PermissionController.Delete(System.String)">
+            <summary>
+            删除权限(不使用标记删除，因为行号唯一)
+            </summary>
+            <param name="Id">权限ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.RoleController.List(System.Int32,System.Int32,System.String)">
+            <summary>
+            查询角色列表
+            </summary>
+            <param name="page"></param>
+            <param name="limit"></param>
+            <param name="name">角色名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.RoleController.Item(System.String)">
+            <summary>
+            获取角色信息
+            </summary>
+            <param name="Id">角色ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.RoleController.Add(OneZero.Core.Dtos.Permission.RoleData)">
+            <summary>
+            新增角色
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.RoleController.Update(System.String,OneZero.Core.Dtos.Permission.RoleData)">
+            <summary>
+            更新角色信息
+            </summary>
+            <param name="Id">角色ID</param>
+            <param name="value">角色信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.RoleController.Delete(System.String)">
+            <summary>
+            删除用户信息(标记删除)
+            </summary>
+            <param name="roleId">用户ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.RoleController.ModuleList(System.String)">
+            <summary>
+            获取角色菜单列表
+            </summary>
+            <param name="Id">用户ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.RoleController.PermissionList(System.String)">
+            <summary>
+            获取角色权限列表
+            </summary>
+            <param name="Id">用户ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.RoleController.AllotModule(System.String,OneZero.Core.Dtos.Permission.AllotRoleModuleData)">
+            <summary>
+            分配角色菜单
+            </summary>
+            <param name="Id"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.RoleController.AllotPermission(System.String,OneZero.Core.Dtos.Permission.AllotRolePermissionData)">
+            <summary>
+            分配角色权限
+            </summary>
+            <param name="Id"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.RoleController.ClearModule(System.String)">
+            <summary>
+            清空菜单
+            </summary>
+            <param name="Id">用户ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.RoleController.ClearPermission(System.String)">
+            <summary>
+            清空角色权限
+            </summary>
+            <param name="Id">用户ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.RoleController.DeleteRolePermission(OneZero.Core.Dtos.Permission.RolePermissionData)">
+            <summary>
+            删除单个角色权限
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Controllers.Permissions.RoleController.DeleteRoleModule(OneZero.Core.Dtos.Permission.RoleModuleData)">
+            <summary>
+            删除单个角色菜单
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Dispatch.Controllers.DispatchController.#ctor(Microsoft.Extensions.Logging.ILogger{SouthStar.VehSch.Api.Areas.Dispatch.Controllers.DispatchController},SouthStar.VehSch.Core.Dispatch.Services.VehicleDispatchService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="logger"></param>
+            <param name="dispatchService"></param>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Dispatch.Controllers.DispatchController.List(System.Int32,System.Int32,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            查询派车列表
+            </summary>
+            <param name="page"></param>
+            <param name="limit"></param>
+            <param name="applyNum"></param>
+            <param name="startDate"></param>
+            <param name="endDate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Dispatch.Controllers.DispatchController.Item(System.String)">
+            <summary>
+            获取派车信息
+            </summary>
+            <param name="dispatchId">申请用车ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Dispatch.Controllers.DispatchController.Dispatch(System.String,SouthStar.VehSch.Core.Dispatch.Dtos.VehicleDispatchPostData)">
+            <summary>
+            生成派车单
+            </summary>
+            <param name="applyId"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Dispatch.Controllers.DispatchController.ReDispatch(System.String,SouthStar.VehSch.Core.Dispatch.Dtos.VehicleDispatchPostData)">
+            <summary>
+            重新调度
+            </summary>
+            <param name="applyId"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Dispatch.Controllers.DispatchController.QuickDispatch(SouthStar.VehSch.Core.Dispatchs.Dtos.QuickDispatchPostData)">
+             <summary>
+             快速调度派车(不走申请，直接手动调度派车)
+             </summary>
+             <param name="quickDispatch">quickDispatch</param>
+             <remarks>
+             {
+            "applicantId": "99BF7D96-BCD5-4083-8197-BFFBEBE4501F",
+            "applicantName": "管理员",
+            "departmentId": "B1B744CF-C67F-48D5-A838-AA230184FF43",
+            "departmentName": "江夏区财政局",
+            "userName": "wjf",
+            "userMobile": "13009876443",
+            "applyReson": "出差",
+            "userCount": "1",
+            "carType": "轿车",
+            "startPoint": "普安新村",
+            "destination": "体育馆",
+            "carProperty": "0",
+            "startPlanTime": "2019-04-02T15:04:49.361Z",
+            "backPlanTime": "2019-04-02T15:04:49.362Z",
+            "remark": "一个小时",
+            "driverId":"AE363D32-0A70-49C8-9BA3-9A9FDAE8B1F9",
+            "driverName": "wangjf",
+            "driverPhone": "110",
+            "vehicleId": "9280B0D7-D7F6-4A62-8443-CED52A703939",
+            "plateNumber": "鄂AX39007"
+            }
+             </remarks>
+             <returns></returns>
+        </member>
+        <member name="T:SouthStar.VehSch.Api.Areas.Dispatch.Controllers.FeeController">
+            <summary>
+            用车费用
+            </summary>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Dispatch.Controllers.FeeController.#ctor(Microsoft.Extensions.Logging.ILogger{SouthStar.VehSch.Api.Areas.Dispatch.Controllers.FeeController},SouthStar.VehSch.Core.Dispatch.Services.DispatchFeeService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="logger"></param>
+            <param name="feeService"></param>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Dispatch.Controllers.FeeController.List(System.Int32,System.Int32,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            查询费用列表
+            </summary>
+            <param name="page"></param>
+            <param name="limit"></param>
+            <param name="applyNum"></param>
+            <param name="startDate"></param>
+            <param name="endDate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Dispatch.Controllers.FeeController.Add(SouthStar.VehSch.Core.Dispatch.Dtos.DispatchFeeData)">
+            <summary>
+            新增费用
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Dispatch.Controllers.FeeController.Update(System.String,SouthStar.VehSch.Core.Dispatch.Dtos.DispatchFeeData)">
+            <summary>
+            更新费用
+            </summary>
+            <param name="feeId">用车费用ID</param>
+            <param name="value">用车费用信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Permission.Controllers.UserController.List(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            查询用户列表
+            </summary>
+            <param name="page"></param>
+            <param name="limit"></param>
+            <param name="name"></param>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Permission.Controllers.UserController.Item(System.String)">
+            <summary>
+            获取用户信息
+            </summary>
+            <param name="Id">用户ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Permission.Controllers.UserController.Add(OneZero.Core.Dtos.Permission.UserData)">
+            <summary>
+            新增用户
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Permission.Controllers.UserController.Update(System.String,OneZero.Core.Dtos.Permission.UserData)">
+            <summary>
+            更新用户信息
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="value">用户信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Permission.Controllers.UserController.Delete(System.String)">
+            <summary>
+            删除用户信息(标记删除)
+            </summary>
+            <param name="userId">用户ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Permission.Controllers.UserController.ChangePassword(OneZero.Core.Dtos.Permission.ChangePasswordData)">
+            <summary>
+            修改用户密码
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Permission.Controllers.UserController.ChangePhoneNum(OneZero.Core.Dtos.Permission.ChangePhoneNumData)">
+            <summary>
+            修改用户手机号
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Permission.Controllers.UserController.Lock(System.String)">
+            <summary>
+            锁定用户
+            </summary>
+            <param name="Id">用户ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Permission.Controllers.UserController.UnLock(System.String)">
+            <summary>
+            解锁用户
+            </summary>
+            <param name="Id">用户ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Permission.Controllers.UserController.RoleList(System.String)">
+            <summary>
+            获取用户角色列表
+            </summary>
+            <param name="Id">用户ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Permission.Controllers.UserController.AllotRole(System.String,OneZero.Core.Dtos.Permission.AllotRoleData)">
+            <summary>
+            分配角色
+            </summary>
+            <param name="Id">用户ID</param>
+            <param name="allotRoleData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Permission.Controllers.UserController.ClearRole(System.String)">
+            <summary>
+            清空角色
+            </summary>
+            <param name="Id">用户ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Permission.Controllers.UserController.DeleteUserRole(OneZero.Core.Dtos.Permission.UserRoleData)">
+            <summary>
+            删除单个角色
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.DepartmentController.#ctor(Microsoft.Extensions.Logging.ILogger{SouthStar.VehSch.Api.Areas.Setting.Controllers.DepartmentController},SouthStar.VehSch.Core.Setting.Services.DepartmentService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="logger"></param>
+            <param name="departmentService"></param>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.DepartmentController.AllList(System.String)">
+            <summary>
+            获取全部部门（支持部门名称模糊查询）
+            </summary>
+            <param name="name">部门名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.DepartmentController.List(System.Int32,System.Int32,System.String)">
+            <summary>
+            查询部门列表
+            </summary>
+            <param name="page"></param>
+            <param name="limit"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.DepartmentController.Item(System.String)">
+            <summary>
+            获取部门信息
+            </summary>
+            <param name="departmentId">部门ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.DepartmentController.Add(SouthStar.VehSch.Core.Setting.Dtos.DepartmentData)">
+            <summary>
+            增加部门信息
+            </summary>
+            <param name="value">部门信息</param>
+            <remarks>
+            新增部门信息示例
+            {
+            }
+            </remarks>
+            <model></model>
+            <returns></returns>      
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.DepartmentController.Update(System.String,SouthStar.VehSch.Core.Setting.Dtos.DepartmentData)">
+            <summary>
+            更新部门信息
+            </summary>
+            <param name="departmentId">部门ID</param>
+            <param name="value">部门信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.DepartmentController.Delete(System.String)">
+            <summary>
+            删除部门信息(标记删除)
+            </summary>
+            <param name="departmentId">部门ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.DriverController.#ctor(Microsoft.Extensions.Logging.ILogger{SouthStar.VehSch.Api.Areas.Setting.Controllers.VehicleController},SouthStar.VehSch.Core.Setting.Services.DriverService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="logger"></param>
+            <param name="driverService"></param>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.DriverController.List(System.Int32,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            查询司机列表
+            </summary>
+            <param name="page"></param>
+            <param name="limit"></param>
+            <param name="name"></param>
+            <param name="drivingLicNum"></param>
+            <param name="departmentId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.DriverController.EnableList">
+            <summary>
+            获取可用司机
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.DriverController.Item(System.String)">
+            <summary>
+            获取司机信息
+            </summary>
+            <param name="driverId">司机ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.DriverController.Add(SouthStar.VehSch.Core.Setting.Dtos.DriverData)">
+             <summary>
+             增加司机信息
+             </summary>
+             <param name="value">司机信息</param>
+             <remarks>
+             新增司机信息示例
+            {
+              "id": "a45228f2-259c-4204-b1a3-bc31a7f64cd8",
+              "departmentId": "d92ba7ef-8930-452d-a003-e80b155929cd",
+              "departmentName": null,
+              "name": "wangjf",
+              "sex": 0,
+              "age": 20,
+              "phoneNum": "110",
+              "mobileNum": "119",
+              "address": "普安新村",
+              "drivingLicNum": "423r31314",
+              "issueDate": "2019-03-09T17:15:03.2681419",
+              "expirationDate": "2019-03-09T17:15:03.2681419",
+              "permittedType": "unkown",
+              "drivingLicType": "unkown",
+              "remark": "unkown",
+              "status": 0,
+              "image": ""
+            }
+             </remarks>
+             <model></model>
+             <returns></returns>      
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.DriverController.Update(System.String,SouthStar.VehSch.Core.Setting.Dtos.DriverData)">
+            <summary>
+            更新司机信息
+            </summary>
+            <param name="driverId">司机ID</param>
+            <param name="value">司机信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.DriverController.ChangeStatus(System.String,SouthStar.VehSch.Core.Common.Enums.PersonState)">
+            <summary>
+            改变司机状态
+            </summary>
+            <param name="driverId"></param>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.DriverController.Delete(System.String)">
+            <summary>
+            删除司机信息(标记删除)
+            </summary>
+            <param name="driverId">司机ID</param>
+            <returns></returns>
+        </member>
+        <member name="T:SouthStar.VehSch.Api.Areas.Setting.Controllers.VehicleController">
+            <summary>
+            车辆管理
+            </summary>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.VehicleController.#ctor(Microsoft.Extensions.Logging.ILogger{SouthStar.VehSch.Api.Areas.Setting.Controllers.VehicleController},SouthStar.VehSch.Core.Setting.Services.VehcileService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="logger"></param>
+            <param name="vehicleManageService"></param>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.VehicleController.List(System.Int32,System.Int32,System.String,System.Nullable{System.Int32},System.String)">
+            <summary>
+            查询车辆列表
+            </summary>
+            <param name="page">页码</param>
+            <param name="limit">每一页行数</param>
+            <param name="plateNumber">车牌号</param>
+            <param name="currentState">车辆当前状态</param>
+            <param name="departmentId">部门ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.VehicleController.EnableList">
+            <summary>
+            获取可用车辆
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.VehicleController.Item(System.String)">
+            <summary>
+            获取车辆信息
+            </summary>
+            <param name="vehicleId">车辆ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.VehicleController.Add(SouthStar.VehSch.Core.Setting.Dtos.VehicleData)">
+            <summary>
+            增加车辆信息
+            </summary>
+            <param name="value">车辆信息</param>
+            <remarks>
+            新增车辆信息示例
+            {
+            "driverId": 驾驶员ID,
+            "driverName": 驾驶员信息,
+            "departmentId": 部门ID,
+            "departmentName": 部门名称,
+            "plateNumber": 车牌号,
+            "plateColor": 车牌颜色,
+            "vehicleBrand": 车辆品牌Code,
+            "vechileType": 车辆类型Code,
+            "approvedSeating": 核定座位数,
+            "vin": 车辆VIN（唯一）,
+            "engineNo": 发动机编号（唯一）,
+            "purchasePrice": 购入价格,
+            "terminalNo": GPS终端编号,
+            "initMileage": 初始里程数,
+            "tankCapacity": 油箱容积,
+            "vehicleLicOwner": 行驶证拥有者,
+            "bookOriginValue": 账面净值,
+            "displacament": 排量,
+            "vehicleProperties": 车辆性质,
+            "faCardNum": 固定资产编号,
+            "oilType": 汽油类型Code,
+            "carIcon": 车辆图标,
+            "loadWeight": 载重质量,
+            "curbWeight": 整备质量,
+            "remark": 备注,
+            "image": 车辆图片
+            }
+            </remarks>
+            <model></model>
+            <returns></returns>      
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.VehicleController.Update(System.String,SouthStar.VehSch.Core.Setting.Dtos.VehicleData)">
+            <summary>
+            更新车辆信息
+            </summary>
+            <param name="vehicleId">车辆ID</param>
+            <param name="value">车辆信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.VehicleController.ChangeStatus(System.String,SouthStar.VehSch.Core.Common.Enums.CurrentState)">
+            <summary>
+            改成车辆状态
+            </summary>
+            <param name="vehicleId"></param>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Areas.Setting.Controllers.VehicleController.Delete(System.String)">
+            <summary>
+            删除车辆信息(标记删除)
+            </summary>
+            <param name="vehicleId">车辆ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Controllers.BaseController.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Controllers.BaseController.BadParameter(System.String)">
+            <summary>
+            Controller层参数校验
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SouthStar.VehSch.Api.Controllers.LoginController">
+            <summary>
+            登陆
+            </summary>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Controllers.LoginController.GetToken(SouthStar.VehSch.Core.Logins.Dtos.LoginPostData)">
+             <summary>
+             登陆获取token
+             </summary>
+             <param name="loginData"></param>
+             <example>
+             {
+            "account": "fran",
+            "password": "m111111",
+            "validateCode": "string",
+            "loginWay": "string",
+            "loginFrom": "string"
+            }
+             </example>
+             <returns>
+             {
+             "message": "登陆成功",
+             "errorMessage": null,
+             "pageInfo": null,
+             "datas": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpcCI6IjEyNy4wLjAuMSIsInVzZXJpZCI6IjQ1NGU2ZDJhLTA1YTMtNDgzYS05NDE2LWFhMjQwMGU2MjQyNSIsInVzZXJuYW1lIjoi5byg5biGIiwiYWNjb3VudCI6ImZyYW4iLCJ0ZW5hbmlkIjoiOGNhYjFjNjEtYTM2Yi00OTEwLWI4ZWMtNzM1MWVhMTFiYTcxIiwicm9sZSI6WyJhZG1pbnRlc3QiLCJ1c2VydGVzdCJdLCJtZW51IjpbIk1hbmFnZSIsIk1hbmFnZSIsIlZlaGljbGVNYW5hZ2UiLCJEcml2ZXJNYW5hZ2UiXSwicGVybWlzc2lvbiI6WyIvVmVoaWNsZS9MaXN0IiwiL1ZlaGljbGUvSXRlbSIsIi9WZWhpY2xlL0l0ZW0iLCIvVmVoaWNsZS9BZGQiLCIvVmVoaWNsZS9EZWxldGUiXSwibmJmIjoxNTU0Mjc3NDM3LCJleHAiOjE1NTQyODQ2MzcsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MTMzMTEiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjEzMzExIn0.Z4nIgXdVl-ubP0ApRl5fv3pfLYd0KujY7SMHqd6KHX4",
+             "code": 0,
+             "statusCode": 200
+            }
+             </returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Controllers.LoginController.Common(SouthStar.VehSch.Core.Logins.Dtos.LoginPostData)">
+            <summary>
+            常规账密登陆
+            </summary>
+            <param name="loginData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Controllers.QiniuController.UploadToken(System.String)">
+            <summary>
+            获取文件上传凭证
+            </summary>
+            <param name="fileKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Controllers.QiniuController.FileUrls(System.String)">
+            <summary>
+            获取文件下载列表
+            </summary>
+            <param name="fileKeys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Extensions.ServiceCollectionExtension.LoadAssemblyWithSubClassOfAbstractWithOutGeneric(System.Reflection.Assembly,System.Type)">
+            <summary>
+            获取从抽象类继承的非抽象方法
+            </summary>
+            <param name="assembly"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Startup.OneZeroOptionInit(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            初始化框架配置
+            </summary>
+        </member>
+        <member name="M:SouthStar.VehSch.Api.Startup.GetDbConnection">
+            <summary>
+            根据环境获取字符串
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
