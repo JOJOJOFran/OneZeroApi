@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace OneZero.Domain
@@ -45,7 +46,7 @@ namespace OneZero.Domain
         /// 开始事务
         /// </summary>
         /// <returns></returns>
-        Task BeginTransAsync();
+        Task BeginTransAsync(IsolationLevel  levle= IsolationLevel.ReadCommitted);
 
         /// <summary>
         /// 回滚(暂时不实现)

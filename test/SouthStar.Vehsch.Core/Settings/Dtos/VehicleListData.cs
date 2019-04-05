@@ -54,7 +54,7 @@ namespace SouthStar.VehSch.Core.Setting.Dtos
         /// <summary>
         /// 核定座位数
         /// </summary>
-        public int ApprovedSeating { get; set; }
+        public string ApprovedSeating { get; set; }
 
         /// <summary>
         /// VIN(车架号)

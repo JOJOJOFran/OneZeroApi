@@ -55,13 +55,11 @@ namespace SouthStar.VehSch.Core.Setting.Models
         /// <summary>
         /// 核定座位数
         /// </summary>
-        [Required]
-        public int ApprovedSeating { get; set; }
+        public string ApprovedSeating { get; set; }
 
         /// <summary>
         /// VIN(车架号)
         /// </summary>
-        [Required]
         [MaxLength(20)]
         public string VIN { get; set; }
 
@@ -75,7 +73,7 @@ namespace SouthStar.VehSch.Core.Setting.Models
         /// <summary>
         /// 购入价格
         /// </summary>
-        public int PurchasePrice { get; set; }
+        public string PurchasePrice { get; set; }
 
         /// <summary>
         /// GPS终端编号
@@ -86,12 +84,12 @@ namespace SouthStar.VehSch.Core.Setting.Models
         /// <summary>
         /// 初始里程
         /// </summary>
-        public int InitMileage { get; set; }
+        public string InitMileage { get; set; }
 
         /// <summary>
         /// 油箱容量
         /// </summary>
-        public int TankCapacity { get; set; }
+        public string TankCapacity { get; set; }
 
         /// <summary>
         /// 行驶证拥有者

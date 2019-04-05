@@ -69,11 +69,11 @@ namespace SouthStar.VehSch.Core.Logins.Services
                 if (user.UserRoles != null)
                 {
                     //添加角色信息
-                    var roleNames = from a in user.UserRoles
+                    var role = from a in user.UserRoles
                                 join b in _roleRepository.Entities on a.RoleId equals b.Id
-                                select new {b.DisplayName };
+                                select new {b.DisplayName,b.Id };
 
-                    output.Datas = new { user.Id, user.Account, Name = user.DisplayName,RoleNames=string.Join("," ,roleNames),user.Phone };
+                    output.Datas = new { user.Id, user.Account, Name = user.DisplayName,RoleNames=string.Join("," ,role.Select(v=>v.DisplayName)),user.Phone ,RoleId= role.Select(v => v.Id),user.DepartmentId};
                     output.Message = "登陆成功";
                 }
                 else

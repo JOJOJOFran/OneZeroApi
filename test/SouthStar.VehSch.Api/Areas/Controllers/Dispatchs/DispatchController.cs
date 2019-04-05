@@ -55,6 +55,7 @@ namespace SouthStar.VehSch.Api.Areas.Dispatch.Controllers
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
         /// <returns></returns>
+        [HttpGet]
         public async Task<IActionResult> DispatchList(int page, int limit, string applyNum = null, DateTime? startDate = null, DateTime? endDate = null)
         {
             var vehicleList = await _dispatchService.GetDispatchedListAsync(applyNum, startDate, endDate, page, limit);

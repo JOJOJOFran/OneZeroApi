@@ -11,6 +11,12 @@ namespace OneZero.Core.Dtos.Permission
 
         public string DisplayName { get; set; }
 
+
+        public Guid? RoleId { get; set; }
+
+
+        public Guid DepartmentId { get; set; }
+
         /// <summary>
         /// 密码字符串
         /// </summary>

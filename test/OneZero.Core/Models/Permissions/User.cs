@@ -76,6 +76,12 @@ namespace OneZero.Core.Models.Permissions
         [Description("是否锁定账号")]
         [DefaultValue(false)]
         public bool LockoutEnabled { get; set; }
+
+
+        /// <summary>
+        /// 部门Id
+        /// </summary>
+        public Guid DepartmentId { get; set; }
         #endregion
 
         #region 导航属性

@@ -58,7 +58,7 @@ namespace SouthStar.VehSch.Core.Setting.Dtos
         /// <summary>
         /// 核定座位数
         /// </summary>
-        public int ApprovedSeating { get; set; }
+        public string ApprovedSeating { get; set; }
 
         /// <summary>
         /// VIN(车架号)
@@ -73,7 +73,7 @@ namespace SouthStar.VehSch.Core.Setting.Dtos
         /// <summary>
         /// 购入价格
         /// </summary>
-        public int PurchasePrice { get; set; }
+        public string PurchasePrice { get; set; }
 
 
         /// <summary>
@@ -84,12 +84,12 @@ namespace SouthStar.VehSch.Core.Setting.Dtos
         /// <summary>
         /// 初始里程
         /// </summary>
-        public int InitMileage { get; set; }
+        public string InitMileage { get; set; }
 
         /// <summary>
         /// 邮箱容量
         /// </summary>
-        public int TankCapacity { get; set; }
+        public string TankCapacity { get; set; }
 
         /// <summary>
         /// 行驶证拥有者
@@ -119,7 +119,7 @@ namespace SouthStar.VehSch.Core.Setting.Dtos
         /// <summary>
         /// 油料类型
         /// </summary>
-        public string OilType { get; set; }
+        public OilType OilType { get; set; }
 
         /// <summary>
         /// 车辆图标

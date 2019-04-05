@@ -45,7 +45,6 @@ namespace OneZero.Core.Domains
         public override async Task<int> AddAsync(TEntity entity)
         {
             EntityIdCheck(entity);
-            entity.TenanId = _oneZeroContext.TenanId;
             return await base.AddAsync(entity);
         }
 
@@ -54,7 +53,6 @@ namespace OneZero.Core.Domains
             foreach (var entity in entities)
             {
                 EntityIdCheck(entity);
-                entity.TenanId = _oneZeroContext.TenanId;
             }
             return await base.AddAsync(entities);
         }
@@ -109,7 +107,7 @@ namespace OneZero.Core.Domains
         /// <param name="whereFunc"></param>
         /// <param name="convertFunc"></param>
         /// <returns></returns>
-        public virtual async Task<OutputDto> UpdateAsync<TEditDto>(TEditDto dto,
+        public override async Task<OutputDto> UpdateAsync<TEditDto>(TEditDto dto,
                                                                    Func<TEntity, bool> whereFunc,
                                                                    Func<TEditDto, TEntity, TEntity> convertFunc)
         {
@@ -117,9 +115,9 @@ namespace OneZero.Core.Domains
             convertFunc.NotNull();
             try
             {
-                var entity = await _dbContext.Set<TEntity>().FirstOrDefaultAsync(v => whereFunc(v));
-                entity.TenanId = _oneZeroContext.TenanId;
+                var entity = await _dbContext.Set<TEntity>().FirstOrDefaultAsync(v => whereFunc(v));                
                 var newEntity = convertFunc(dto, entity);
+                EntityIdCheck(newEntity);
                 var result = _dbContext.Update(entity);
                 await _dbContext.SaveChangesAsync();
                 _output.Message = $"更新成功,共{result}条.";

@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using OneZero.Domain;
 using OneZero.Common.Helpers;
 using OneZero.Enums;
+using System.Data;
 
 namespace OneZero.Core.Services.Permission
 {
@@ -315,9 +316,11 @@ namespace OneZero.Core.Services.Permission
                 {
                     await _unitOfWork.BeginTransAsync();
                     var userId = GuidHelper.NewGuid();
-                    await _userRepository.AddAsync(userData, null, v => (ConvertToModel<UserData, User>(userData)));
+                    await _userRepository.AddAsync(userData, null, v => (ConvertToModel<UserData, User>(userData)));            
                     await this.AddUserRoleAsync(userId,userData.RoleId.Value);
                     await _unitOfWork.CommitAsync();
+                    output.Message = "新增成功";
+                    return output;
                 }
                 catch (Exception e)
                 {

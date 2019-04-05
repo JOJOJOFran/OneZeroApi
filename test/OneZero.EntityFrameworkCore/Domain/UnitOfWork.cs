@@ -9,6 +9,7 @@ using System.Collections;
 using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace OneZero.EntityFrameworkCore.Domain
 {
@@ -58,7 +59,7 @@ namespace OneZero.EntityFrameworkCore.Domain
         /// 手动开启事务
         /// </summary>
         /// <returns></returns>
-        public virtual async Task BeginTransAsync()
+        public virtual async Task BeginTransAsync(IsolationLevel isolationLevel= IsolationLevel.ReadCommitted)
         {
             _trans = await ((DbContext)DbContext).Database.BeginTransactionAsync();
         }
