@@ -52,7 +52,7 @@ namespace OneZero.AspNetCore.Middlewares
             {
                 exeptionOutput.Code = ((OneZeroException)e).Code;
                 exeptionOutput.Message = ((OneZeroException)e).Message;
-                exeptionOutput.ErrorMessage = ((OneZeroException)e)?.InnerException?.Message;
+                exeptionOutput.ErrorMessage = ((OneZeroException)e)?.GetBaseException().Message;
                 LogExceptionByResponseCode(exeptionOutput.Message, exeptionOutput.Code);
             }
             else
@@ -68,7 +68,7 @@ namespace OneZero.AspNetCore.Middlewares
                         break;
                 }
                 exeptionOutput.Message = message;
-                exeptionOutput.ErrorMessage = e.Message;
+                exeptionOutput.ErrorMessage = e?.InnerException?.Message;
                 _logger.LogWarning(message);
             }
 

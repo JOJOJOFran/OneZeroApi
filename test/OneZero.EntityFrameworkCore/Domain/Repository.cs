@@ -195,7 +195,7 @@ namespace OneZero.EntityFrameworkCore.Domain
                 }
                 catch (Exception e)
                 {
-                    _logger.LogError(e, e.Message);
+                    _logger.LogError(e, e?.InnerException?.Message);
                     throw new OneZeroException("删除失败",e,ResponseCode.UnExpectedException);
                 }
             }

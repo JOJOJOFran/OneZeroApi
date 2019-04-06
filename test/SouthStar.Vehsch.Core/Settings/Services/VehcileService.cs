@@ -51,8 +51,8 @@ namespace SouthStar.VehSch.Core.Setting.Services
         {
             int skipCount = 0;
 
-            var vehicles = _vehicleRepository.Entities.Where(v => (string.IsNullOrEmpty(plateNumber) || v.PlateNumber == plateNumber)
-                                                                    && (currentState == null || v.CurrentState.Equals(1)
+            var vehicles = _vehicleRepository.Entities.Where(v => (string.IsNullOrEmpty(plateNumber) || EF.Functions.Like(v.PlateNumber,$"%{plateNumber}%"))
+                                                                    && (currentState == null || v.CurrentState.Equals(currentState.Value)
                                                                     && (departmentId == null || v.DepartmentId.Equals(departmentId)))).OrderBy(v => v.PlateNumber);
             var sumCount = await vehicles.Select(v => v.Id).CountAsync();
             if (sumCount <= 0)

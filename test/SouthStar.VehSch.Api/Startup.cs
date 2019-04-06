@@ -73,10 +73,10 @@ namespace SouthStar.VehSch.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseOneZero(Configuration);
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
 
             //RecurringJob.AddOrUpdate(() => Console.WriteLine("hello22"), Cron.Minutely());
             //JobStorage.

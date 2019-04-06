@@ -56,7 +56,7 @@ namespace SouthStar.VehSch.Core.Setting.Services
         {
             int skipCount = 0;
             var drivers = _driverRepository.Entities.Where(v => (string.IsNullOrEmpty(drivingLicNum) || EF.Functions.Like(v.DrivingLicNum, "%" + drivingLicNum + "%"))
-                                                                     && (name == null || v.Name == name)
+                                                                     && (name == null ||  EF.Functions.Like(v.Name,$"%{name}%"))
                                                                      && (departmentId == null || v.DepartmentId.Equals(departmentId))).OrderBy(v => v.Name);
             var sumCount = await drivers.Select(v => v.Id).CountAsync();
             if (sumCount <= 0)

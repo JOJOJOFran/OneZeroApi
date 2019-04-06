@@ -1,10 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OneZero.Domain;
 using OneZero.EntityFrameworkCore.Extensions;
+using OneZero.Exceptions;
 using OneZero.Options;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace OneZero.EntityFrameworkCore
 {
@@ -55,5 +58,24 @@ namespace OneZero.EntityFrameworkCore
 
             base.OnModelCreating(modelBuilder);
         }
+
+
+        //public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        //{
+        //    ChangeTracker.AutoDetectChangesEnabled = false;
+        //    try
+        //    {
+        //        return this.SaveChangesAsync(cancellationToken);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //       throw new OneZeroException(e.SaveChangesExceptionHandler(this),e,Enums.ResponseCode.UnExpectedException);
+        //    }
+        //    finally
+        //    {
+        //        ChangeTracker.AutoDetectChangesEnabled = true;
+        //    }
+            
+        //}
     }
 }

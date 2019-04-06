@@ -25,7 +25,7 @@ namespace SouthStar.VehSch.Api.Controllers
         }
         // GET api/values
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<string>>>Get()
+        public  ActionResult<IEnumerable<string>> Get()
         {
 
             return new string[] { "value1", "value2" };
