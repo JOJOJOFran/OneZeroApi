@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using OneZero.Common.Extensions;
 
 namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers
 {
@@ -56,12 +57,12 @@ namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers
 
 
         /// <summary>
-        /// 获取详细信息
+        /// 获取审核信息
         /// </summary>
         /// <param name="checkId">审核ID</param>
         /// <returns></returns>
         [HttpGet("{checkId}")]
-        public async Task<IActionResult> DetailItem(string checkId)
+        public async Task<IActionResult> CheckItem(string checkId)
         {
             if (!Guid.TryParse(checkId, out _id))
             {
@@ -70,6 +71,21 @@ namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers
             var checkInfo = await _checkService.GetCheckItemAsync(_id);
             return Json(checkInfo);
         }
+
+
+        /// <summary>
+        /// 获取申请信息和审核信息
+        /// </summary>
+        /// <param name="applyId"></param>
+        /// <returns></returns>
+        [HttpGet("{applyId}")]
+        public async Task<IActionResult> DetailItem(string applyId)
+        {
+
+            var checkInfo = await _checkService.GetApplyWithCheckContent(applyId.ConvertToGuid());
+            return Json(checkInfo);
+        }
+
 
         /// <summary>
         /// 审核

@@ -68,7 +68,8 @@ namespace SouthStar.VehSch.Core.ApplicationFlow.Services
             var query = from a in apply.Skip(skipCount).Take(limit)
                         join d in _departmentRepository.Entities on a.DepartmentId equals d.Id into d_join
                         from di in d_join.DefaultIfEmpty()
-                        join r in _checkRepository.Entities on a.Id equals r.ApplyId
+                        join r in _checkRepository.Entities on a.Id equals r.ApplyId into r_join
+                        from ri in r_join.DefaultIfEmpty()
                         select new VehicleApplicationListData()
                         {
                             ApplicantName = a.ApplicantName,
@@ -78,17 +79,55 @@ namespace SouthStar.VehSch.Core.ApplicationFlow.Services
                             ApplicantPhone = a.ApplicantPhone,
                             BackPlanTime = a.BackPlanTime,
                             StartPlanTime = a.StartPlanTime,
-                            Status = "", //a.Status.GetRemark(),
+                            Status = a.Status.GetRemark(),
                             UseArea = a.UseArea,
                             UserName = a.UserName,
                             UserMobile = a.UserMobile,
                             CarType = a.CarType,
                             CarProperty = a.CarProperty.GetRemark(),
-                            CheckStatus = r.CheckStatus.GetRemark(),
+                            CheckStatus = ri.CheckStatus.GetRemark(),
                             DepartmentName = String.IsNullOrEmpty(di.DepartmentName) ? "-" : di.DepartmentName,
                             Destination = a.Destination,
                             StartPoint = a.StartPoint,
                         };
+            output.Datas = await query?.ToListAsync();
+            return output;
+        }
+
+
+        public async Task<OutputDto> GetApplyWithCheckContent(Guid id)
+        {
+            var query = from a in _applyRepository.Entities.Where(v=>v.Id.Equals(id))
+                        join d in _departmentRepository.Entities on a.DepartmentId equals d.Id into d_join
+                        from di in d_join.DefaultIfEmpty()
+                        join r in _checkRepository.Entities on a.Id equals r.ApplyId into r_join
+                        from ri in r_join.DefaultIfEmpty()
+                        select new
+                        {
+                            ApplicantName = a.ApplicantName,
+                            Id = a.Id,
+                            ApplyNum = a.ApplyNum,
+                            ApplyReson = a.ApplyReson,
+                            ApplicantPhone = a.ApplicantPhone,
+                            BackPlanTime = a.BackPlanTime,
+                            StartPlanTime = a.StartPlanTime,
+                            Status = a.Status.GetRemark(),
+                            UseArea = a.UseArea,
+                            UserName = a.UserName,
+                            UserMobile = a.UserMobile,
+                            CarType = a.CarType,
+                            CarProperty = a.CarProperty.GetRemark(),
+                            CheckStatus = ri.CheckStatus.GetRemark(),
+                            DepartmentName = String.IsNullOrEmpty(di.DepartmentName) ? "-" : di.DepartmentName,
+                            Destination = a.Destination,
+                            StartPoint = a.StartPoint,
+                            CheckId=ri.Id,
+                            ri.CheckUserId,
+                            ri.CheckUserName,
+                            ri.CheckReply,
+                            CheckDate=ri.CreateDate
+                        };
+
             output.Datas = await query?.ToListAsync();
             return output;
         }
