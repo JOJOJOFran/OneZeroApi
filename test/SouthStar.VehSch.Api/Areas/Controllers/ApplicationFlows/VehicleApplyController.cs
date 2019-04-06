@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SouthStar.VehSch.Core.ApplicationFlow.Models;
+using OneZero.Common.Extensions;
 
 namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers
 {
@@ -44,15 +45,9 @@ namespace SouthStar.VehSch.Api.Areas.ApplicationFlow.Controllers
         /// <param name="endDate">结束日期</param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> List(int page, int limit, string applicantId, int? status=null, string applyNum=null, DateTime? startDate = null, DateTime? endDate = null)
+        public async Task<IActionResult> List(int page, int limit, string applicantId, ApplyState? status=null, string applyNum=null, DateTime? startDate = null, DateTime? endDate = null)
         {
-            if (applicantId != null)
-                if (!Guid.TryParse(applicantId, out _id))
-                {
-                    return Json(BadParameter("Id格式不匹配"));
-                }
-
-            var vehicleList = await _applyService.GetListAsync(applicantId == null ? null : (Guid?)_id, (ApplyState?)status, applyNum, startDate, endDate, page, limit);
+            var vehicleList = await _applyService.GetListAsync(applicantId.ConvertToNullableGuid("用车申请失败：申请人ID格式不匹配"), status, applyNum, startDate, endDate, page, limit);
             return Json(vehicleList);
         }
 

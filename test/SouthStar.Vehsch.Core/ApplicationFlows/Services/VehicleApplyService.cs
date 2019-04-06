@@ -71,11 +71,11 @@ namespace SouthStar.VehSch.Core.ApplicationFlow.Services
         {
             int skipCount = 0;
 
-            var apply = _applyRepository.Entities.Where(v => (string.IsNullOrWhiteSpace(applyNum) || EF.Functions.Like(v.ApplyNum, "%" + applyNum + "%")
+            var apply = _applyRepository.Entities.Where(v => (string.IsNullOrWhiteSpace(applyNum) || EF.Functions.Like(v.ApplyNum, "%" + applyNum + "%"))
                                                                     && (status == null || v.Status.Equals(status))
                                                                     && (applicantId == null || v.ApplicantId.Equals(applicantId))
                                                                     &&(startDate==null|| v.CreateDate>= startDate)
-                                                                    &&(endDate==null||v.CreateDate<=endDate))).OrderBy(v => v.ApplyNum);
+                                                                    &&(endDate==null||v.CreateDate<=endDate)).OrderBy(v => v.ApplyNum);
             var sumCount = await apply.Select(v => new { v.Id }).CountAsync();
             if (sumCount <= 0)
                 return output;
@@ -104,7 +104,7 @@ namespace SouthStar.VehSch.Core.ApplicationFlow.Services
                             UserMobile = a.UserMobile,
                             CarType = a.CarType,
                             CarProperty = a.CarProperty.GetRemark(),
-                            CheckStatus = ri.CheckStatus.GetRemark(),
+                            CheckStatus = ri==null?"":ri.CheckStatus.GetRemark(),
                             DepartmentName = String.IsNullOrEmpty(di.DepartmentName) ? "-" : di.DepartmentName,
                             Destination = a.Destination,
                             StartPoint = a.StartPoint,
@@ -215,15 +215,17 @@ namespace SouthStar.VehSch.Core.ApplicationFlow.Services
         {
             var applyInfo = ConvertToModel<VehicleApplicationData, VehicleApplications>(applyInData);
             applyInfo.Id = applyId;
-            int result = 1;
             var applyEntity =await _applyRepository.Entities.FirstOrDefaultAsync(v => v.Id.Equals(applyId));
             try
             {
-                await _unitOfWork.BeginTransAsync();
-                await _applyRepository.UpdateAsync(applyInfo);
+                await _unitOfWork.BeginTransAsync();              
                 //如果之前是起草，现在是待审核，则创建审核数据
-                if ((!(applyInfo.Status == applyEntity.Status)) && applyEntity.Status == ApplyState.Draft && applyInfo.Status == ApplyState.WaitCheck)
-                     result=await CreateCheckContent(applyId, applyInfo.ApplyNum);
+                if (applyEntity.Status == ApplyState.Draft)
+                {
+                    await CreateCheckContent(applyId, applyInfo.ApplyNum);
+                    applyEntity.Status = ApplyState.WaitCheck;
+                }
+                await _applyRepository.UpdateAsync(applyInfo);
                 await _unitOfWork.CommitAsync();
             }
             catch (Exception e)

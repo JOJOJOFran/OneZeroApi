@@ -67,10 +67,10 @@ namespace SouthStar.VehSch.Core.Dispatch.Services
         {
             int skipCount = 0;
             //找到申请状态为已审核且审核状态为通过或者已派车的申请单
-            var apply = from a in _applyRepository.Entities.Where(v => (string.IsNullOrWhiteSpace(applyNum) || EF.Functions.Like(v.ApplyNum, "%" + applyNum + "%")
+            var apply = from a in _applyRepository.Entities.Where(v => (string.IsNullOrWhiteSpace(applyNum) || EF.Functions.Like(v.ApplyNum, "%" + applyNum + "%"))
                                                                     && (v.Status == ApplyState.Checked)                           //不能是起草的申请
                                                                     && (startDate == null || v.CreateDate >= startDate)
-                                                                    && (endDate == null || v.CreateDate <= endDate))).OrderBy(v => v.ApplyNum)
+                                                                    && (endDate == null || v.CreateDate <= endDate)).OrderBy(v => v.ApplyNum)
                         join b in _checkRepository.Entities.Where(v => v.CheckStatus == CheckStatus.Approved || v.CheckStatus == CheckStatus.Dispatched) on a.Id equals b.ApplyId
                         select new { a.Id };
 
@@ -106,7 +106,7 @@ namespace SouthStar.VehSch.Core.Dispatch.Services
                             CreateDate = r.CreateDate,
                             CarType = a.CarType,
                             CarProperty = a.CarProperty.GetRemark(),
-                            CheckStatus = r.CheckStatus.GetRemark(),
+                            CheckStatus = r.CheckStatus== CheckStatus.Approved?"待调度":"已调度",
                             DepartmentName = di.DepartmentName,
                             Destination = a.Destination,
                             StartPoint = a.StartPoint,
@@ -154,7 +154,7 @@ namespace SouthStar.VehSch.Core.Dispatch.Services
                         {
                             Id = a.Id,
                             ApplicantName = a.ApplicantName,
-                            ApplyId = a.Id,
+                            ApplyId = a.ApplyId,
                             ApplyNum = a.ApplyNum,
                             ApplyReson = a.ApplyReson,
                             BackPlanTime = a.BackPlanTime,
@@ -207,6 +207,7 @@ namespace SouthStar.VehSch.Core.Dispatch.Services
             if (apply == null)
                 throw new OneZeroException("申请信息异常，生成派车单失败", ResponseCode.ExpectedException);
 
+     
             //生产派车单
             Guid newId = GuidHelper.NewGuid();
             var dispatch = new VehicleDispatchs()
@@ -228,6 +229,7 @@ namespace SouthStar.VehSch.Core.Dispatch.Services
                 UserDepartment = apply.DepartmentName,
                 DriverPhone = dispatchPostData.DriverPhone,
                 UserName = apply.UserName,
+                UseArea=apply.UseArea,
                 UserCount = apply.UserCount,
                 UserTitle = apply.UserTitle,
                 DriverId = dispatchPostData.DriverId,
@@ -241,7 +243,7 @@ namespace SouthStar.VehSch.Core.Dispatch.Services
             };
             var result = await _dispatchRepository.AddAsync(dispatch);
             if (result <= 0)
-                throw new OneZeroException("生成派车单失败：更新其他相关状态出现错误！", ResponseCode.UnExpectedException);
+                throw new OneZeroException("生成派车单失败！", ResponseCode.UnExpectedException);
 
             //触发订阅了DispatchVehicleEventArgs的事件
             var eventArgs = CreateDispatchVehicleEventArgs(newId, dispatchPostData, applyId);

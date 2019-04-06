@@ -16,6 +16,9 @@ namespace OneZero.Common.Extensions
         /// <returns></returns>
         public static string GetRemark(this Enum value)
         {
+            if (value == null)
+                return "";
+
             FieldInfo fi = value.GetType().GetField(value.ToString());
             if (fi == null)
             {

@@ -52,11 +52,11 @@ namespace SouthStar.VehSch.Core.ApplicationFlow.Services
         {
             int skipCount = 0;
 
-            var apply = _applyRepository.Entities.Where(v => (string.IsNullOrWhiteSpace(applyNum) || EF.Functions.Like(v.ApplyNum, "%" + applyNum + "%")
+            var apply = _applyRepository.Entities.Where(v => (string.IsNullOrWhiteSpace(applyNum) || EF.Functions.Like(v.ApplyNum, "%" + applyNum + "%"))
                                                                     && (status == null || v.Status.Equals(status))
                                                                     && (v.Status != ApplyState.Draft)                           //不能是起草的申请
                                                                     && (startDate == null || v.CreateDate >= startDate)
-                                                                    && (endDate == null || v.CreateDate <= endDate))).OrderBy(v => v.ApplyNum);
+                                                                    && (endDate == null || v.CreateDate <= endDate)).OrderBy(v => v.ApplyNum);
             var sumCount = await apply.Select(v => new { v.Id }).CountAsync();
             if (sumCount <= 0)
                 return output;
@@ -200,33 +200,31 @@ namespace SouthStar.VehSch.Core.ApplicationFlow.Services
         /// <returns></returns>
         public async Task<OutputDto> CheckAsync(Guid checkId, CheckContentPostData value)
         {
+            var msg = "";
+            if (!CheckContentValidate(value, out msg))
+            {
+                output.Message = msg;
+                return output;
+            }
+
             var check = await _checkRepository.Entities.Where(v => v.Id.Equals(checkId)).FirstOrDefaultAsync();
             if (check == null)
             {
-                //如果没有则插入一条
-                if (value.ApplyType == ApplyType.VehicleApply)
-                {
-                    var apply = await _applyRepository.Entities.Where(v => v.ApplyNum == value.ApplyNum).Select(v => new { v.Id }).FirstOrDefaultAsync();
-                    if (apply == null)
-                        throw new OneZeroException("数据异常，审核失败", ResponseCode.UnExpectedException);
-                    await _checkRepository.AddAsync(new CheckContents()
-                    {
-                        Id = GuidHelper.NewGuid(),
-                        ApplyId = apply.Id,
-                        ApplyNum = value.ApplyNum,
-                        ApplyType = ApplyType.VehicleApply,
-                        CheckStatus = value.CheckStatus,
-                        CheckUserId = value.CheckUserId,
-                        CheckUserName = value.CheckUserName,
-                        CheckReply = value.CheckReply,
-                        CreateDate = DateTime.Now,
-                        LastUpdateTime = DateTime.Now
-                    });
-                }
-
+                output.Message = "未找到审核单";
+                return output;
             }
-            else
+
+            try
             {
+                //开启事务
+                await _unitOfWork.BeginTransAsync();
+                //针对申请类型，做相应处理
+                switch (value.ApplyType)
+                {
+                    case ApplyType.VehicleApply:
+                        await VehicleApplyCheck(value);
+                        break;
+                }
                 //更新审核状态
                 check.CheckStatus = value.CheckStatus;
                 check.CheckUserId = value.CheckUserId;
@@ -234,9 +232,51 @@ namespace SouthStar.VehSch.Core.ApplicationFlow.Services
                 check.CheckReply = value.CheckReply;
                 check.LastUpdateTime = DateTime.Now;
                 await _checkRepository.UpdateAsync(check);
+                await _unitOfWork.CommitAsync();
+                output.Message = "审核成功";
             }
-            output.Message = "操作完成";
+            catch (Exception e)
+            {
+                await _unitOfWork.RollbackAsync();
+                if (e is OneZeroException)
+                {
+                    throw e;
+                }
+                throw new OneZeroException($"{value?.ApplyType.GetRemark()}审核失败",e,ResponseCode.UnExpectedException);
+            }        
             return output;
+        }
+
+        private async Task VehicleApplyCheck(CheckContentPostData value)
+        {
+            var apply = await _applyRepository.Entities.FirstOrDefaultAsync(v=>v.ApplyNum==value.ApplyNum);
+            if (apply == null)
+            {
+                throw new OneZeroException("未找到申请单", ResponseCode.ExpectedException);
+            }
+
+            apply.Status = ApplyState.Checked;
+            await _applyRepository.UpdateOneAsync(apply);
+        }
+
+
+        /// <summary>
+        /// 审核内容校验
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        private bool CheckContentValidate(CheckContentPostData value, out string msg)
+        {
+            msg = "";
+            bool checkFlag = true;
+            if (string.IsNullOrWhiteSpace(value.ApplyNum))
+            {
+                msg = "申请编号不能为空";
+                checkFlag = false;
+            }
+
+            return checkFlag;
         }
     }
 }

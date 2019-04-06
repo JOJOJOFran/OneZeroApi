@@ -29,12 +29,13 @@ namespace SouthStar.VehSch.Core.EventBues.DispatchVehilceEvent
                 if (notification.VehicleId == default(Guid))
                     throw new OneZeroException("司机ID不能为空");
                 string msg;
-                msg = await _driverService.ChangeStatusHandlerAsync((Guid)notification.OldDriverId, notification.DriverId, notification.DriverStatus);
+                msg = await _driverService.ChangeStatusHandlerAsync(notification.OldDriverId.Value, notification.DriverId, notification.DriverStatus);
                 _logger.LogInformation($"派车后，修改司机状态:{msg}");
             }
             catch (Exception e)
             {
                 _logger.LogWarning($"派车后，修改司机状态失败",e.InnerException.Message);
+                //throw OneZeroException($"")
             }
         }
     }

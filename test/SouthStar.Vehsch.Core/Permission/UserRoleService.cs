@@ -34,9 +34,9 @@ namespace SouthStar.VehSch.Core.Permissions
         public UserRoleService(IUnitOfWork unitOfWork, ILogger<UserRoleService> logger, IDapperProvider dapper, IMapper mapper) : base(unitOfWork, dapper, mapper)
         {
             _userRepository = _unitOfWork.Repository<User, Guid>();
-            _roleRepository= _unitOfWork.Repository<Role, Guid>();
+            _roleRepository = _unitOfWork.Repository<Role, Guid>();
             _userRoleRepository = _unitOfWork.Repository<UserRole, Guid>();
-            _departmentsRepository= _unitOfWork.Repository<Departments, Guid>();
+            _departmentsRepository = _unitOfWork.Repository<Departments, Guid>();
             _logger = logger;
         }
 
@@ -54,7 +54,7 @@ namespace SouthStar.VehSch.Core.Permissions
 
             var users = _userRepository.Entities.Where(v => ((EF.Functions.Like(v.DisplayName, "%" + userName + "%") || string.IsNullOrWhiteSpace(userName))
                                                             && (EF.Functions.Like(v.Account, "%" + Account + "%") || string.IsNullOrWhiteSpace(Account)))
-                                                            ).OrderBy(v => v.DisplayName).Select(v => new { v.Id ,v.DepartmentId});
+                                                            ).OrderBy(v => v.DisplayName).Select(v => new { v.Id, v.DepartmentId });
             var sumCount = await users.CountAsync();
             if (sumCount <= 0)
                 return output;
@@ -76,8 +76,8 @@ namespace SouthStar.VehSch.Core.Permissions
                             b.Id,
                             b.Account,
                             Name = b.DisplayName,
-                            RoleName=ei.DisplayName,
-                            RoleCode=ei.Name,
+                            RoleName = ei.DisplayName,
+                            RoleCode = ei.Name,
                             b.Phone,
                             b.Email,
                             ci.DepartmentName,
@@ -113,10 +113,10 @@ namespace SouthStar.VehSch.Core.Permissions
                         join b in _roleRepository.Entities on a.Id equals b.Id
                         select new
                         {
-                           b.Id,                    
-                           b.Name,
-                           b.DisplayName,
-                           b.Remark                           
+                            b.Id,
+                            b.Name,
+                            b.DisplayName,
+                            b.Remark
                         };
             output.Datas = await query?.ToListAsync();
             return output;
@@ -129,8 +129,8 @@ namespace SouthStar.VehSch.Core.Permissions
         /// <returns></returns>
         public async Task<OutputDto> GetUserItmeAsync(Guid userId)
         {
-            var user = await _userRepository.Entities.Where(v => v.Id.Equals(userId)).FirstOrDefaultAsync(); 
-            output.Datas = new { user.Id,user.LockoutEnabled,user.Phone,RoleId=user.UserRoles.Select(v=> v.Id ).First(),user.Email,RoleName=user.DisplayName,user.DepartmentId,user.EmailConfirmed,user.Account};
+            var user = await _userRepository.Entities.Where(v => v.Id.Equals(userId)).FirstOrDefaultAsync();
+            output.Datas = new { user.Id, user.LockoutEnabled, user.Phone, RoleId = user.UserRoles.Select(v => v.RoleId).First(), user.Email, RoleName = user.DisplayName, user.DepartmentId, user.EmailConfirmed, user.Account };
             return output;
         }
 
@@ -171,7 +171,7 @@ namespace SouthStar.VehSch.Core.Permissions
         {
             var user = await _userRepository.Entities.Where(v => v.Id.Equals(userId)).FirstOrDefaultAsync();
             if (user == null)
-                throw new OneZeroException("分配角色失败：传入的上下文有误，找不到用户",ResponseCode.ExpectedException);
+                throw new OneZeroException("分配角色失败：传入的上下文有误，找不到用户", ResponseCode.ExpectedException);
 
             List<UserRole> userRoles = new List<UserRole> { };
             foreach (var item in roleData.RoleIds)
@@ -183,7 +183,7 @@ namespace SouthStar.VehSch.Core.Permissions
                 }
                 else
                 {
-                    throw new OneZeroException("分配角色失败：传入的角色有误",ResponseCode.ExpectedException);
+                    throw new OneZeroException("分配角色失败：传入的角色有误", ResponseCode.ExpectedException);
                 }
             }
 
@@ -202,8 +202,8 @@ namespace SouthStar.VehSch.Core.Permissions
             }
             catch (Exception e)
             {
-                await  _unitOfWork.RollbackAsync();
-                throw new OneZeroException("分配角色失败",e,ResponseCode.ExpectedException);
+                await _unitOfWork.RollbackAsync();
+                throw new OneZeroException("分配角色失败", e, ResponseCode.ExpectedException);
             }
             return output;
         }
@@ -227,7 +227,7 @@ namespace SouthStar.VehSch.Core.Permissions
         {
             var user = await _userRepository.Entities.Where(v => v.Id.Equals(userId)).FirstOrDefaultAsync();
             if (user == null)
-                throw new OneZeroException("清空角色失败：传入的上下文有误，找不到用户",ResponseCode.ExpectedException);
+                throw new OneZeroException("清空角色失败：传入的上下文有误，找不到用户", ResponseCode.ExpectedException);
 
             var userRole = user.UserRoles;
             if (userRole != null && userRole.Count() > 0)
@@ -236,7 +236,7 @@ namespace SouthStar.VehSch.Core.Permissions
             }
             output.Message = "清空成功";
             return output;
-        } 
+        }
 
         /// <summary>
         /// 新增用户角色
@@ -245,7 +245,7 @@ namespace SouthStar.VehSch.Core.Permissions
         /// <param name="roleId"></param>
         /// <returns></returns>
         public async Task<OutputDto> AddUserRoleAsync(Guid userId, Guid roleId)
-        {          
+        {
             var role = await _roleRepository.Entities.Where(v => v.Id.Equals(roleId)).FirstOrDefaultAsync();
             if (role == null)
             {
@@ -263,8 +263,8 @@ namespace SouthStar.VehSch.Core.Permissions
 
             if (userRole != null)
             {
-                userRole.IsDelete = GuidHelper.NewGuid();
-                var output= await _userRoleRepository.UpdateAsync(userRole);
+                //userRole.IsDelete = GuidHelper.NewGuid();
+                var output = await _userRoleRepository.UpdateAsync(userRole);
                 output.Message = "操作成功";
                 return output;
             }
@@ -274,7 +274,7 @@ namespace SouthStar.VehSch.Core.Permissions
             newUserRole.UserId = userId;
             newUserRole.RoleId = roleId;
 
-            var result= await _userRoleRepository.AddAsync(newUserRole);
+            var result = await _userRoleRepository.AddAsync(newUserRole);
             if (result == 1)
             {
                 output.Message = "操作成功";
@@ -317,17 +317,18 @@ namespace SouthStar.VehSch.Core.Permissions
         {
             if (userData == null)
             {
-                throw new OneZeroException("用户信息不能为空",ResponseCode.ExpectedException);
+                throw new OneZeroException("用户信息不能为空", ResponseCode.ExpectedException);
             }
             userData.Password = userData.Password.MD5Hash();
-            if (userData.RoleId.HasValue&& !userData.RoleId.Equals(default(Guid))&&await _roleRepository.CheckExistsAsync(v=>v.Id.Equals(userData.RoleId.Value)))
+            if (userData.RoleId.HasValue && !userData.RoleId.Equals(default(Guid)) && await _roleRepository.CheckExistsAsync(v => v.Id.Equals(userData.RoleId.Value)))
             {
                 try
                 {
                     await _unitOfWork.BeginTransAsync();
                     var userId = GuidHelper.NewGuid();
-                    await _userRepository.AddAsync(userData, null, v => (ConvertToModel<UserData, User>(userData)));            
-                    await this.AddUserRoleAsync(userId,userData.RoleId.Value);
+                    userData.Id = userId;
+                    await _userRepository.AddAsync(userData, null, v => (ConvertToModel<UserData, User>(userData)));
+                    await this.AddUserRoleAsync(userId, userData.RoleId.Value);
                     await _unitOfWork.CommitAsync();
                     output.Message = "新增成功";
                     return output;
@@ -342,7 +343,7 @@ namespace SouthStar.VehSch.Core.Permissions
             {
                 return await _userRepository.AddAsync(userData, null, v => (ConvertToModel<UserData, User>(userData)));
             }
-            
+
         }
 
         /// <summary>
@@ -351,11 +352,29 @@ namespace SouthStar.VehSch.Core.Permissions
         /// <param name="departmentId"></param>
         /// <param name="departmentInfo"></param>
         /// <returns></returns>
-        public async Task<OutputDto> UpdateUserAsync(Guid userId, UserData userData)
+        public async Task<OutputDto> UpdateUserAsync(Guid userId, UserUpdateData userData)
         {
-            var user = ConvertToModel<UserData, User>(userData);
-            user.Id = userId;
-            return await _userRepository.UpdateAsync(user);
+            try
+            {
+                await _unitOfWork.BeginTransAsync();
+                var user = await _userRepository.Entities.FirstOrDefaultAsync(v => v.Id.Equals(userId));
+                user.Phone = userData.Phone;
+                user.DepartmentId = userData.DepartmentId;
+                user.Email = userData.Email;
+                user.DisplayName = userData.Name;
+                user.Account = userData.Account;
+                await _userRoleRepository.DeleteAsync(v => v.UserId.Equals(userId));
+                await AddUserRoleAsync(userId, userData.RoleId.Value);
+                await _unitOfWork.CommitAsync();
+                output.Message = "更新成功";
+                return await _userRepository.UpdateAsync(user);
+            }
+            catch (Exception e)
+            {
+                await _unitOfWork.RollbackAsync();
+                throw new OneZeroException("用户更新失败", e, ResponseCode.UnExpectedException);
+            }
+            
         }
 
         /// <summary>
@@ -410,7 +429,7 @@ namespace SouthStar.VehSch.Core.Permissions
             Guid userId;
             if (!Guid.TryParse(data.UserId, out userId))
             {
-                throw new OneZeroException("修改密码失败：传入的用户ID格式错误",ResponseCode.ExpectedException);
+                throw new OneZeroException("修改密码失败：传入的用户ID格式错误", ResponseCode.ExpectedException);
             }
 
             var user = await _userRepository.Entities.Where(v => v.Id.Equals(userId)).FirstOrDefaultAsync();
@@ -438,16 +457,16 @@ namespace SouthStar.VehSch.Core.Permissions
             Guid userId;
             if (!Guid.TryParse(data.UserId, out userId))
             {
-                throw new OneZeroException("修改手机号失败：传入的用户ID格式错误",ResponseCode.ExpectedException);
+                throw new OneZeroException("修改手机号失败：传入的用户ID格式错误", ResponseCode.ExpectedException);
             }
 
             var user = await _userRepository.Entities.Where(v => v.Id.Equals(userId)).FirstOrDefaultAsync();
             if (user == null)
             {
-                throw new OneZeroException("修改手机号失败：传入的用户上下文错误，找不到用户",ResponseCode.ExpectedException);
+                throw new OneZeroException("修改手机号失败：传入的用户上下文错误，找不到用户", ResponseCode.ExpectedException);
             }
-           
-            if ( !string.IsNullOrWhiteSpace(data.PhoneNum) )
+
+            if (!string.IsNullOrWhiteSpace(data.PhoneNum))
             {
                 user.Phone = data.PhoneNum;
                 await _userRepository.UpdateAsync(user);

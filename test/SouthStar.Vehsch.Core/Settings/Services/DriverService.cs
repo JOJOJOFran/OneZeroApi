@@ -215,7 +215,7 @@ namespace SouthStar.VehSch.Core.Setting.Services
         /// <param name="driverId"></param>
         /// <param name="state"></param>
         /// <returns></returns>
-        public async Task<string> ChangeStatusHandlerAsync(Guid oldDriverId, Guid driverId, PersonState state)
+        public async Task<string> ChangeStatusHandlerAsync(Guid? oldDriverId, Guid driverId, PersonState state)
         {
             Drivers oldDriver;
             int oldResult = 1;
@@ -225,7 +225,7 @@ namespace SouthStar.VehSch.Core.Setting.Services
             if (driver == null)
                 return "司机不存在";
 
-            if (!oldDriverId.Equals(driverId))
+            if (oldDriverId.HasValue&&!oldDriverId.Equals(driverId))
             {
                 oldDriver = await _driverRepository.Entities.Where(v => v.Id.Equals(oldDriverId)).FirstOrDefaultAsync();
                 oldDriver.Status = PersonState.OnWait;

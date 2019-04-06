@@ -7,6 +7,8 @@ namespace OneZero.Core.Dtos.Permission
 {
     public class UserData:DataDto
     {
+        public Guid? Id { get; set; }
+
         public string Account { get; set; }
 
         public string DisplayName { get; set; }

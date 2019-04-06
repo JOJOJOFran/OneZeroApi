@@ -75,7 +75,7 @@ namespace SouthStar.VehSch.Api.Areas.Permission.Controllers
         /// <param name="value">用户信息</param>
         /// <returns></returns>
         [HttpPost("{userId}")]
-        public async Task<IActionResult> Update(string userId, [FromBody]UserData value)
+        public async Task<IActionResult> Update(string userId, [FromBody]UserUpdateData value)
         {
             if (!Guid.TryParse(userId, out _id))
             {
