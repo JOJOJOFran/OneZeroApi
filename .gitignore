@@ -127,3 +127,4 @@ src/OneZero\.EntityFrameWorkCore\.PgSql/
 /test/2019-04-03.log
 /test/2019-04-04.log
 /test/OneZero.AspNetCore/bin/Debug/netcoreapp2.2
+/test/SouthStar.VehSch.Api/LowerContractReslove.cs

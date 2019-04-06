@@ -85,7 +85,7 @@ namespace SouthStar.VehSch.Api.Areas.Setting.Controllers
                 return Json(BadParameter("Id格式不匹配"));
             }
             var vehicleInfo = await _vehicleManageService.GetItemAsync(_id);
-            return Ok(Json(vehicleInfo));
+            return Ok(vehicleInfo);
         }
 
         /// <summary>
