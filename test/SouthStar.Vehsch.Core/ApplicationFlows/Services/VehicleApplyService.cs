@@ -139,6 +139,7 @@ namespace SouthStar.VehSch.Core.ApplicationFlow.Services
         {
             applyInfo.NotNull("用车申请(新增)");
             applyInfo.Id = GuidHelper.NewGuid();
+            applyInfo.ApplyNum = await GetNextSeq();
             //申请状态设置为起草
             applyInfo.Status = ApplyState.Draft;
             applyInfo.CreateDate = DateTime.Now;
@@ -159,6 +160,7 @@ namespace SouthStar.VehSch.Core.ApplicationFlow.Services
                 await _unitOfWork.BeginTransAsync();
                 applyInfo.NotNull("用车申请(新增)");
                 applyInfo.Id = GuidHelper.NewGuid();
+                applyInfo.ApplyNum = await GetNextSeq();
                 //申请状态设置为待审核
                 applyInfo.Status = ApplyState.WaitCheck;
                 applyInfo.CreateDate = DateTime.Now;
@@ -242,8 +244,9 @@ namespace SouthStar.VehSch.Core.ApplicationFlow.Services
         /// <returns></returns>
         private async Task<int> CreateCheckContent(Guid id, string applyNum)
         {
+            var test = await _checkRepository.Entities.ToListAsync();
             //不存在则新建
-            if (_checkRepository.Entities.Where(v => v.ApplyId.Equals(id)|| v.ApplyNum== applyNum).Select(v => (new { v.Id })).FirstOrDefaultAsync() == null)
+            if ((await _checkRepository.Entities.Where(v => v.ApplyId.Equals(id)|| v.ApplyNum== applyNum).Select(v => (new { v.Id })).FirstOrDefaultAsync()) == null)
             {
                 return await _checkRepository.AddAsync(new CheckContents()
                 {

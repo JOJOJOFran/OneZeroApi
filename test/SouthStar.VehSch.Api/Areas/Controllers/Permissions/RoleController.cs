@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using OneZero.Common.Extensions;
 using OneZero.Core.Dtos.Permission;
 using OneZero.Core.Models.Permissions;
-using OneZero.Core.Services.Permission;
+using SouthStar.VehSch.Core.Permissions;
 using SouthStar.VehSch.Api.Controllers;
 using System;
 using System.Collections.Generic;
@@ -32,6 +32,18 @@ namespace SouthStar.VehSch.Api.Areas.Controllers.Permissions
         public async Task<IActionResult> List(int page, int limit, string name = null)
         {
             var list = await _roleService.GetRoleListAsync(name, page, limit);
+            return Json(list);
+        }
+
+
+        /// <summary>
+        /// 查询所有角色
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> AllList()
+        {
+            var list = await _roleService.GetAllRoleAsync();
             return Json(list);
         }
 

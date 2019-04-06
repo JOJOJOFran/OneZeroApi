@@ -54,8 +54,8 @@ namespace SouthStar.VehSch.Core.Permissions
 
             var users = _userRepository.Entities.Where(v => ((EF.Functions.Like(v.DisplayName, "%" + userName + "%") || string.IsNullOrWhiteSpace(userName))
                                                             && (EF.Functions.Like(v.Account, "%" + Account + "%") || string.IsNullOrWhiteSpace(Account)))
-                                                            ).OrderBy(v => v.DisplayName);
-            var sumCount = await users.Select(v => new { v.Id }).CountAsync();
+                                                            ).OrderBy(v => v.DisplayName).Select(v => new { v.Id ,v.DepartmentId});
+            var sumCount = await users.CountAsync();
             if (sumCount <= 0)
                 return output;
 
@@ -65,17 +65,22 @@ namespace SouthStar.VehSch.Core.Permissions
 
             var query = from a in users.Skip(skipCount).Take(limit)
                         join b in _userRepository.Entities on a.Id equals b.Id
-                        join c in _departmentsRepository.Entities on a.DepartmentId equals c.Id
-                     //   join d in _userRoleRepository.Entities on a.
+                        join c in _departmentsRepository.Entities on a.DepartmentId equals c.Id into c_join
+                        from ci in c_join.DefaultIfEmpty()
+                        join d in _userRoleRepository.Entities on a.Id equals d.UserId into d_join
+                        from di in d_join.DefaultIfEmpty()
+                        join e in _roleRepository.Entities on di.RoleId equals e.Id into e_join
+                        from ei in e_join.DefaultIfEmpty()
                         select new
                         {
                             b.Id,
                             b.Account,
                             Name = b.DisplayName,
-                            RoleName="管理员",
+                            RoleName=ei.DisplayName,
+                            RoleCode=ei.Name,
                             b.Phone,
                             b.Email,
-                            c.DepartmentName,
+                            ci.DepartmentName,
                             State = b.LockoutEnabled ? "禁用" : "启用",
                             LockTime = b.LockoutEnd
                         };
@@ -106,7 +111,6 @@ namespace SouthStar.VehSch.Core.Permissions
 
             var query = from a in roles.Skip(skipCount).Take(limit)
                         join b in _roleRepository.Entities on a.Id equals b.Id
-
                         select new
                         {
                            b.Id,                    
@@ -125,8 +129,8 @@ namespace SouthStar.VehSch.Core.Permissions
         /// <returns></returns>
         public async Task<OutputDto> GetUserItmeAsync(Guid userId)
         {
-            var user = await _userRepository.Entities.Where(v => v.Id.Equals(userId)).FirstOrDefaultAsync();
-            output.Datas = user;
+            var user = await _userRepository.Entities.Where(v => v.Id.Equals(userId)).FirstOrDefaultAsync(); 
+            output.Datas = new { user.Id,user.LockoutEnabled,user.Phone,RoleId=user.UserRoles.Select(v=> v.Id ).First(),user.Email,RoleName=user.DisplayName,user.DepartmentId,user.EmailConfirmed,user.Account};
             return output;
         }
 

@@ -142,8 +142,8 @@ namespace OneZero.EntityFrameworkCore.Domain
         {
             if (_trans != null)
             {
-                await Task.Run( ()=> { _trans?.Rollback(); });
-                await Task.Run(() => { _trans?.Dispose(); });               
+                //await Task.Run(()=>_trans.Rollback()); 
+                _trans.Rollback();
             }
             HasCommited = false;
 

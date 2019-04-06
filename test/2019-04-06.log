@@ -1,0 +1,440 @@
+2019-04-06 13:35:55.6185||Error||Microsoft.EntityFrameworkCore.Database.Command||Failed executing DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (Size = 20), @p3='?' (Size = 100), @p4='?' (Size = 20), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (Size = 20), @p8='?' (DbType = Guid), @p9='?' (Size = 20), @p10='?' (Size = 20), @p11='?' (Size = 2000), @p12='?' (Size = 4000), @p13='?' (DbType = Guid), @p14='?' (Size = 20), @p15='?' (DbType = Int32), @p16='?' (Size = 20), @p17='?' (Size = 4000), @p18='?' (Size = 500), @p19='?' (Size = 4000), @p20='?' (DbType = Guid), @p21='?' (Size = 30), @p22='?' (Size = 20), @p23='?' (Size = 50), @p24='?' (Size = 50), @p25='?' (Size = 20), @p26='?' (Size = 30), @p27='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TVehicles] ([Id], [ApprovedSeating], [BookOriginValue], [CarIcon], [CurbWeight], [CurrentState], [DepartmentId], [Displacament], [DriverId], [EngineNo], [FACardNum], [Image], [InitMileage], [IsDelete], [LoadWeight], [OilType], [PlateNumber], [PurchasePrice], [Remark], [TankCapacity], [TenanId], [TerminalNo], [VIN], [VechileType], [VehicleBrand], [VehicleColor], [VehicleLicOwner], [VehicleProperties])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27);||System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_EngineNo_IsDelete_TenanId'. The duplicate key value is (1, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+ClientConnectionId:560c9d72-d47a-469c-a671-780feebb8abf
+Error Number:2601,State:1,Class:14||http://119.3.210.254/api/Vehicle/Add||Add||ecs-a218||::1||end
+2019-04-06 13:35:55.6521||Error||Microsoft.EntityFrameworkCore.Update||An exception occurred in the database while saving changes for context type 'OneZero.EntityFrameworkCore.DefaultDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_EngineNo_IsDelete_TenanId'. The duplicate key value is (1, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)||Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_EngineNo_IsDelete_TenanId'. The duplicate key value is (1, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_EngineNo_IsDelete_TenanId'. The duplicate key value is (1, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:560c9d72-d47a-469c-a671-780feebb8abf
+Error Number:2601,State:1,Class:14||http://119.3.210.254/api/Vehicle/Add||Add||ecs-a218||::1||end
+2019-04-06 13:47:07.1944||Error||Microsoft.EntityFrameworkCore.Database.Command||Failed executing DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (Size = 20), @p3='?' (Size = 100), @p4='?' (Size = 20), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (Size = 20), @p8='?' (DbType = Guid), @p9='?' (Size = 20), @p10='?' (Size = 20), @p11='?' (Size = 2000), @p12='?' (Size = 4000), @p13='?' (DbType = Guid), @p14='?' (Size = 20), @p15='?' (DbType = Int32), @p16='?' (Size = 20), @p17='?' (Size = 4000), @p18='?' (Size = 500), @p19='?' (Size = 4000), @p20='?' (DbType = Guid), @p21='?' (Size = 30), @p22='?' (Size = 20), @p23='?' (Size = 50), @p24='?' (Size = 50), @p25='?' (Size = 20), @p26='?' (Size = 30), @p27='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TVehicles] ([Id], [ApprovedSeating], [BookOriginValue], [CarIcon], [CurbWeight], [CurrentState], [DepartmentId], [Displacament], [DriverId], [EngineNo], [FACardNum], [Image], [InitMileage], [IsDelete], [LoadWeight], [OilType], [PlateNumber], [PurchasePrice], [Remark], [TankCapacity], [TenanId], [TerminalNo], [VIN], [VechileType], [VehicleBrand], [VehicleColor], [VehicleLicOwner], [VehicleProperties])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27);||System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_EngineNo_IsDelete_TenanId'. The duplicate key value is (1111111111, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+ClientConnectionId:4c74a1be-6d8f-4a7e-8889-6c562c608def
+Error Number:2601,State:1,Class:14||http://119.3.210.254/api/Vehicle/Add||Add||ecs-a218||127.0.0.1||end
+2019-04-06 13:47:07.1979||Error||Microsoft.EntityFrameworkCore.Update||An exception occurred in the database while saving changes for context type 'OneZero.EntityFrameworkCore.DefaultDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_EngineNo_IsDelete_TenanId'. The duplicate key value is (1111111111, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)||Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_EngineNo_IsDelete_TenanId'. The duplicate key value is (1111111111, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_EngineNo_IsDelete_TenanId'. The duplicate key value is (1111111111, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:4c74a1be-6d8f-4a7e-8889-6c562c608def
+Error Number:2601,State:1,Class:14||http://119.3.210.254/api/Vehicle/Add||Add||ecs-a218||127.0.0.1||end
+2019-04-06 13:47:11.1438||Error||Microsoft.EntityFrameworkCore.Database.Command||Failed executing DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (Size = 20), @p3='?' (Size = 100), @p4='?' (Size = 20), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (Size = 20), @p8='?' (DbType = Guid), @p9='?' (Size = 20), @p10='?' (Size = 20), @p11='?' (Size = 2000), @p12='?' (Size = 4000), @p13='?' (DbType = Guid), @p14='?' (Size = 20), @p15='?' (DbType = Int32), @p16='?' (Size = 20), @p17='?' (Size = 4000), @p18='?' (Size = 500), @p19='?' (Size = 4000), @p20='?' (DbType = Guid), @p21='?' (Size = 30), @p22='?' (Size = 20), @p23='?' (Size = 50), @p24='?' (Size = 50), @p25='?' (Size = 20), @p26='?' (Size = 30), @p27='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TVehicles] ([Id], [ApprovedSeating], [BookOriginValue], [CarIcon], [CurbWeight], [CurrentState], [DepartmentId], [Displacament], [DriverId], [EngineNo], [FACardNum], [Image], [InitMileage], [IsDelete], [LoadWeight], [OilType], [PlateNumber], [PurchasePrice], [Remark], [TankCapacity], [TenanId], [TerminalNo], [VIN], [VechileType], [VehicleBrand], [VehicleColor], [VehicleLicOwner], [VehicleProperties])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27);||System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_EngineNo_IsDelete_TenanId'. The duplicate key value is (1111111111, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+ClientConnectionId:4c74a1be-6d8f-4a7e-8889-6c562c608def
+Error Number:2601,State:1,Class:14||http://119.3.210.254/api/Vehicle/Add||Add||ecs-a218||127.0.0.1||end
+2019-04-06 13:47:11.1470||Error||Microsoft.EntityFrameworkCore.Update||An exception occurred in the database while saving changes for context type 'OneZero.EntityFrameworkCore.DefaultDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_EngineNo_IsDelete_TenanId'. The duplicate key value is (1111111111, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)||Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_EngineNo_IsDelete_TenanId'. The duplicate key value is (1111111111, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_EngineNo_IsDelete_TenanId'. The duplicate key value is (1111111111, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:4c74a1be-6d8f-4a7e-8889-6c562c608def
+Error Number:2601,State:1,Class:14||http://119.3.210.254/api/Vehicle/Add||Add||ecs-a218||127.0.0.1||end
+2019-04-06 13:47:54.6000||Error||Microsoft.EntityFrameworkCore.Database.Command||Failed executing DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (Size = 20), @p3='?' (Size = 100), @p4='?' (Size = 20), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (Size = 20), @p8='?' (DbType = Guid), @p9='?' (Size = 20), @p10='?' (Size = 20), @p11='?' (Size = 2000), @p12='?' (Size = 4000), @p13='?' (DbType = Guid), @p14='?' (Size = 20), @p15='?' (DbType = Int32), @p16='?' (Size = 20), @p17='?' (Size = 4000), @p18='?' (Size = 500), @p19='?' (Size = 4000), @p20='?' (DbType = Guid), @p21='?' (Size = 30), @p22='?' (Size = 20), @p23='?' (Size = 50), @p24='?' (Size = 50), @p25='?' (Size = 20), @p26='?' (Size = 30), @p27='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TVehicles] ([Id], [ApprovedSeating], [BookOriginValue], [CarIcon], [CurbWeight], [CurrentState], [DepartmentId], [Displacament], [DriverId], [EngineNo], [FACardNum], [Image], [InitMileage], [IsDelete], [LoadWeight], [OilType], [PlateNumber], [PurchasePrice], [Remark], [TankCapacity], [TenanId], [TerminalNo], [VIN], [VechileType], [VehicleBrand], [VehicleColor], [VehicleLicOwner], [VehicleProperties])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27);||System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_PlateNumber_IsDelete_TenanId'. The duplicate key value is (鄂A22222, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+ClientConnectionId:4c74a1be-6d8f-4a7e-8889-6c562c608def
+Error Number:2601,State:1,Class:14||http://119.3.210.254/api/Vehicle/Add||Add||ecs-a218||127.0.0.1||end
+2019-04-06 13:47:54.6031||Error||Microsoft.EntityFrameworkCore.Update||An exception occurred in the database while saving changes for context type 'OneZero.EntityFrameworkCore.DefaultDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_PlateNumber_IsDelete_TenanId'. The duplicate key value is (鄂A22222, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)||Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_PlateNumber_IsDelete_TenanId'. The duplicate key value is (鄂A22222, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_PlateNumber_IsDelete_TenanId'. The duplicate key value is (鄂A22222, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:4c74a1be-6d8f-4a7e-8889-6c562c608def
+Error Number:2601,State:1,Class:14||http://119.3.210.254/api/Vehicle/Add||Add||ecs-a218||127.0.0.1||end
+2019-04-06 13:51:09.8043||Error||Microsoft.EntityFrameworkCore.Database.Command||Failed executing DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 4000), @p2='?' (Size = 20), @p3='?' (Size = 100), @p4='?' (Size = 20), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (Size = 20), @p8='?' (DbType = Guid), @p9='?' (Size = 20), @p10='?' (Size = 20), @p11='?' (Size = 2000), @p12='?' (Size = 4000), @p13='?' (DbType = Guid), @p14='?' (Size = 20), @p15='?' (DbType = Int32), @p16='?' (Size = 20), @p17='?' (Size = 4000), @p18='?' (Size = 500), @p19='?' (Size = 4000), @p20='?' (DbType = Guid), @p21='?' (Size = 30), @p22='?' (Size = 20), @p23='?' (Size = 50), @p24='?' (Size = 50), @p25='?' (Size = 20), @p26='?' (Size = 30), @p27='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TVehicles] ([Id], [ApprovedSeating], [BookOriginValue], [CarIcon], [CurbWeight], [CurrentState], [DepartmentId], [Displacament], [DriverId], [EngineNo], [FACardNum], [Image], [InitMileage], [IsDelete], [LoadWeight], [OilType], [PlateNumber], [PurchasePrice], [Remark], [TankCapacity], [TenanId], [TerminalNo], [VIN], [VechileType], [VehicleBrand], [VehicleColor], [VehicleLicOwner], [VehicleProperties])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26, @p27);||System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_EngineNo_IsDelete_TenanId'. The duplicate key value is (2325656, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+ClientConnectionId:e2cc36ff-03dc-4ef6-b600-96b7545e6065
+Error Number:2601,State:1,Class:14||http://119.3.210.254/api/Vehicle/Add||Add||ecs-a218||::1||end
+2019-04-06 13:51:09.8076||Error||Microsoft.EntityFrameworkCore.Update||An exception occurred in the database while saving changes for context type 'OneZero.EntityFrameworkCore.DefaultDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_EngineNo_IsDelete_TenanId'. The duplicate key value is (2325656, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)||Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_EngineNo_IsDelete_TenanId'. The duplicate key value is (2325656, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.TVehicles' with unique index 'IX_TVehicles_EngineNo_IsDelete_TenanId'. The duplicate key value is (2325656, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:e2cc36ff-03dc-4ef6-b600-96b7545e6065
+Error Number:2601,State:1,Class:14||http://119.3.210.254/api/Vehicle/Add||Add||ecs-a218||::1||end
+2019-04-06 16:33:58.1986||Error||Microsoft.EntityFrameworkCore.Database.Command||Failed executing DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (Size = 100), @p3='?' (Size = 30), @p4='?' (Size = 50), @p5='?' (Size = 500), @p6='?' (DbType = DateTime2), @p7='?' (DbType = Int32), @p8='?' (Size = 50), @p9='?' (DbType = DateTime2), @p10='?' (DbType = Guid), @p11='?' (Size = 500), @p12='?' (Size = 200), @p13='?' (Size = 2000), @p14='?' (DbType = Guid), @p15='?' (DbType = Guid), @p16='?' (Size = 50), @p17='?' (Size = 500), @p18='?' (DbType = DateTime2), @p19='?' (Size = 200), @p20='?' (DbType = Int32), @p21='?' (DbType = Guid), @p22='?' (Size = 100), @p23='?' (Size = 10), @p24='?' (Size = 50), @p25='?' (Size = 50), @p26='?' (Size = 50)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TVehicleApplications] ([Id], [ApplicantId], [ApplicantName], [ApplicantPhone], [ApplyNum], [ApplyReson], [BackPlanTime], [CarProperty], [CarType], [CreateDate], [DepartmentId], [DepartmentName], [Destination], [FileName], [IsDelete], [ReciverId], [ReciverMobile], [Remark], [StartPlanTime], [StartPoint], [Status], [TenanId], [UseArea], [UserCount], [UserMobile], [UserName], [UserTitle])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26);||System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.TVehicleApplications' with unique index 'IX_TVehicleApplications_ApplyNum_IsDelete_TenanId'. The duplicate key value is (201904050000, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+ClientConnectionId:f15d6906-404d-4ca0-a780-9934bb7528fb
+Error Number:2601,State:1,Class:14||http://119.3.210.254/api/VehicleApply/AddAndSend||AddAndSend||ecs-a218||::1||end
+2019-04-06 16:33:58.2064||Error||Microsoft.EntityFrameworkCore.Update||An exception occurred in the database while saving changes for context type 'OneZero.EntityFrameworkCore.DefaultDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert duplicate key row in object 'dbo.TVehicleApplications' with unique index 'IX_TVehicleApplications_ApplyNum_IsDelete_TenanId'. The duplicate key value is (201904050000, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)||Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert duplicate key row in object 'dbo.TVehicleApplications' with unique index 'IX_TVehicleApplications_ApplyNum_IsDelete_TenanId'. The duplicate key value is (201904050000, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.TVehicleApplications' with unique index 'IX_TVehicleApplications_ApplyNum_IsDelete_TenanId'. The duplicate key value is (201904050000, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:f15d6906-404d-4ca0-a780-9934bb7528fb
+Error Number:2601,State:1,Class:14||http://119.3.210.254/api/VehicleApply/AddAndSend||AddAndSend||ecs-a218||::1||end
+2019-04-06 16:37:44.7127||Error||Microsoft.EntityFrameworkCore.Database.Command||Failed executing DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (Size = 100), @p3='?' (Size = 30), @p4='?' (Size = 50), @p5='?' (Size = 500), @p6='?' (DbType = DateTime2), @p7='?' (DbType = Int32), @p8='?' (Size = 50), @p9='?' (DbType = DateTime2), @p10='?' (DbType = Guid), @p11='?' (Size = 500), @p12='?' (Size = 200), @p13='?' (Size = 2000), @p14='?' (DbType = Guid), @p15='?' (DbType = Guid), @p16='?' (Size = 50), @p17='?' (Size = 500), @p18='?' (DbType = DateTime2), @p19='?' (Size = 200), @p20='?' (DbType = Int32), @p21='?' (DbType = Guid), @p22='?' (Size = 100), @p23='?' (Size = 10), @p24='?' (Size = 50), @p25='?' (Size = 50), @p26='?' (Size = 50)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TVehicleApplications] ([Id], [ApplicantId], [ApplicantName], [ApplicantPhone], [ApplyNum], [ApplyReson], [BackPlanTime], [CarProperty], [CarType], [CreateDate], [DepartmentId], [DepartmentName], [Destination], [FileName], [IsDelete], [ReciverId], [ReciverMobile], [Remark], [StartPlanTime], [StartPoint], [Status], [TenanId], [UseArea], [UserCount], [UserMobile], [UserName], [UserTitle])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21, @p22, @p23, @p24, @p25, @p26);||System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.TVehicleApplications' with unique index 'IX_TVehicleApplications_ApplyNum_IsDelete_TenanId'. The duplicate key value is (201904050000, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+ClientConnectionId:e3828382-9079-4411-b370-b312ccff5141
+Error Number:2601,State:1,Class:14||http://119.3.210.254/api/VehicleApply/AddAndSend||AddAndSend||ecs-a218||127.0.0.1||end
+2019-04-06 16:37:44.7156||Error||Microsoft.EntityFrameworkCore.Update||An exception occurred in the database while saving changes for context type 'OneZero.EntityFrameworkCore.DefaultDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert duplicate key row in object 'dbo.TVehicleApplications' with unique index 'IX_TVehicleApplications_ApplyNum_IsDelete_TenanId'. The duplicate key value is (201904050000, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)||Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert duplicate key row in object 'dbo.TVehicleApplications' with unique index 'IX_TVehicleApplications_ApplyNum_IsDelete_TenanId'. The duplicate key value is (201904050000, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.TVehicleApplications' with unique index 'IX_TVehicleApplications_ApplyNum_IsDelete_TenanId'. The duplicate key value is (201904050000, 00000000-0000-0000-0000-000000000000, 8cab1c61-a36b-4910-b8ec-7351ea11ba71).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:e3828382-9079-4411-b370-b312ccff5141
+Error Number:2601,State:1,Class:14||http://119.3.210.254/api/VehicleApply/AddAndSend||AddAndSend||ecs-a218||127.0.0.1||end
+2019-04-06 16:45:34.6950||Error||Microsoft.EntityFrameworkCore.Database.Transaction||An error occurred using a transaction.||System.InvalidOperationException: The connection does not support MultipleActiveResultSets.
+   at System.Data.SqlClient.SqlInternalConnectionTds.ValidateConnectionForExecute(SqlCommand command)
+   at System.Data.SqlClient.SqlInternalTransaction.Rollback()
+   at System.Data.SqlClient.SqlTransaction.Rollback()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalTransaction.Rollback()||http://119.3.210.254/api/VehicleApply/AddAndSend||AddAndSend||ecs-a218||::1||end
+2019-04-06 16:46:46.4344||Error||Microsoft.EntityFrameworkCore.Database.Transaction||An error occurred using a transaction.||System.InvalidOperationException: The connection does not support MultipleActiveResultSets.
+   at System.Data.SqlClient.SqlInternalConnectionTds.ValidateConnectionForExecute(SqlCommand command)
+   at System.Data.SqlClient.SqlInternalTransaction.Rollback()
+   at System.Data.SqlClient.SqlTransaction.Rollback()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalTransaction.Rollback()||http://119.3.210.254/api/VehicleApply/AddAndSend||AddAndSend||ecs-a218||127.0.0.1||end
+2019-04-06 16:52:37.5109||Error||Microsoft.EntityFrameworkCore.Database.Transaction||An error occurred using a transaction.||System.InvalidOperationException: The connection does not support MultipleActiveResultSets.
+   at System.Data.SqlClient.SqlInternalConnectionTds.ValidateConnectionForExecute(SqlCommand command)
+   at System.Data.SqlClient.SqlInternalTransaction.Rollback()
+   at System.Data.SqlClient.SqlTransaction.Rollback()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalTransaction.Rollback()||http://119.3.210.254/api/VehicleApply/AddAndSend||AddAndSend||ecs-a218||::1||end
+2019-04-06 17:00:16.3536||Error||Microsoft.EntityFrameworkCore.Database.Transaction||An error occurred using a transaction.||System.InvalidOperationException: The connection does not support MultipleActiveResultSets.
+   at System.Data.SqlClient.SqlInternalConnectionTds.ValidateConnectionForExecute(SqlCommand command)
+   at System.Data.SqlClient.SqlInternalTransaction.Rollback()
+   at System.Data.SqlClient.SqlTransaction.Rollback()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalTransaction.Rollback()||http://119.3.210.254/api/VehicleApply/AddAndSend||AddAndSend||ecs-a218||127.0.0.1||end

@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using OneZero.Core.Dtos.Permission;
 using OneZero.Core.Models.Permissions;
-using OneZero.Core.Services.Permission;
+using SouthStar.VehSch.Core.Permissions;
 using SouthStar.VehSch.Api.Controllers;
 using System;
 using System.Collections.Generic;

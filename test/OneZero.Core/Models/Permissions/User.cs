@@ -14,7 +14,7 @@ namespace OneZero.Core.Models.Permissions
         /// 用户名
         /// </summary>
         [Required]
-        [MaxLength(256)]
+        [MaxLength(30)]
         [Description("用户名")]
         public string Account { get; set; }
 
@@ -22,7 +22,7 @@ namespace OneZero.Core.Models.Permissions
         /// 展示名称
         /// </summary>
         [Required]
-        [MaxLength(256)]
+        [MaxLength(30)]
         [Description("展示名称")]
         public string DisplayName { get; set; }
 
@@ -30,7 +30,7 @@ namespace OneZero.Core.Models.Permissions
         /// 密码(加密后)
         /// </summary>
         [Required]
-        [MaxLength(2000)]
+        [MaxLength(20)]
         [Description("密码")]
         public string PasswordHash { get; set; }
 
@@ -38,7 +38,7 @@ namespace OneZero.Core.Models.Permissions
         /// 邮箱
         /// </summary>
         [Required]
-        [MaxLength(2000)]
+        [MaxLength(20)]
         [Description("邮箱")]
         public string Email { get; set; }
 
@@ -52,7 +52,6 @@ namespace OneZero.Core.Models.Permissions
         /// <summary>
         /// 手机号
         /// </summary>
-        [Required]
         [MaxLength(50)]
         [Description("手机号")]
         public string Phone { get; set; }

@@ -45,6 +45,19 @@ namespace  SouthStar.VehSch.Core.Permissions
         }
 
         /// <summary>
+        /// 获取所有角色
+        /// </summary>
+        /// <returns></returns>
+        public async Task<OutputDto> GetAllRoleAsync()
+        {
+            var result = await  _roleRepository.Entities.Select(v => new { v.Id, v.Name, v.DisplayName }).ToListAsync();          
+            output.Datas= result;
+            return output;
+
+        }
+
+
+        /// <summary>
         /// 获取角色列表
         /// </summary>
         /// <param name="roleName"></param>
