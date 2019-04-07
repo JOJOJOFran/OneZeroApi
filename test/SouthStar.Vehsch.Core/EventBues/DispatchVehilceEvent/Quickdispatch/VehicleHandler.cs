@@ -29,7 +29,7 @@ namespace SouthStar.VehSch.Core.EventBues.DispatchVehilceEvent.Quickdispatch
                 if (notification.VehicleId == default(Guid))
                     throw new OneZeroException("车辆ID不能为空");
                 string msg;
-                msg = await _vehcileService.ChangeStatusHandlerAsync( notification.DriverId, notification.VehicleStatus);
+                msg = await _vehcileService.ChangeStatusHandlerAsync( notification.VehicleId, notification.VehicleStatus);
                 _logger.LogInformation($"派车后，修改车辆状态:{msg}");
             }
             catch (Exception e)

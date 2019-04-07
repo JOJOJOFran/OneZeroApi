@@ -226,7 +226,7 @@ namespace SouthStar.VehSch.Core.Setting.Services
         /// <param name="vehicleId"></param>
         /// <param name="state"></param>
         /// <returns></returns>
-        public async Task<string> ChangeStatusHandlerAsync(Guid oldVehicleID, Guid vehicleId, CurrentState state)
+        public async Task<string> ChangeStatusHandlerAsync(Guid? oldVehicleID, Guid vehicleId, CurrentState state)
         {
             Vehicles oldDriver;
             int oldResult = 1;
@@ -234,7 +234,7 @@ namespace SouthStar.VehSch.Core.Setting.Services
             var vehicle = await _vehicleRepository.Entities.Where(v => v.Id.Equals(vehicleId)).FirstOrDefaultAsync();
             if (vehicle == null)
                 return "车辆不存在";
-            if (!oldVehicleID.Equals(vehicleId))
+            if (oldVehicleID.HasValue&&!oldVehicleID.Equals(vehicleId))
             {
                 oldDriver = await _vehicleRepository.Entities.Where(v => v.Id.Equals(oldVehicleID)).FirstOrDefaultAsync();
                 oldDriver.CurrentState = CurrentState.OnWait;

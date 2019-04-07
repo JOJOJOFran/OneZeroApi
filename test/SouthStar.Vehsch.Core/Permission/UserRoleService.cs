@@ -356,25 +356,34 @@ namespace SouthStar.VehSch.Core.Permissions
         {
             try
             {
-                await _unitOfWork.BeginTransAsync();
                 var user = await _userRepository.Entities.FirstOrDefaultAsync(v => v.Id.Equals(userId));
+                //var role = await _userRoleRepository.Entities.Where(v => v.UserId.Equals(userId)).FirstOrDefaultAsync();
+                
+
+                await _unitOfWork.BeginTransAsync();              
                 user.Phone = userData.Phone;
                 user.DepartmentId = userData.DepartmentId;
                 user.Email = userData.Email;
                 user.DisplayName = userData.Name;
                 user.Account = userData.Account;
-                await _userRoleRepository.DeleteAsync(v => v.UserId.Equals(userId));
-                await AddUserRoleAsync(userId, userData.RoleId.Value);
+                //if (userData.RoleId.HasValue && role != null && !role.RoleId.Equals(userData.RoleId.Value))s
+                //{
+                //    //await _userRoleRepository.DeleteAsync(roles.ToArray());
+
+                //    //role.RoleId = userData.RoleId.Value;
+                //    //UserRole newUserRole = role;
+                //    //await _userRoleRepository.UpdateAsync(newUserRole);
+                //}
+                await _userRepository.UpdateAsync(user);
                 await _unitOfWork.CommitAsync();
                 output.Message = "更新成功";
-                return await _userRepository.UpdateAsync(user);
             }
             catch (Exception e)
             {
                 await _unitOfWork.RollbackAsync();
                 throw new OneZeroException("用户更新失败", e, ResponseCode.UnExpectedException);
             }
-            
+            return output;
         }
 
         /// <summary>

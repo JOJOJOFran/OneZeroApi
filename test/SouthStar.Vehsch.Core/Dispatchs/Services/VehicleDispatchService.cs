@@ -35,6 +35,8 @@ namespace SouthStar.VehSch.Core.Dispatch.Services
         private IRepository<CheckContents, Guid> _checkRepository;
         private IRepository<VehicleDispatchs, Guid> _dispatchRepository;
         private IRepository<Departments, Guid> _departmentRepository;
+        private IRepository<Vehicles, Guid> _vehicleRepository;
+        private IRepository<Drivers, Guid> _driverRepository;
         private IMediator _mediator;
         private readonly OneZeroOption _oneZeroOption;
         private readonly OneZeroContext _oneZeroContext;
@@ -45,6 +47,8 @@ namespace SouthStar.VehSch.Core.Dispatch.Services
             _checkRepository = unitOfWork.Repository<CheckContents, Guid>();
             _departmentRepository = unitOfWork.Repository<Departments, Guid>();
             _dispatchRepository = unitOfWork.Repository<VehicleDispatchs, Guid>();
+            _vehicleRepository = unitOfWork.Repository<Vehicles, Guid>();
+            _driverRepository = unitOfWork.Repository<Drivers, Guid>();
             _logger = logger;
             _mediator = mediator;
             _oneZeroOption = oneZeroOption;
@@ -203,51 +207,91 @@ namespace SouthStar.VehSch.Core.Dispatch.Services
         public async Task<OutputDto> AddDispatchAsync(Guid applyId, VehicleDispatchPostData dispatchPostData)
         {
             var apply = await _applyRepository.Entities.FirstOrDefaultAsync(v => (v.Id.Equals(applyId)));
-
+            var vehicle = await _vehicleRepository.Entities.FirstOrDefaultAsync(v => (v.Id.Equals(dispatchPostData.VehicleId)));
+            var driver = await _driverRepository.Entities.FirstOrDefaultAsync(v => (v.Id.Equals(dispatchPostData.DriverId)));
+            var check = await _checkRepository.Entities.FirstOrDefaultAsync(v => (v.ApplyId.Equals(applyId)));
             if (apply == null)
-                throw new OneZeroException("申请信息异常，生成派车单失败", ResponseCode.ExpectedException);
-
-     
-            //生产派车单
-            Guid newId = GuidHelper.NewGuid();
-            var dispatch = new VehicleDispatchs()
             {
-                Id = newId,
-                ApplyId = applyId,
-                ApplicantName = apply.ApplicantName,
-                ApplicantPhone = apply.ApplicantPhone,
-                ApplyNum = apply.ApplyNum,
-                ApplyReson = apply.ApplyReson,
-                BackPlanTime = apply.BackPlanTime,
-                CarType = apply.CarType,
-                CarProperty = apply.CarProperty,
-                ApplyDate = apply.CreateDate,
-                Destination = apply.Destination,
-                UserMobile = apply.UserMobile,
-                StartPlanTime = apply.StartPlanTime,
-                StartPoint = apply.StartPoint,
-                UserDepartment = apply.DepartmentName,
-                DriverPhone = dispatchPostData.DriverPhone,
-                UserName = apply.UserName,
-                UseArea=apply.UseArea,
-                UserCount = apply.UserCount,
-                UserTitle = apply.UserTitle,
-                DriverId = dispatchPostData.DriverId,
-                DriverName = dispatchPostData.DriverName,
-                VehcileId = dispatchPostData.VehicleId,
-                PlateNumber = dispatchPostData.PlateNumber,
-                CreateDate = DateTime.Now,
-                DispatchType = dispatchPostData.DispatchType,
-                QueueNo = dispatchPostData.QueueNo ?? -1,
-                TenanId = _oneZeroContext.TenanId
-            };
-            var result = await _dispatchRepository.AddAsync(dispatch);
-            if (result <= 0)
-                throw new OneZeroException("生成派车单失败！", ResponseCode.UnExpectedException);
+                output.Message = "数据异常：申请单不存在";
+                return output;
+            }
+
+            if (vehicle == null)
+            {
+                output.Message = "数据异常：车辆不存在";
+                return output;
+            }
+
+            if (driver == null)
+            {
+                output.Message = "数据异常：司机不存在";
+                return output;
+            }
+
+            if (check == null)
+            {
+                output.Message = "数据异常：审核单不存在";
+                return output;
+            }
+
+
+            try
+            {
+                await _unitOfWork.BeginTransAsync();
+                //生产派车单
+                Guid newId = GuidHelper.NewGuid();
+                var dispatch = new VehicleDispatchs()
+                {
+                    Id = newId,
+                    ApplyId = applyId,
+                    ApplicantName = apply.ApplicantName,
+                    ApplicantPhone = apply.ApplicantPhone,
+                    ApplyNum = apply.ApplyNum,
+                    ApplyReson = apply.ApplyReson,
+                    BackPlanTime = apply.BackPlanTime,
+                    CarType = apply.CarType,
+                    CarProperty = apply.CarProperty,
+                    ApplyDate = apply.CreateDate,
+                    Destination = apply.Destination,
+                    UserMobile = apply.UserMobile,
+                    StartPlanTime = apply.StartPlanTime,
+                    StartPoint = apply.StartPoint,
+                    UserDepartment = apply.DepartmentName,
+                    DriverPhone = dispatchPostData.DriverPhone,
+                    UserName = apply.UserName,
+                    UseArea = apply.UseArea,
+                    UserCount = apply.UserCount,
+                    UserTitle = apply.UserTitle,
+                    DriverId = dispatchPostData.DriverId,
+                    DriverName = dispatchPostData.DriverName,
+                    VehcileId = dispatchPostData.VehicleId,
+                    PlateNumber = dispatchPostData.PlateNumber,
+                    CreateDate = DateTime.Now,
+                    DispatchType = dispatchPostData.DispatchType,
+                    QueueNo = dispatchPostData.QueueNo ?? -1,
+                    TenanId = _oneZeroContext.TenanId
+                };
+                await _dispatchRepository.AddAsync(dispatch);
+                vehicle.CurrentState = CurrentState.OnDuty;
+                await _vehicleRepository.UpdateOneAsync(vehicle);
+                driver.Status = PersonState.OnWork;
+                await _driverRepository.UpdateOneAsync(driver);
+                check.CheckStatus = CheckStatus.Dispatched;
+                await _checkRepository.UpdateOneAsync(check);
+                await _unitOfWork.CommitAsync();
+            }
+            catch (Exception e)
+            {
+                await _unitOfWork.RollbackAsync();
+                throw new OneZeroException("生成派车单失败！",e,ResponseCode.UnExpectedException);
+            }
+           
+            //if (result <= 0)
+            //    throw new OneZeroException("生成派车单失败！", ResponseCode.UnExpectedException);
 
             //触发订阅了DispatchVehicleEventArgs的事件
-            var eventArgs = CreateDispatchVehicleEventArgs(newId, dispatchPostData, applyId);
-            await _mediator.Publish(eventArgs);
+            //var eventArgs = CreateDispatchVehicleEventArgs(newId, dispatchPostData, applyId);
+            //await _mediator.Publish(eventArgs);
             output.Message = "生成派车单成功";
             return output;
         }
@@ -261,7 +305,7 @@ namespace SouthStar.VehSch.Core.Dispatch.Services
         public async Task<OutputDto> UpdateDispatchAsync(Guid applyId, VehicleDispatchPostData dispatchPostData)
         {
             var dispatch = await _dispatchRepository.Entities.FirstOrDefaultAsync(v => v.ApplyId == applyId);
-            if (dispatch != null && dispatchPostData != null)
+            if (dispatch == null || dispatchPostData == null)
                 throw new OneZeroException("重新调度：更新派车单失败！", ResponseCode.ExpectedException);
 
             dispatch.DriverId = dispatchPostData.DriverId;
@@ -275,7 +319,7 @@ namespace SouthStar.VehSch.Core.Dispatch.Services
             output.Message = "重新调度：成功！";
 
             //触发订阅了DispatchVehicleEventArgs的事件
-            var eventArgs = CreateDispatchVehicleEventArgs(dispatch.Id, dispatchPostData);
+            var eventArgs = CreateDispatchVehicleEventArgs(dispatch, dispatchPostData, applyId);
             await _mediator.Publish(eventArgs);
 
             return output;
@@ -431,12 +475,14 @@ namespace SouthStar.VehSch.Core.Dispatch.Services
         /// <param name="dispatchPostData"></param>
         /// <param name="applyId"></param>
         /// <returns></returns>
-        private DispatchVehicleEventArgs CreateDispatchVehicleEventArgs(Guid DispatchId, VehicleDispatchPostData dispatchPostData, Guid applyId = default(Guid))
+        private DispatchVehicleEventArgs CreateDispatchVehicleEventArgs(VehicleDispatchs dispatch, VehicleDispatchPostData dispatchPostData, Guid applyId)
         {
             return new DispatchVehicleEventArgs()
             {
                 ApplyId = applyId,
-                DispatchId = DispatchId,
+                OldDriverId = dispatch.DriverId,
+                OldVehicleId=dispatch.VehcileId,
+                DispatchId = dispatch.Id,
                 DriverId = dispatchPostData.DriverId,
                 DriverStatus = PersonState.OnWork,
                 EventDate = DateTime.Now,
