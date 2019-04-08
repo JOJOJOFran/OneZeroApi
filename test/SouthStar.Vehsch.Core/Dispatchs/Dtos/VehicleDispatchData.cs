@@ -42,10 +42,18 @@ namespace SouthStar.VehSch.Core.Dispatch.Dtos
         /// </summary>
         public DateTime ApplyDate { get; set; }
 
+
+        //public Guid DepartmentId { get; set; }
+
         /// <summary>
         /// 使用人姓名
         /// </summary>
         public string UserName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string UserArea { get; set; }
 
         /// <summary>
         /// 使用人数
@@ -102,6 +110,11 @@ namespace SouthStar.VehSch.Core.Dispatch.Dtos
         /// 车辆性质
         /// </summary>
         public CarProperty CarProperty { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        public string Remark { get; set; }
         #endregion
 
 

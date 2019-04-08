@@ -223,7 +223,7 @@ namespace SouthStar.VehSch.Core.ApplicationFlow.Services
                 if (applyEntity.Status == ApplyState.Draft)
                 {
                     await CreateCheckContent(applyId, applyInfo.ApplyNum);
-                    applyEntity.Status = ApplyState.WaitCheck;
+                    applyInfo.Status = ApplyState.WaitCheck;
                 }
                 await _applyRepository.UpdateAsync(applyInfo);
                 await _unitOfWork.CommitAsync();

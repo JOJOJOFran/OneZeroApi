@@ -52,8 +52,8 @@ namespace SouthStar.VehSch.Core.Permissions
         {
             int skipCount = 0;
 
-            var users = _userRepository.Entities.Where(v => ((EF.Functions.Like(v.DisplayName, "%" + userName + "%") || string.IsNullOrWhiteSpace(userName))
-                                                            && (EF.Functions.Like(v.Account, "%" + Account + "%") || string.IsNullOrWhiteSpace(Account)))
+            var users = _userRepository.Entities.Where(v => (EF.Functions.Like(v.DisplayName, $"%{userName}%") || string.IsNullOrWhiteSpace(userName))
+                                                            && (EF.Functions.Like(v.Account, $"%{Account}%") || string.IsNullOrWhiteSpace(Account))
                                                             ).OrderBy(v => v.DisplayName).Select(v => new { v.Id, v.DepartmentId });
             var sumCount = await users.CountAsync();
             if (sumCount <= 0)
@@ -75,6 +75,7 @@ namespace SouthStar.VehSch.Core.Permissions
                         {
                             b.Id,
                             b.Account,
+    
                             Name = b.DisplayName,
                             RoleName = ei.DisplayName,
                             RoleCode = ei.Name,
@@ -111,6 +112,7 @@ namespace SouthStar.VehSch.Core.Permissions
 
             var query = from a in roles.Skip(skipCount).Take(limit)
                         join b in _roleRepository.Entities on a.Id equals b.Id
+
                         select new
                         {
                             b.Id,
@@ -130,7 +132,7 @@ namespace SouthStar.VehSch.Core.Permissions
         public async Task<OutputDto> GetUserItmeAsync(Guid userId)
         {
             var user = await _userRepository.Entities.Where(v => v.Id.Equals(userId)).FirstOrDefaultAsync();
-            output.Datas = new { user.Id, user.LockoutEnabled, user.Phone, RoleId = user.UserRoles.Select(v => v.RoleId).First(), user.Email, RoleName = user.DisplayName, user.DepartmentId, user.EmailConfirmed, user.Account };
+            output.Datas = new { user.Id, user.LockoutEnabled, user.Phone, RoleId = user.UserRoles.Select(v => v.RoleId).First(), user.Email,user.DisplayName, user.DepartmentId, user.EmailConfirmed, user.Account };
             return output;
         }
 

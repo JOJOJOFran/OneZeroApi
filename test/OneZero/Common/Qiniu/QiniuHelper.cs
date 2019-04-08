@@ -46,6 +46,7 @@ namespace OneZero.Common.Qiniu
             var mac = SetMac();
             PutPolicy putPolicy = new PutPolicy();
             putPolicy.Scope = $"{Bucket}:{fileKey}";
+            Console.WriteLine(putPolicy.Scope);
             putPolicy.SetExpires(3600);
             return Auth.CreateDownloadToken(mac, putPolicy.ToJsonString());
         }

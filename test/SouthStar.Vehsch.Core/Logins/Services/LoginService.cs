@@ -71,9 +71,17 @@ namespace SouthStar.VehSch.Core.Logins.Services
                     //添加角色信息
                     var role = from a in user.UserRoles
                                 join b in _roleRepository.Entities on a.RoleId equals b.Id
-                                select new {b.DisplayName,b.Id };
+                                select new {b.DisplayName,b.Id,b.Name };
 
-                    output.Datas = new { user.Id, user.Account, Name = user.DisplayName,RoleNames=string.Join("," ,role.Select(v=>v.DisplayName)),user.Phone ,RoleId= role.Select(v => v.Id),user.DepartmentId};
+                    output.Datas = new { user.Id,
+                                         user.Account,
+                                         Name = user.DisplayName,
+                                         RoleNames =string.Join("," ,role.Select(v=>v.DisplayName)),
+                                         user.Phone,
+                                         RoleId = role.Select(v => v.Id),
+                                         Roles=role.Select(v=>v.Name),
+                                         Token= _jwtService.WriteToken(await CreateToken(user)),
+                                         user.DepartmentId};
                     output.Message = "登陆成功";
                 }
                 else

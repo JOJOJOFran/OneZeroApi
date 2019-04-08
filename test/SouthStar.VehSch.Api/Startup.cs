@@ -85,11 +85,16 @@ namespace SouthStar.VehSch.Api
         }
 
         /// <summary>
-        /// 初始化框架配置
+        /// 初始化框架配置信息
         /// </summary>
         private void OneZeroOptionInit(IConfiguration configuration)
         {
             configuration.GetSection("OneZero").Bind(oneZeroOption);
+        }
+
+        private void InitRecurringJob()
+        {
+
         }
 
         /// <summary>
