@@ -33,7 +33,28 @@ namespace OneZero.Enums
         /// <summary>
         /// 灾难性错误
         /// </summary>
-        Fatal = 4
+        Fatal = 4,
+
+        /// <summary>
+        /// 未授权
+        /// </summary>
+        UnAuthorize = 4011,
+
+        /// <summary>
+        /// Token过期
+        /// </summary>
+        TokenExpire = 4012,
+
+        /// <summary>
+        /// 异地登陆
+        /// </summary>
+        IpNotMatch = 4013,
+
+
+        /// <summary>
+        /// 非法请求
+        /// </summary>
+        IllegalRequest = 4014,
 
     }
 }

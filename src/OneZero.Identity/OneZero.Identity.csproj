@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Version>0.0.1</Version>
+    <Authors>Fran</Authors>
+    <Company>OneZero</Company>
+    <Description>OneZero.Identity</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OneZero" Version="0.0.2" />
+  </ItemGroup>
+
+</Project>

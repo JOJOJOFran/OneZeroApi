@@ -1,0 +1,9 @@
+D:\AllOrNothing\Personal\SouthStar\api\lib\OneZero.Identity\bin\Debug\netcoreapp2.2\OneZero.Identity.deps.json
+D:\AllOrNothing\Personal\SouthStar\api\lib\OneZero.Identity\bin\Debug\netcoreapp2.2\OneZero.Identity.dll
+D:\AllOrNothing\Personal\SouthStar\api\lib\OneZero.Identity\obj\Debug\netcoreapp2.2\OneZero.Identity.csprojAssemblyReference.cache
+D:\AllOrNothing\Personal\SouthStar\api\lib\OneZero.Identity\obj\Debug\netcoreapp2.2\OneZero.Identity.csproj.CoreCompileInputs.cache
+D:\AllOrNothing\Personal\SouthStar\api\lib\OneZero.Identity\obj\Debug\netcoreapp2.2\OneZero.Identity.AssemblyInfoInputs.cache
+D:\AllOrNothing\Personal\SouthStar\api\lib\OneZero.Identity\obj\Debug\netcoreapp2.2\OneZero.Identity.AssemblyInfo.cs
+D:\AllOrNothing\Personal\SouthStar\api\lib\onezero.identity\bin\Debug\netcoreapp2.2\OneZero.Identity.pdb
+D:\AllOrNothing\Personal\SouthStar\api\lib\onezero.identity\obj\Debug\netcoreapp2.2\OneZero.Identity.dll
+D:\AllOrNothing\Personal\SouthStar\api\lib\onezero.identity\obj\Debug\netcoreapp2.2\OneZero.Identity.pdb

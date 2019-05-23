@@ -1,9 +1,0 @@
-D:\AllOrNothing\OneZeroApi\EasySample\OneZero\bin\Debug\netcoreapp2.2\OneZero.Core.deps.json
-D:\AllOrNothing\OneZeroApi\EasySample\OneZero\bin\Debug\netcoreapp2.2\OneZero.Core.dll
-D:\AllOrNothing\OneZeroApi\EasySample\OneZero\bin\Debug\netcoreapp2.2\OneZero.Core.pdb
-D:\AllOrNothing\OneZeroApi\EasySample\OneZero\obj\Debug\netcoreapp2.2\OneZero.Core.csproj.CoreCompileInputs.cache
-D:\AllOrNothing\OneZeroApi\EasySample\OneZero\obj\Debug\netcoreapp2.2\OneZero.Core.AssemblyInfoInputs.cache
-D:\AllOrNothing\OneZeroApi\EasySample\OneZero\obj\Debug\netcoreapp2.2\OneZero.Core.AssemblyInfo.cs
-D:\AllOrNothing\OneZeroApi\EasySample\OneZero\obj\Debug\netcoreapp2.2\OneZero.Core.dll
-D:\AllOrNothing\OneZeroApi\EasySample\OneZero\obj\Debug\netcoreapp2.2\OneZero.Core.pdb
-D:\AllOrNothing\OneZeroApi\EasySample\OneZero\obj\Debug\netcoreapp2.2\OneZero.Core.csprojAssemblyReference.cache
